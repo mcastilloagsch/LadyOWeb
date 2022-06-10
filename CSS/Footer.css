@@ -1,0 +1,52 @@
+﻿footer {
+    height: 60px;
+    margin: auto;
+    width: 100%;
+    padding: 0px;
+    color: #fff;
+    background-color: #393865;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+    footer h1 {
+        width: 100%;
+        font-size: 18px;
+        padding: 0px 0px;
+        margin: 0px;
+        line-height: 30px;
+    }
+
+@media only screen and (max-width: 992px) {
+    footer {
+        height: 40px;
+    }
+
+        footer h1 {
+            font-size: 16px;
+            line-height: 40px;
+        }
+}
+
+@media only screen and (max-width: 768px) {
+    footer {
+        height: 30px;
+    }
+
+        footer h1 {
+            font-size: 14px;
+            line-height: 30px;
+        }
+}
+
+@media only screen and (max-width: 576px) {
+    footer {
+        height: 25px;
+    }
+
+        footer h1 {
+            font-size: 12px;
+            line-height: 25px;
+        }
+}

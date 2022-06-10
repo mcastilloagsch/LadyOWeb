@@ -1,0 +1,83 @@
+﻿.tablaBasica {
+    clear: both;
+    margin: auto;
+}
+
+    .tablaBasica table {
+        padding: 0px;
+        width: 100%;
+        border: 1px inset #dadada;
+    }
+
+        .tablaBasica table th {
+            background: #393865;
+            color: #fff;
+            font-weight: bold;
+            border: 1px inset #a5a5a5;
+            padding: 5px 1px;
+            font-size: 14px;
+        }
+
+        .tablaBasica table td {
+            color: #393865;
+            border: 1px inset #dadada;
+            padding: 2px 1px;
+        }
+
+    .tablaBasica tbody tr:hover {
+        background: #dadada;
+        color: #fff;
+    }
+
+    .tablaBasica input[type=checkbox] {
+        color: black;
+        background-color: aqua;
+    }
+
+    .tablaBasica input[type=submit], .tablaBasica input[type=button] {
+        width: 90%;
+        background-color: #393865;
+        color: white;
+        padding: 0px 0px;
+        margin: 0px 0px;
+        border: none;
+        border-radius: 4px;
+        min-height: 15px;
+        cursor: pointer;
+        min-height: 25px;
+        border: 1px inset #dadada;
+    }
+
+        .tablaBasica input[type=submit]:hover, input[type=button]:hover, input[type=button]:disabled {
+            opacity: 0.65;
+        }
+
+/*@media screen and (max-width: 992px) {
+    .tablaBasica table th {
+        font-size: 12px;
+    }
+
+    .tablaBasica table td {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .tablaBasica table th {
+        font-size: 10px;
+    }
+
+    .tablaBasica table td {
+        font-size: 10px;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .tablaBasica table th {
+        font-size: 8px;
+    }
+
+    .tablaBasica table td {
+        font-size: 8px;
+    }
+}*/

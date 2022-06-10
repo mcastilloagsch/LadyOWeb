@@ -1,0 +1,252 @@
+﻿.formulario {
+    width: 100%;
+    margin: auto;
+    border-radius: 25px;
+    padding: 0px 0px;
+    text-align: left;
+}
+
+    .formulario div label {
+        font-weight: bold;
+        color: #393767;
+    }
+
+    .formulario h2 {
+        font-weight: bold;
+        padding: 0px;
+        margin: 0;
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .formulario div {
+        width: 100%;
+        background-color: #fff;
+    }
+
+    .formulario .divMsgComentario {
+        border-radius: 5px;
+        background-color: #393767;
+        color: #fff;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        height: 20px;
+        line-height: 20px;
+    }
+
+    .formulario div h3 {
+        font-weight: normal;
+        padding: 0px;
+        margin: 10px 0 0 0;
+        font-size: 18px;
+        margin-bottom: 7.5px;
+        color: #393865;
+    }
+
+        .formulario div h3 a {
+            font-size: 14px;
+        }
+
+    .formulario textarea {
+        width: 100%;
+        padding: 8px 10px;
+        margin: 0px 0px;
+        box-sizing: border-box;
+        resize: none;
+    }
+
+    .formulario input[type=text], .formulario select {
+        width: 100%;
+        padding: 8px 10px;
+        margin: 0px 0px;
+        box-sizing: border-box;
+    }
+
+    .formulario .L1 {
+        width: 12.5%;
+        float: left;
+    }
+
+    .formulario .sizeL2 {
+        width: 25%;
+        float: left;
+    }
+
+    .formulario .L3 {
+        width: 37.5%;
+        float: left;
+    }
+
+    .formulario .L4 {
+        width: 50%;
+        float: left;
+    }
+
+    .formulario .sizeL5 {
+        width: 62.5%;
+        float: left;
+    }
+
+    .formulario .L6 {
+        width: 75%;
+        float: left;
+    }
+
+    .formulario .L7 {
+        width: 87.5%;
+        float: left;
+    }
+
+    .formulario .L8 {
+        width: 100%;
+        float: left;
+        margin: auto;
+    }
+
+@media only screen and (max-width: 992px) {
+    .formulario input[type=submit], .formulario input[type=button] {
+        font-size: 18px;
+        padding: 8px 0px 8px 0px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+
+    .formulario .M1 {
+        width: 12.5%;
+        float: left;
+    }
+
+    .formulario .M2 {
+        width: 25%;
+        float: left;
+    }
+
+    .formulario .M3 {
+        width: 37.5%;
+        float: left;
+    }
+
+    .formulario .M4 {
+        width: 50%;
+        float: left;
+    }
+
+    .formulario .M5 {
+        width: 62.5%;
+        float: left;
+    }
+
+    .formulario .M6 {
+        width: 75%;
+        float: left;
+    }
+
+    .formulario .M7 {
+        width: 87.5%;
+        float: left;
+    }
+
+    .formulario .M8 {
+        width: 100%;
+        float: left;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .formulario input[type=submit], .formulario input[type=button] {
+        font-size: 18px;
+        padding: 6px 0px 6px 0px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .formulario .S1 {
+        width: 12.5%;
+        float: left;
+    }
+
+    .formulario .S2 {
+        width: 25%;
+        float: left;
+    }
+
+    .formulario .S3 {
+        width: 37.5%;
+        float: left;
+    }
+
+    .formulario .S4 {
+        width: 50%;
+        float: left;
+    }
+
+    .formulario .S5 {
+        width: 62.5%;
+        float: left;
+    }
+
+    .formulario .S6 {
+        width: 75%;
+        float: left;
+    }
+
+    .formulario .S7 {
+        width: 87.5%;
+        float: left;
+    }
+
+    .formulario .S8 {
+        width: 100%;
+        float: left;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .formulario input[type=submit], .formulario input[type=button] {
+        font-size: 16px;
+        padding: 6px 0px 6px 0px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .formulario .ES1 {
+        width: 12.5%;
+        float: left;
+    }
+
+    .formulario .ES2 {
+        width: 25%;
+        float: left;
+    }
+
+    .formulario .ES3 {
+        width: 37.5%;
+        float: left;
+    }
+
+    .formulario .ES4 {
+        width: 50%;
+        float: left;
+    }
+
+    .formulario .ES5 {
+        width: 62.5%;
+        float: left;
+    }
+
+    .formulario .ES6 {
+        width: 75%;
+        float: left;
+    }
+
+    .formulario .ES7 {
+        width: 87.5%;
+        float: left;
+    }
+
+    .formulario .ES8 {
+        width: 100%;
+        float: left;
+    }
+}
