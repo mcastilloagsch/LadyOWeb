@@ -1,8 +1,10 @@
-﻿<!DOCTYPE html>
+<?php
+    require_once 'login_url.php';
+?>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
 <style>
 body {
 	font-family: Arial, Helvetica, sans-serif;
@@ -52,8 +54,8 @@ img.avatar {
 				<img src='Img/GoogleLogo.png'>
 			</div>
 			<span class='text-container'>
-				<span>Sign in with Google</span>
-			</span>
+				<span onclick="window.location = '<?php echo $login_url;?> '">Sign in with Google</span>
+            </span>
 		</div>
 	</div>
 <style>
@@ -116,6 +118,8 @@ img.avatar {
             text-align: center;
             width: 180px;
         }	
-	
+</style>
 </body>
 </html>
+
+
