@@ -1,6 +1,5 @@
 ﻿footer {
     height: 60px;
-    margin: auto;
     width: 100%;
     padding: 0px;
     color: #fff;
@@ -17,36 +16,3 @@
         margin: 0px;
         line-height: 30px;
     }
-
-@media only screen and (max-width: 992px) {
-    footer {
-        height: 40px;
-    }
-
-        footer h1 {
-            font-size: 16px;
-            line-height: 40px;
-        }
-}
-
-@media only screen and (max-width: 768px) {
-    footer {
-        height: 30px;
-    }
-
-        footer h1 {
-            font-size: 14px;
-            line-height: 30px;
-        }
-}
-
-@media only screen and (max-width: 576px) {
-    footer {
-        height: 25px;
-    }
-
-        footer h1 {
-            font-size: 12px;
-            line-height: 25px;
-        }
-}
