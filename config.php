@@ -21,6 +21,6 @@ $client->addScope("profile");
 $hostname = "localhost";
 $username = "root";
 $password = "";
-$database = "google-login";
+$database = "youtube-google-login";
 
 $conn = mysqli_connect($hostname, $username, $password, $database);
