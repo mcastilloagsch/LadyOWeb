@@ -10,13 +10,15 @@ function function_alert($message) {
 // codigo de autentificacion de google (oauth flow)
 if (isset($_GET['code'])) {
   $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+if(!isset($token['error']))
+{
   $client->setAccessToken($token['access_token']);
 
-  // toma la información del usuario
+  $_SESSION['access_token'] = $token['access_token'];
+
   $google_oauth = new Google_Service_Oauth2($client);
   $google_account_info = $google_oauth->userinfo->get();
 
-  
   $userinfo = [
     'email' => $google_account_info['email'],
     'first_name' => $google_account_info['givenName'],
@@ -27,6 +29,13 @@ if (isset($_GET['code'])) {
     'verifiedEmail' => $google_account_info['verifiedEmail'],
     'token' => $google_account_info['id'],
   ];
+
+  
+
+  // toma la información del usuario
+  
+  
+ 
 
   $url = "http://rcore.dev.guiasyscouts.cl/api/Login/Login";
   //$url = "http://localhost:100/api/LogIn/LogInUser";
@@ -47,7 +56,7 @@ if (isset($_GET['code'])) {
 
   $data = <<<DATA
   {
-      "eMail" : "$correo"
+      "eMail" : "$correo2"
   }
   DATA;
   
@@ -109,10 +118,12 @@ if (isset($_GET['code'])) {
       }
     }
   }
+}
   else {
     session_destroy();
     header("Location: index.php");
   }
+
 
 ?>
 
