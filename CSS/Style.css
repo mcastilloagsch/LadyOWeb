@@ -1,6 +1,5 @@
 ﻿body {
-    min-width: 320px;
-    max-width: 1024px;
+    min-width: 1024px;
     margin: auto;
     font-family: sans-serif;
 }
@@ -18,24 +17,12 @@ input[type=submit], input[type=button] {
     border-radius: 4px;
     font-size: 18px;
     min-height: 15px;
-    padding: 5px 0px 5px 0px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    padding: 0px 0px 0px 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
     input[type=submit]:hover, input[type=button]:hover {
         background-color: #fff;
         color: #393865;
     }
-
-@media only screen and (max-width: 992px) {
-
-}
-
-@media only screen and (max-width: 768px) {
-
-}
-
-@media only screen and (max-width: 576px) {
-
-}

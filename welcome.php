@@ -1,16 +1,24 @@
 <?php
 require_once 'config.php';
 
+function function_alert($message) {
+      
+  // Display the alert box 
+  echo "<script>alert('$message');</script>";
+}
+
 // codigo de autentificacion de google (oauth flow)
 if (isset($_GET['code'])) {
   $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+if(!isset($token['error']))
+{
   $client->setAccessToken($token['access_token']);
 
-  // toma la información del usuario
+  $_SESSION['access_token'] = $token['access_token'];
+
   $google_oauth = new Google_Service_Oauth2($client);
   $google_account_info = $google_oauth->userinfo->get();
 
-  
   $userinfo = [
     'email' => $google_account_info['email'],
     'first_name' => $google_account_info['givenName'],
@@ -22,7 +30,15 @@ if (isset($_GET['code'])) {
     'token' => $google_account_info['id'],
   ];
 
+  
+
+  // toma la información del usuario
+  
+  
+ 
+
   $url = "http://rcore.dev.guiasyscouts.cl/api/Login/Login";
+  //$url = "http://localhost:100/api/LogIn/LogInUser";
 
   $curl = curl_init($url);
   curl_setopt($curl, CURLOPT_URL, $url);
@@ -40,7 +56,7 @@ if (isset($_GET['code'])) {
 
   $data = <<<DATA
   {
-      "eMail" : "$correo"
+      "eMail" : "$correo2"
   }
   DATA;
   
@@ -84,7 +100,12 @@ if (isset($_GET['code'])) {
       $_SESSION['user_token'] = $token;
     } else {
       if (!isset($_SESSION['user_token'])) {
-        header("Location: message.php");
+        echo "<script>
+        
+            alert('Tu usuario no es apto para ingresar, contactate con el administrador');
+            window.location.href='index.php';
+            </script>";
+        //header("Location: message.php");
         die();
       }
 
@@ -97,31 +118,51 @@ if (isset($_GET['code'])) {
       }
     }
   }
+}
   else {
     session_destroy();
-    header("Location: message.php");
+    header("Location: index.php");
   }
+
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bienvenido</title>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión Administrativa - AGSCH</title>
+    <meta charset="utf-8" />
+    <link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="js/jquery-3.3.1.js"></script>
+    <link href="CSS/Style.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/Header.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/Section.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/Footer.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" type="image/png" href="Img/Logo.png" />
 </head>
-
 <body>
-  <img src="<?= $userinfo['picture'] ?>" alt="" width="90px" height="90px">
-  <ul>
-    <li>Nombre: <?= $userinfo['full_name'] ?></li>
-    <li>Correo: <?= $userinfo['email'] ?></li>
-    <li>Genero: <?= $userinfo['gender'] ?></li>
-    <li><a href="logout.php">Logout</a></li>
-  </ul>
+    <header>
+        <div style="width: 100%; margin: auto; width: 100%;">
+            <div class="logo">
+                <img src="Img/LogoLargo.png" alt="Logo" />
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section>
+        <form id="form1" runat="server" method="post">
+        </form>
+    </section>
+    <footer>
+        <h1>AGSCH - Derechos Reservados.<br>
+            Comisión Nacional de Tecnologías de la Información.</h1>
+    </footer>
 </body>
-
 </html>
