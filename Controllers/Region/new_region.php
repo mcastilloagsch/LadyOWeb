@@ -28,9 +28,9 @@
                       <button onclick="myFunction()" class="dropbtn"><i class="fa fa-microchip" aria-hidden="true"></i> Controlador</button>
                       <div id="myDropdown" class="dropdown-content">
                         <a href="../Country/country.php">Paises</a>
-                        <a href="region.php">Region</a>
-                        <a href="#">Provincia</a>
-                        <a href="#">Comuna</a>
+                        <a href="region.php">Regiones</a>
+                        <a href="../Province/province.php">Provincias</a>
+                        <a href="#">Comunas</a>
                       </div>
                     </li>
                 </ul>

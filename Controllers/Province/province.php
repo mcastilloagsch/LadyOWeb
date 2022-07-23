@@ -13,7 +13,7 @@
     <link href="../../CSS/Dropbox.css" rel="stylesheet" type="text/css" />
     <link rel="icon" type="image/png" href="../../Img/Logo.png" />
     <script src="../../js/Dropbox.js"></script>
-    <link rel="stylesheet" href="../../CSS/Style2.css">
+    
 </head>
 <body>
 <header>
@@ -28,9 +28,9 @@
                       <button onclick="myFunction()" class="dropbtn"><i class="fa fa-microchip" aria-hidden="true"></i> Controlador</button>
                       <div id="myDropdown" class="dropdown-content">
                         <a href="../Country/country.php">Paises</a>
-                        <a href="region.php">Regiones</a>
-                        <a href="../Province/province.php">Provincias</a>
-                        <a href="#">Comunas</a>
+                        <a href="../Region/region.php">Region</a>
+                        <a href="province.php">Provincia</a>
+                        <a href="#">Comuna</a>s
                       </div>
                     </li>
                 </ul>
@@ -38,46 +38,71 @@
         </div>
     </header>
 
+
 <div class="container">
-  <br><br><br><br><br><br><br><br>
-  <h2>Editar Region</h2>
-  <?php
-  function APIGET($ruta){
-    $url = "http://localhost:100/api/Regions/getObject/{token}/";
-    $respuesta = $url . $ruta;
-    return $respuesta;
-  }
+  <br><br>
+<?php
+function APIGET($ruta){
+  $url = "http://localhost:100/api/Provinces/getList/";
+  $respuesta = $url . $ruta;
+  return $respuesta;
+}
 
-  $var = $_GET['id'];
+$token = APIGET("{token}");
+$json = file_get_contents($token);
+$datos = json_decode($json,true);
+?>
 
-  $ruta = APIGET($var);
-  $json = file_get_contents($ruta);
-  $datos = json_decode($json,true);
-  ?>
+<br>
+    <br>
+    <br>
+    <br>
+    <br><h1>Mantenedores de Provincias</h1>
+  <br> 
+  <div>
+    <a class='button' href="new_province.php">Agregar</a>
+  </div> 
 
-  <?php
-  $idnew = $datos["data"]["id"];
-  $namenew = $datos["data"]["name"];
-  $geomnnew = $datos["data"]["geom"];
+  <hr>
+  <div class="testeo">
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>ID Region</th>
+          <th>Geometry</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+          foreach ($datos["data"] as $clave => $value){
+            $id = $value["id"];
+            $nombre = $value["name"];
+            $region_id = $value["region_id"];
+            $geom = $value["geom"];
 
-
-  echo "
-  <form action='edit_region.php' method='post'>
-  <input type='hidden' name='id' value='$idnew'>
-  <br>
-  <label for=''>Nombre</label>
-  <input type='text' name='name' value='$namenew'>
-  <br>
-  <label for=''>Geometry</label>
-  <input type='text' name='geom' value='$geomnnew'>
-  <input type='submit' value='Editar'>
-  </form>";
-  ?>
-
-
-</div>
-<footer>
+            echo "<tr>";
+            echo "<td>" . $id . "</td>";
+            echo "<td>" . $nombre . "</td>";
+            echo "<td>" . $region_id . "</td>";
+            echo "<td>" . $geom . "</td>";
+            echo "<td class='select'><a class='button' id='edit-button' href='update_province.php?id=$id'>Editar</a><a class='buttoneliminate' href=''>Eliminar</a></td>";
+            echo "</tr>";
+          }
+      ?>
+      </tbody>
+    </table>
+  </main>
+        </div>
+</div> 
+  <footer>
         <h1>AGSCH - Derechos Reservados.<br>
             Comisión Nacional de Tecnologías de la Información.</h1>
-</footer>
+  </footer>
 </body>
+
+
+
+

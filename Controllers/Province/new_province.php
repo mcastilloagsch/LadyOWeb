@@ -28,8 +28,8 @@
                       <button onclick="myFunction()" class="dropbtn"><i class="fa fa-microchip" aria-hidden="true"></i> Controlador</button>
                       <div id="myDropdown" class="dropdown-content">
                         <a href="../Country/country.php">Paises</a>
-                        <a href="region.php">Regiones</a>
-                        <a href="../Province/province.php">Provincias</a>
+                        <a href="../Region/region.php">Regiones</a>
+                        <a href="province.php">Provincias</a>
                         <a href="#">Comunas</a>
                       </div>
                     </li>
@@ -37,43 +37,23 @@
             </nav>
         </div>
     </header>
-
 <div class="container">
-  <br><br><br><br><br><br><br><br>
-  <h2>Editar Region</h2>
-  <?php
-  function APIGET($ruta){
-    $url = "http://localhost:100/api/Regions/getObject/{token}/";
-    $respuesta = $url . $ruta;
-    return $respuesta;
-  }
-
-  $var = $_GET['id'];
-
-  $ruta = APIGET($var);
-  $json = file_get_contents($ruta);
-  $datos = json_decode($json,true);
-  ?>
-
-  <?php
-  $idnew = $datos["data"]["id"];
-  $namenew = $datos["data"]["name"];
-  $geomnnew = $datos["data"]["geom"];
-
-
-  echo "
-  <form action='edit_region.php' method='post'>
-  <input type='hidden' name='id' value='$idnew'>
-  <br>
-  <label for=''>Nombre</label>
-  <input type='text' name='name' value='$namenew'>
-  <br>
-  <label for=''>Geometry</label>
-  <input type='text' name='geom' value='$geomnnew'>
-  <input type='submit' value='Editar'>
-  </form>";
-  ?>
-
+  <br><br><br><br><br><br>
+  <h2>Agregar provincia</h2>
+  
+  <form action="create_province.php" method="post">
+        <br>
+        <label for="">Nombre</label>
+        <input type="text" name="name">
+        <br>
+        <label for="">Id Region</label>
+        <input type="text" name="region_id">
+        <br>
+        <label for="">Geometry</label>
+        <input type="text" name="geom">
+        <br>
+        <input type="submit" value="Agregar">
+    </form>
 
 </div>
 <footer>
