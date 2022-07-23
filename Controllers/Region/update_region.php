@@ -27,8 +27,8 @@
                     <li>
                       <button onclick="myFunction()" class="dropbtn"><i class="fa fa-microchip" aria-hidden="true"></i> Controlador</button>
                       <div id="myDropdown" class="dropdown-content">
-                        <a href="country.php">Paises</a>
-                        <a href="../Region/region.php">Region</a>
+                        <a href="../Country/country.php">Paises</a>
+                        <a href="region.php">Region</a>
                         <a href="#">Provincia</a>
                         <a href="#">Comuna</a>
                       </div>
@@ -37,23 +37,43 @@
             </nav>
         </div>
     </header>
+
 <div class="container">
-  <br><br><br><br><br><br>
-  <h2>Agregar pais</h2>
-  
-  <form action="create_country.php" method="post">
-        <br>
-        <label for="">Nombre</label>
-        <input type="text" name="name">
-        <br>
-        <label for="">Nacionalidad</label>
-        <input type="text" name="nationality">
-        <br>
-        <label for="">ISO</label>
-        <input type="text" name="iso">
-        <br>
-        <input type="submit" value="Agregar">
-    </form>
+  <br><br><br><br><br><br><br><br>
+  <h2>Editar Region</h2>
+  <?php
+  function APIGET($ruta){
+    $url = "http://localhost:100/api/Regions/getObject/{token}/";
+    $respuesta = $url . $ruta;
+    return $respuesta;
+  }
+
+  $var = $_GET['id'];
+
+  $ruta = APIGET($var);
+  $json = file_get_contents($ruta);
+  $datos = json_decode($json,true);
+  ?>
+
+  <?php
+  $idnew = $datos["data"]["id"];
+  $namenew = $datos["data"]["name"];
+  $geomnnew = $datos["data"]["geom"];
+
+
+  echo "
+  <form action='edit_region.php' method='post'>
+  <input type='hidden' name='id' value='$idnew'>
+  <br>
+  <label for=''>Nombre</label>
+  <input type='text' name='name' value='$namenew'>
+  <br>
+  <label for=''>Geometry</label>
+  <input type='text' name='geom' value='$geomnnew'>
+  <input type='submit' value='Editar'>
+  </form>";
+  ?>
+
 
 </div>
 <footer>

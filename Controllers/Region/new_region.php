@@ -27,8 +27,8 @@
                     <li>
                       <button onclick="myFunction()" class="dropbtn"><i class="fa fa-microchip" aria-hidden="true"></i> Controlador</button>
                       <div id="myDropdown" class="dropdown-content">
-                        <a href="country.php">Paises</a>
-                        <a href="../Region/region.php">Region</a>
+                        <a href="../Country/country.php">Paises</a>
+                        <a href="region.php">Region</a>
                         <a href="#">Provincia</a>
                         <a href="#">Comuna</a>
                       </div>
@@ -39,18 +39,15 @@
     </header>
 <div class="container">
   <br><br><br><br><br><br>
-  <h2>Agregar pais</h2>
+  <h2>Agregar region</h2>
   
-  <form action="create_country.php" method="post">
+  <form action="create_region.php" method="post">
         <br>
         <label for="">Nombre</label>
         <input type="text" name="name">
         <br>
-        <label for="">Nacionalidad</label>
-        <input type="text" name="nationality">
-        <br>
-        <label for="">ISO</label>
-        <input type="text" name="iso">
+        <label for="">Geometry</label>
+        <input type="text" name="geom">
         <br>
         <input type="submit" value="Agregar">
     </form>
@@ -61,3 +58,5 @@
             Comisión Nacional de Tecnologías de la Información.</h1>
 </footer>
 </body>
+
+

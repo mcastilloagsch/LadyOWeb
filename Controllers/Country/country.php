@@ -5,7 +5,7 @@
     <title>Gestión Administrativa - AGSCH</title>
     <meta charset="utf-8" />
     <link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <script src="js/jquery-3.3.1.js"></script>
+    <script src="../../js/jquery-3.3.1.js"></script>
     <link href="../../CSS/Style.css" rel="stylesheet" type="text/css" />
     <link href="../../CSS/Header.css" rel="stylesheet" type="text/css" />
     <link href="../../CSS/Section.css" rel="stylesheet" type="text/css" />
@@ -28,7 +28,7 @@
                       <button onclick="myFunction()" class="dropbtn"><i class="fa fa-microchip" aria-hidden="true"></i> Controlador</button>
                       <div id="myDropdown" class="dropdown-content">
                         <a href="country.php">Paises</a>
-                        <a href="#">Region</a>
+                        <a href="../Region/region.php">Region</a>
                         <a href="#">Provincia</a>
                         <a href="#">Comuna</a>
                       </div>
