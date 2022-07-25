@@ -20,7 +20,7 @@ if (!isset($_SESSION['user_token'])) {
     <link href="../../CSS/Dropbox.css" rel="stylesheet" type="text/css" />
     <link rel="icon" type="image/png" href="../../Img/Logo.png" />
     <script src="../../js/Dropbox.js"></script>
-    <link rel="stylesheet" href="../../CSS/Style2.css">
+    
 </head>
 <body>
 <header>
@@ -34,8 +34,8 @@ if (!isset($_SESSION['user_token'])) {
                     <li>
                       <button onclick="myFunction()" class="dropbtn"><i class="fa fa-microchip" aria-hidden="true"></i> Controlador</button>
                       <div id="myDropdown" class="dropdown-content">
-                        <a href="country.php">Paises</a>
-                        <a href="../Region/region.php">Regiones</a>
+                        <a href="../Country/country.php">Paises</a>
+                        <a href="region.php">Regiones</a>
                         <a href="../Province/province.php">Provincias</a>
                         <a href="../Commune/commune.php">Comunas</a>
                         <a href="../Sexe/sexe.php">Sexo</a>
@@ -48,27 +48,66 @@ if (!isset($_SESSION['user_token'])) {
             </nav>
         </div>
     </header>
-<div class="container">
-  <br><br><br><br><br><br>
-  <h2>Agregar pais</h2>
-  
-  <form action="create_country.php" method="post">
-        <br>
-        <label for="">Nombre</label>
-        <input type="text" name="name">
-        <br>
-        <label for="">Nacionalidad</label>
-        <input type="text" name="nationality">
-        <br>
-        <label for="">ISO</label>
-        <input type="text" name="iso">
-        <br>
-        <input type="submit" value="Agregar">
-    </form>
 
-</div>
-<footer>
+
+<div class="container">
+  <br><br>
+<?php
+function APIGET($ruta){
+  $url = "http://localhost:100/api/Socioeconomics/getList/";
+  $respuesta = $url . $ruta;
+  return $respuesta;
+}
+
+$token = APIGET("{token}");
+$json = file_get_contents($token);
+$datos = json_decode($json,true);
+?>
+
+<br>
+    <br>
+    <br>
+    <br>
+    <br><h1>Mantenedores de socio economico</h1>
+  <br> 
+  <div>
+    <a class='button' href="new_socioeconomic.php">Agregar</a>
+  </div> 
+
+  <hr>
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Values</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+          foreach ($datos["data"] as $clave => $value){
+            $id = $value["id"];
+            $nombre = $value["name"];
+            $values = $value["values"];
+
+            echo "<tr>";
+            echo "<td>" . $id . "</td>";
+            echo "<td>" . $nombre . "</td>";
+            echo "<td>" . $values . "</td>";
+            echo "<td class='select'><a class='button' id='edit-button' href='update_socioeconomic.php?id=$id'>Editar</a><a class='buttoneliminate' href=''>Eliminar</a></td>";
+            echo "</tr>";
+          }
+      ?>
+      </tbody>
+    </table>
+  </main>
+
+</div> 
+  <footer>
         <h1>AGSCH - Derechos Reservados.<br>
             Comisión Nacional de Tecnologías de la Información.</h1>
-</footer>
+  </footer>
 </body>
+
+

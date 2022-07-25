@@ -34,8 +34,8 @@ if (!isset($_SESSION['user_token'])) {
                     <li>
                       <button onclick="myFunction()" class="dropbtn"><i class="fa fa-microchip" aria-hidden="true"></i> Controlador</button>
                       <div id="myDropdown" class="dropdown-content">
-                        <a href="country.php">Paises</a>
-                        <a href="../Region/region.php">Regiones</a>
+                        <a href="../Country/country.php">Paises</a>
+                        <a href="region.php">Regiones</a>
                         <a href="../Province/province.php">Provincias</a>
                         <a href="../Commune/commune.php">Comunas</a>
                         <a href="../Sexe/sexe.php">Sexo</a>
@@ -48,23 +48,39 @@ if (!isset($_SESSION['user_token'])) {
             </nav>
         </div>
     </header>
+
 <div class="container">
-  <br><br><br><br><br><br>
-  <h2>Agregar pais</h2>
-  
-  <form action="create_country.php" method="post">
-        <br>
-        <label for="">Nombre</label>
-        <input type="text" name="name">
-        <br>
-        <label for="">Nacionalidad</label>
-        <input type="text" name="nationality">
-        <br>
-        <label for="">ISO</label>
-        <input type="text" name="iso">
-        <br>
-        <input type="submit" value="Agregar">
-    </form>
+  <br><br><br><br><br><br><br><br>
+  <h2>Editar Genero</h2>
+  <?php
+  function APIGET($ruta){
+    $url = "http://localhost:100/api/Genders/getObject/{token}/";
+    $respuesta = $url . $ruta;
+    return $respuesta;
+  }
+
+  $var = $_GET['id'];
+
+  $ruta = APIGET($var);
+  $json = file_get_contents($ruta);
+  $datos = json_decode($json,true);
+  ?>
+
+  <?php
+  $idnew = $datos["data"]["id"];
+  $namenew = $datos["data"]["name"];
+
+
+  echo "
+  <form action='edit_gender.php' method='post'>
+  <input type='hidden' name='id' value='$idnew'>
+  <br>
+  <label for=''>Nombre</label>
+  <input type='text' name='name' value='$namenew'>
+  <input type='submit' value='Editar'>
+  </form>";
+  ?>
+
 
 </div>
 <footer>
