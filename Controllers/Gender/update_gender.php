@@ -35,9 +35,10 @@ if (!isset($_SESSION['user_token'])) {
                       <button onclick="myFunction()" class="dropbtn"><i class="fa fa-microchip" aria-hidden="true"></i> Controlador</button>
                       <div id="myDropdown" class="dropdown-content">
                         <a href="../Country/country.php">Paises</a>
-                        <a href="../Region/region.php">Regiones</a>
-                        <a href="province.php">Provincias</a>
+                        <a href="region.php">Regiones</a>
+                        <a href="../Province/province.php">Provincias</a>
                         <a href="../Commune/commune.php">Comunas</a>
+                        <a href="../Sexe/sexe.php">Sexo</a>
                         <a href="../Gender/gender.php">Genero</a>
                       </div>
                     </li>
@@ -49,10 +50,10 @@ if (!isset($_SESSION['user_token'])) {
 
 <div class="container">
   <br><br><br><br><br><br><br><br>
-  <h2>Editar Provincia</h2>
+  <h2>Editar Genero</h2>
   <?php
   function APIGET($ruta){
-    $url = "http://localhost:100/api/Provinces/getObject/{token}/";
+    $url = "http://localhost:100/api/Genders/getObject/{token}/";
     $respuesta = $url . $ruta;
     return $respuesta;
   }
@@ -67,23 +68,14 @@ if (!isset($_SESSION['user_token'])) {
   <?php
   $idnew = $datos["data"]["id"];
   $namenew = $datos["data"]["name"];
-  $region_idnew = $datos["data"]["region_id"];
-  $geom = $datos["data"]["geom"];
 
 
   echo "
-  <form action='edit_province.php' method='post'>
+  <form action='edit_gender.php' method='post'>
   <input type='hidden' name='id' value='$idnew'>
   <br>
   <label for=''>Nombre</label>
   <input type='text' name='name' value='$namenew'>
-  <br>
-  <label for=''>Id Region</label>
-  <input type='text' name='region_id' value='$region_idnew'>
-  <br>
-  <label for=''>Geometry</label>
-  <input type='text' name='geom' value='$geom'>
-  <br>
   <input type='submit' value='Editar'>
   </form>";
   ?>

@@ -38,6 +38,8 @@ if (!isset($_SESSION['user_token'])) {
                         <a href="region.php">Regiones</a>
                         <a href="../Province/province.php">Provincias</a>
                         <a href="../Commune/commune.php">Comunas</a>
+                        <a href="../Sexe/sexe.php">Sexo</a>
+                        <a href="../Gender/gender.php">Genero</a>
                       </div>
                     </li>
                     <li><a href="../../logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>

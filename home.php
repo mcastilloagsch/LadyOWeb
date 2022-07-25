@@ -39,7 +39,9 @@ if (!isset($_SESSION['user_token'])) {
                         <a href="Controllers/Country/country.php">Paises</a>
                         <a href="Controllers/Region/region.php">Regiones</a>
                         <a href="Controllers/Province/province.php">Provincias</a>
-                        <a href="#">Comunas</a>
+                        <a href="Controllers/Commune/commune.php">Comunas</a>
+                        <a href="Controllers/Sexe/sexe.php">Sexo</a>
+                        <a href="Controllers/Gender/gender.php">Genero</a>
                       </div>
                       
                     </li>
