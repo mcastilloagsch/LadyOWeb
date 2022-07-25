@@ -37,9 +37,9 @@ if (!isset($_SESSION['user_token'])) {
                       <button onclick="myFunction()" class="dropbtn"><i class="fa fa-microchip" aria-hidden="true"></i> Controlador</button>
                       <div id="myDropdown" class="dropdown-content">
                         <a href="Controllers/Country/country.php">Paises</a>
-                        <a href="Controllers/Region/region.php">Region</a>
-                        <a href="Controllers/Province/province.php">Provincia</a>
-                        <a href="#">Comuna</a>
+                        <a href="Controllers/Region/region.php">Regiones</a>
+                        <a href="Controllers/Province/province.php">Provincias</a>
+                        <a href="#">Comunas</a>
                       </div>
                       
                     </li>

@@ -5,6 +5,7 @@ if (!isset($_SESSION['user_token'])) {
   die();
 }
 ?>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta charset="UTF-8" />
@@ -20,7 +21,6 @@ if (!isset($_SESSION['user_token'])) {
     <link href="../../CSS/Dropbox.css" rel="stylesheet" type="text/css" />
     <link rel="icon" type="image/png" href="../../Img/Logo.png" />
     <script src="../../js/Dropbox.js"></script>
-    <link rel="stylesheet" href="../../CSS/Style2.css">
 </head>
 <body>
 <header>
@@ -36,8 +36,8 @@ if (!isset($_SESSION['user_token'])) {
                       <div id="myDropdown" class="dropdown-content">
                         <a href="../Country/country.php">Paises</a>
                         <a href="../Region/region.php">Regiones</a>
-                        <a href="province.php">Provincias</a>
-                        <a href="../Commune/commune.php">Comunas</a>
+                        <a href="../Province/province.php">Provincias</a>
+                        <a href="#">Comunas</a>s
                       </div>
                     </li>
                     <li><a href="../../logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>
@@ -45,27 +45,69 @@ if (!isset($_SESSION['user_token'])) {
             </nav>
         </div>
     </header>
-<div class="container">
-  <br><br><br><br><br><br>
-  <h2>Agregar provincia</h2>
-  
-  <form action="create_province.php" method="post">
-        <br>
-        <label for="">Nombre</label>
-        <input type="text" name="name">
-        <br>
-        <label for="">Id Region</label>
-        <input type="text" name="region_id">
-        <br>
-        <label for="">Geometry</label>
-        <input type="text" name="geom">
-        <br>
-        <input type="submit" value="Agregar">
-    </form>
 
-</div>
-<footer>
-        <h1>AGSCH - Derechos Reservados.<br>
-            Comisión Nacional de Tecnologías de la Información.</h1>
-</footer>
+
+<div class="container">
+  <br><br>
+<?php
+function APIGET($ruta){
+  $url = "http://localhost:100/api/Communes/getList/";
+  $respuesta = $url . $ruta;
+  return $respuesta;
+}
+
+$token = APIGET("{token}");
+$json = file_get_contents($token);
+$datos = json_decode($json,true);
+?>
+
+<br>
+    <br>
+    <br>
+    <br>
+    <br><h1>Mantenedores de Comunas</h1>
+
+  <br> 
+  <div>
+    <a class='button' href="new_commune.php">Agregar</a>
+  </div> 
+
+  <hr>
+  <div class="testeo">
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Id Provincia</th>
+          <th>Geometry</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+          foreach ($datos["data"] as $clave => $value){
+            $id = $value["id"];
+            $nombre = $value["name"];
+            $province_id = $value["province_id"];
+            $geom = $value["geom"];
+
+            echo "<tr>";
+            echo "<td>" . $id . "</td>";
+            echo "<td>" . $nombre . "</td>";
+            echo "<td>" . $province_id . "</td>";
+            echo "<td>" . $geom . "</td>";
+            echo "<td class='select'><a class='button' id='edit-button' href='update_commune.php?id=$id'>Editar</a><a class='buttoneliminate' href=''>Eliminar</a></td>";
+            echo "</tr>";
+          }
+      ?>
+      </tbody>
+    </table>
+  </main>
+        </div>
+</div> 
+  <footer>
+      <h1>AGSCH - Derechos Reservados.<br>
+        Comisión Nacional de Tecnologías de la Información.</h1>
+  </footer>
 </body>

@@ -36,8 +36,8 @@ if (!isset($_SESSION['user_token'])) {
                       <div id="myDropdown" class="dropdown-content">
                         <a href="../Country/country.php">Paises</a>
                         <a href="../Region/region.php">Regiones</a>
-                        <a href="province.php">Provincias</a>
-                        <a href="../Commune/commune.php">Comunas</a>
+                        <a href="../Province/province.php">Provincias</a>
+                        <a href="commune.php">Comunas</a>s
                       </div>
                     </li>
                     <li><a href="../../logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>
@@ -45,23 +45,48 @@ if (!isset($_SESSION['user_token'])) {
             </nav>
         </div>
     </header>
+
 <div class="container">
-  <br><br><br><br><br><br>
-  <h2>Agregar provincia</h2>
-  
-  <form action="create_province.php" method="post">
-        <br>
-        <label for="">Nombre</label>
-        <input type="text" name="name">
-        <br>
-        <label for="">Id Region</label>
-        <input type="text" name="region_id">
-        <br>
-        <label for="">Geometry</label>
-        <input type="text" name="geom">
-        <br>
-        <input type="submit" value="Agregar">
-    </form>
+  <br><br><br><br><br><br><br><br>
+  <h2>Editar Comuna</h2>
+  <?php
+  function APIGET($ruta){
+    $url = "http://localhost:100/api/Communes/getObject/{token}/";
+    $respuesta = $url . $ruta;
+    return $respuesta;
+  }
+
+  $var = $_GET['id'];
+
+  $ruta = APIGET($var);
+  $json = file_get_contents($ruta);
+  $datos = json_decode($json,true);
+  ?>
+
+  <?php
+  $idnew = $datos["data"]["id"];
+  $namenew = $datos["data"]["name"];
+  $province_idnew = $datos["data"]["province_id"];
+  $geomnew = $datos["data"]["geom"];
+
+
+  echo "
+  <form action='edit_commune.php' method='post'>
+  <input type='hidden' name='id' value='$idnew'>
+  <br>
+  <label for=''>Nombre</label>
+  <input type='text' name='name' value='$namenew'>
+  <br>
+  <label for=''>Id Provincia</label>
+  <input type='text' name='province_id' value='$province_idnew'>
+  <br>
+  <label for=''>Geometry</label>
+  <input type='text' name='geom' value='$geomnew'>
+  <br>
+  <input type='submit' value='Editar'>
+  </form>";
+  ?>
+
 
 </div>
 <footer>

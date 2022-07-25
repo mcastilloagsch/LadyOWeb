@@ -37,10 +37,10 @@ if (!isset($_SESSION['user_token'])) {
                         <a href="country.php">Paises</a>
                         <a href="../Region/region.php">Regiones</a>
                         <a href="../Province/province.php">Provincias</a>
-                        <a href="#">Comunas</a>s
+                        <a href="../Commune/commune.php">Comunas</a>
                       </div>
                     </li>
-                    <li><a href="logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>
+                    <li><a href="../../logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>
                 </ul>
             </nav>
         </div>

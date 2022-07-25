@@ -35,12 +35,12 @@ if (!isset($_SESSION['user_token'])) {
                       <button onclick="myFunction()" class="dropbtn"><i class="fa fa-microchip" aria-hidden="true"></i> Controlador</button>
                       <div id="myDropdown" class="dropdown-content">
                         <a href="../Country/country.php">Paises</a>
-                        <a href="../Region/region.php">Region</a>
-                        <a href="province.php">Provincia</a>
-                        <a href="#">Comuna</a>s
+                        <a href="../Region/region.php">Regiones</a>
+                        <a href="province.php">Provincias</a>
+                        <a href="../Commune/commune.php">Comunas</a>
                       </div>
                     </li>
-                    <li><a href="logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>
+                    <li><a href="../../logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>
                 </ul>
             </nav>
         </div>

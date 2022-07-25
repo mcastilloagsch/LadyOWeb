@@ -36,8 +36,8 @@ if (!isset($_SESSION['user_token'])) {
                       <div id="myDropdown" class="dropdown-content">
                         <a href="../Country/country.php">Paises</a>
                         <a href="../Region/region.php">Regiones</a>
-                        <a href="province.php">Provincias</a>
-                        <a href="../Commune/commune.php">Comunas</a>
+                        <a href="../Province/province.php">Provincias</a>
+                        <a href="commune.php">Comunas</a>s
                       </div>
                     </li>
                     <li><a href="../../logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>
@@ -47,15 +47,15 @@ if (!isset($_SESSION['user_token'])) {
     </header>
 <div class="container">
   <br><br><br><br><br><br>
-  <h2>Agregar provincia</h2>
+  <h2>Agregar comuna</h2>
   
-  <form action="create_province.php" method="post">
+  <form action="create_commune.php" method="post">
         <br>
         <label for="">Nombre</label>
         <input type="text" name="name">
         <br>
-        <label for="">Id Region</label>
-        <input type="text" name="region_id">
+        <label for="">Id Provincia</label>
+        <input type="text" name="province_id">
         <br>
         <label for="">Geometry</label>
         <input type="text" name="geom">
