@@ -31,7 +31,6 @@
 
     .tablaBasica input[type=checkbox] {
         color: black;
-        background-color: aqua;
     }
 
     .tablaBasica input[type=submit], .tablaBasica input[type=button] {
