@@ -1,4 +1,10 @@
-<?php 
+<?php
+session_start();
+if (!isset($_SESSION['user_token'])) {
+  header("Location: ../../index.php");
+  die();
+}
+
 $name = $_POST['name'];
 $geom = $_POST['geom'];
 

@@ -1,3 +1,11 @@
+<?php 
+session_start();
+if (!isset($_SESSION['user_token'])) {
+  header("Location: ../../index.php");
+  die();
+}
+?>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta charset="UTF-8" />
@@ -13,7 +21,6 @@
     <link href="../../CSS/Dropbox.css" rel="stylesheet" type="text/css" />
     <link rel="icon" type="image/png" href="../../Img/Logo.png" />
     <script src="../../js/Dropbox.js"></script>
-    
 </head>
 <body>
 <header>
@@ -23,7 +30,7 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="../../welcome.php"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;Home</a></li>
+                    <li><a href="../../home.php"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;Home</a></li>
                     <li>
                       <button onclick="myFunction()" class="dropbtn"><i class="fa fa-microchip" aria-hidden="true"></i> Controlador</button>
                       <div id="myDropdown" class="dropdown-content">
@@ -33,6 +40,7 @@
                         <a href="#">Comunas</a>s
                       </div>
                     </li>
+                    <li><a href="logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>
                 </ul>
             </nav>
         </div>
@@ -58,6 +66,7 @@ $datos = json_decode($json,true);
     <br>
     <br>
     <br><h1>Mantenedores de Paises</h1>
+
   <br> 
   <div>
     <a class='button' href="new_country.php">Agregar</a>
@@ -98,11 +107,7 @@ $datos = json_decode($json,true);
         </div>
 </div> 
   <footer>
-        <h1>AGSCH - Derechos Reservados.<br>
-            Comisión Nacional de Tecnologías de la Información.</h1>
+      <h1>AGSCH - Derechos Reservados.<br>
+        Comisión Nacional de Tecnologías de la Información.</h1>
   </footer>
 </body>
-
-
-
-
