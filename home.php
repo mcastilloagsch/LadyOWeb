@@ -42,6 +42,7 @@ if (!isset($_SESSION['user_token'])) {
                         <a href="Controllers/Commune/commune.php">Comunas</a>
                         <a href="Controllers/Sexe/sexe.php">Sexo</a>
                         <a href="Controllers/Gender/gender.php">Genero</a>
+                        <a href="Controllers/Socioeconomic/socioeconomic.php">Socio Economico</a>
                       </div>
                       
                     </li>

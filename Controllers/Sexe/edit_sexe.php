@@ -7,7 +7,6 @@ if (!isset($_SESSION['user_token'])) {
 
 $id = $_POST['id'];
 $name = $_POST['name'];
-$geom = $_POST['geom'];
 
 
 $id = intval($id);
@@ -15,7 +14,6 @@ $id = intval($id);
 $objeto = array(
     "id" => $id,
     "name" => $name,
-    "geom" => $geom,
   );
 
 $urlcreate = "http://localhost:100/api/Sexes/ObjUpdate/{token}/$id";
