@@ -45,6 +45,7 @@ if (!isset($_SESSION['user_token'])) {
                         <a href="../Structure_type/structure_type.php">Tipoestructuras</a>
                         <a href="../Structure/structure.php">Estructuras</a>
                         <a href="../Religion/religion.php">Religiones</a>
+                        <a href="../Position/position.php">Posiciones</a>
                       </div>
                     </li>
                     <li><a href="../../logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>
