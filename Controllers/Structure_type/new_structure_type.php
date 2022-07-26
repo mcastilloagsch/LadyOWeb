@@ -38,11 +38,11 @@ if (!isset($_SESSION['user_token'])) {
                         <a href="../Region/region.php">Regiones</a>
                         <a href="../Province/province.php">Provincias</a>
                         <a href="../Commune/commune.php">Comunas</a>
-                        <a href="sexe.php">Sexos</a>
+                        <a href="../Sexe/sexe.php">Sexos</a>
                         <a href="../Gender/gender.php">Generos</a>
                         <a href="../Socioeconomic/socioeconomic.php">SocioEconomicos</a>
                         <a href="../Branche/branche.php">Ramas</a>
-                        <a href="../Structure_type/structure_type.php">Tipoestructuras</a>
+                        <a href="structure_type.php">Tipoestructuras</a>
                       </div>
                     </li>
                     <li><a href="../../logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>
@@ -50,39 +50,20 @@ if (!isset($_SESSION['user_token'])) {
             </nav>
         </div>
     </header>
-
 <div class="container">
-  <br><br><br><br><br><br><br><br>
-  <h2>Editar Sexo</h2>
-  <?php
-  function APIGET($ruta){
-    $url = "http://localhost:100/api/Sexes/getObject/{token}/";
-    $respuesta = $url . $ruta;
-    return $respuesta;
-  }
-
-  $var = $_GET['id'];
-
-  $ruta = APIGET($var);
-  $json = file_get_contents($ruta);
-  $datos = json_decode($json,true);
-  ?>
-
-  <?php
-  $idnew = $datos["data"]["id"];
-  $namenew = $datos["data"]["name"];
-
-
-  echo "
-  <form action='edit_sexe.php' method='post'>
-  <input type='hidden' name='id' value='$idnew'>
-  <br>
-  <label for=''>Nombre</label>
-  <input type='text' name='name' value='$namenew'>
-  <input type='submit' value='Editar'>
-  </form>";
-  ?>
-
+  <br><br><br><br><br><br>
+  <h2>Agregar tipo de estructura</h2>
+  
+  <form action="create_structure_type.php" method="post">
+        <br>
+        <label for="">Nombre</label>
+        <input type="text" name="name">
+        <br>
+        <label for="">Prioridad</label>
+        <input type="number" name="priority">
+        <br>
+        <input type="submit" value="Agregar">
+    </form>
 
 </div>
 <footer>
@@ -90,3 +71,5 @@ if (!isset($_SESSION['user_token'])) {
             Comisión Nacional de Tecnologías de la Información.</h1>
 </footer>
 </body>
+
+

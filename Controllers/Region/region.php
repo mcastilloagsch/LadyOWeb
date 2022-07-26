@@ -42,6 +42,7 @@ if (!isset($_SESSION['user_token'])) {
                         <a href="../Gender/gender.php">Generos</a>
                         <a href="../Socioeconomic/socioeconomic.php">SocioEconomicos</a>
                         <a href="../Branche/branche.php">Ramas</a>
+                        <a href="../Structure_type/structure_type.php">Tipoestructuras</a>
                       </div>
                     </li>
                     <li><a href="../../logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>

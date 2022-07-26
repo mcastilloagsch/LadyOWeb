@@ -38,11 +38,11 @@ if (!isset($_SESSION['user_token'])) {
                         <a href="../Region/region.php">Regiones</a>
                         <a href="../Province/province.php">Provincias</a>
                         <a href="../Commune/commune.php">Comunas</a>
-                        <a href="sexe.php">Sexos</a>
+                        <a href="../Sexe/sexe.php">Sexos</a>
                         <a href="../Gender/gender.php">Generos</a>
                         <a href="../Socioeconomic/socioeconomic.php">SocioEconomicos</a>
                         <a href="../Branche/branche.php">Ramas</a>
-                        <a href="../Structure_type/structure_type.php">Tipoestructuras</a>
+                        <a href="structure_type.php">Tipoestructuras</a>
                       </div>
                     </li>
                     <li><a href="../../logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>
@@ -53,10 +53,10 @@ if (!isset($_SESSION['user_token'])) {
 
 <div class="container">
   <br><br><br><br><br><br><br><br>
-  <h2>Editar Sexo</h2>
+  <h2>Editar tipo de estructura</h2>
   <?php
   function APIGET($ruta){
-    $url = "http://localhost:100/api/Sexes/getObject/{token}/";
+    $url = "http://localhost:100/api/StructureType/getObject/{token}/";
     $respuesta = $url . $ruta;
     return $respuesta;
   }
@@ -71,14 +71,19 @@ if (!isset($_SESSION['user_token'])) {
   <?php
   $idnew = $datos["data"]["id"];
   $namenew = $datos["data"]["name"];
+  $prioritynew = $datos["data"]["priority"];
 
 
   echo "
-  <form action='edit_sexe.php' method='post'>
+  <form action='edit_structure_type.php' method='post'>
   <input type='hidden' name='id' value='$idnew'>
   <br>
   <label for=''>Nombre</label>
   <input type='text' name='name' value='$namenew'>
+  <br>
+  <laber for=''>Prioridad</label>
+  <input type='number' name='priority' value='$prioritynew'>
+  <br>
   <input type='submit' value='Editar'>
   </form>";
   ?>
