@@ -38,8 +38,10 @@ if (!isset($_SESSION['user_token'])) {
                         <a href="../Region/region.php">Regiones</a>
                         <a href="province.php">Provincias</a>
                         <a href="../Commune/commune.php">Comunas</a>
-                        <a href="../Gender/gender.php">Genero</a>
-                        <a href="../Socioeconomic/socioeconomic.php">Socio Economico</a>
+                        <a href="../Sexe/sexe.php">Sexos</a>
+                        <a href="../Gender/gender.php">Generos</a>
+                        <a href="../Socioeconomic/socioeconomic.php">SocioEconomicos</a>
+                        <a href="../Branche/branche.php">Ramas</a>
                       </div>
                     </li>
                     <li><a href="../../logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>

@@ -34,14 +34,14 @@ if (!isset($_SESSION['user_token'])) {
                     <li>
                       <button onclick="myFunction()" class="dropbtn"><i class="fa fa-microchip" aria-hidden="true"></i> Controlador</button>
                       <div id="myDropdown" class="dropdown-content">
-                        <a href="country.php">Paises</a>
+                        <a href="../Country/country.php">Paises</a>
                         <a href="../Region/region.php">Regiones</a>
                         <a href="../Province/province.php">Provincias</a>
                         <a href="../Commune/commune.php">Comunas</a>
                         <a href="../Sexe/sexe.php">Sexos</a>
                         <a href="../Gender/gender.php">Generos</a>
                         <a href="../Socioeconomic/socioeconomic.php">SocioEconomicos</a>
-                        <a href="../Branche/branche.php">Ramas</a>
+                        <a href="branche.php">Ramas</a>
                       </div>
                     </li>
                     <li><a href="../../logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>
@@ -51,18 +51,18 @@ if (!isset($_SESSION['user_token'])) {
     </header>
 <div class="container">
   <br><br><br><br><br><br>
-  <h2>Agregar pais</h2>
+  <h2>Agregar rama</h2>
   
-  <form action="create_country.php" method="post">
+  <form action="create_branche.php" method="post">
         <br>
         <label for="">Nombre</label>
         <input type="text" name="name">
         <br>
-        <label for="">Nacionalidad</label>
-        <input type="text" name="nationality">
+        <label for="">Nombre unidad</label>
+        <input type="text" name="unit_name">
         <br>
-        <label for="">ISO</label>
-        <input type="text" name="iso">
+        <label for="">Pequeño equipo</label>
+        <input type="text" name="small_team">
         <br>
         <input type="submit" value="Agregar">
     </form>
