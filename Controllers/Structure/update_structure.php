@@ -38,12 +38,12 @@ if (!isset($_SESSION['user_token'])) {
                         <a href="../Region/region.php">Regiones</a>
                         <a href="../Province/province.php">Provincias</a>
                         <a href="../Commune/commune.php">Comunas</a>
-                        <a href="sexe.php">Sexos</a>
+                        <a href="../Sexe/sexe.php">Sexos</a>
                         <a href="../Gender/gender.php">Generos</a>
                         <a href="../Socioeconomic/socioeconomic.php">SocioEconomicos</a>
                         <a href="../Branche/branche.php">Ramas</a>
                         <a href="../Structure_type/structure_type.php">Tipoestructuras</a>
-                        <a href="../Structure/structure.php">Estructuras</a>
+                        <a href="structure.php">Estructuras</a>
                       </div>
                     </li>
                     <li><a href="../../logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>
@@ -51,17 +51,48 @@ if (!isset($_SESSION['user_token'])) {
             </nav>
         </div>
     </header>
+
 <div class="container">
-  <br><br><br><br><br><br>
-  <h2>Agregar Sexo</h2>
-  
-  <form action="create_sexe.php" method="post">
-        <br>
-        <label for="">Nombre</label>
-        <input type="text" name="name">
-        <br>
-        <input type="submit" value="Agregar">
-    </form>
+  <br><br><br><br><br><br><br><br>
+  <h2>Editar tipo estructura</h2>
+  <?php
+  function APIGET($ruta){
+    $url = "http://localhost:100/api/Structures/getObject/{token}/";
+    $respuesta = $url . $ruta;
+    return $respuesta;
+  }
+
+  $var = $_GET['id'];
+
+  $ruta = APIGET($var);
+  $json = file_get_contents($ruta);
+  $datos = json_decode($json,true);
+  ?>
+
+  <?php
+  $idnew = $datos["data"]["id"];
+  $namenew = $datos["data"]["name"];
+  $structure_type_idnew = $datos["data"]["structure_type_id"];
+  $parent_idnew = $datos["data"]["parent_id"];
+
+
+  echo "
+  <form action='edit_structure.php' method='post'>
+  <input type='hidden' name='id' value='$idnew'>
+  <br>
+  <label for=''>Nombre</label>
+  <input type='text' name='name' value='$namenew'>
+  <br>
+  <laber for=''>Tipo de estructura id</label>
+  <input type='number' name='structure_type_id' value='$structure_type_idnew'>
+  <br>
+  <laber for=''>Parent id</label>
+  <input type='number' name='parent_id' value='$parent_idnew'>
+  <br>
+  <input type='submit' value='Editar'>
+  </form>";
+  ?>
+
 
 </div>
 <footer>
@@ -69,5 +100,3 @@ if (!isset($_SESSION['user_token'])) {
             Comisión Nacional de Tecnologías de la Información.</h1>
 </footer>
 </body>
-
-

@@ -38,12 +38,12 @@ if (!isset($_SESSION['user_token'])) {
                         <a href="../Region/region.php">Regiones</a>
                         <a href="../Province/province.php">Provincias</a>
                         <a href="../Commune/commune.php">Comunas</a>
-                        <a href="sexe.php">Sexos</a>
+                        <a href="../Sexe/sexe.php">Sexos</a>
                         <a href="../Gender/gender.php">Generos</a>
                         <a href="../Socioeconomic/socioeconomic.php">SocioEconomicos</a>
                         <a href="../Branche/branche.php">Ramas</a>
                         <a href="../Structure_type/structure_type.php">Tipoestructuras</a>
-                        <a href="../Structure/structure.php">Estructuras</a>
+                        <a href="structure.php">Estructuras</a>
                       </div>
                     </li>
                     <li><a href="../../logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>
@@ -53,12 +53,18 @@ if (!isset($_SESSION['user_token'])) {
     </header>
 <div class="container">
   <br><br><br><br><br><br>
-  <h2>Agregar Sexo</h2>
+  <h2>Agregar estructura</h2>
   
-  <form action="create_sexe.php" method="post">
+  <form action="create_structure.php" method="post">
         <br>
         <label for="">Nombre</label>
         <input type="text" name="name">
+        <br>
+        <label for="">Tipo de estructura</label>
+        <input type="number" name="structure_type_id">
+        <br>
+        <label for="">Parent id</label>
+        <input type="number" name="parent_id">
         <br>
         <input type="submit" value="Agregar">
     </form>

@@ -43,6 +43,7 @@ if (!isset($_SESSION['user_token'])) {
                         <a href="../Socioeconomic/socioeconomic.php">SocioEconomicos</a>
                         <a href="branche.php">Ramas</a>
                         <a href="../Structure_type/structure_type.php">Tipoestructuras</a>
+                        <a href="../Structure/structure.php">Estructuras</a>
                       </div>
                     </li>
                     <li><a href="../../logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>

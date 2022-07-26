@@ -20,7 +20,7 @@ if (!isset($_SESSION['user_token'])) {
     <link href="../../CSS/Dropbox.css" rel="stylesheet" type="text/css" />
     <link rel="icon" type="image/png" href="../../Img/Logo.png" />
     <script src="../../js/Dropbox.js"></script>
-    <link rel="stylesheet" href="../../CSS/Style2.css">
+    
 </head>
 <body>
 <header>
@@ -38,12 +38,12 @@ if (!isset($_SESSION['user_token'])) {
                         <a href="../Region/region.php">Regiones</a>
                         <a href="../Province/province.php">Provincias</a>
                         <a href="../Commune/commune.php">Comunas</a>
-                        <a href="sexe.php">Sexos</a>
+                        <a href="../Sexe/sexe.php">Sexos</a>
                         <a href="../Gender/gender.php">Generos</a>
                         <a href="../Socioeconomic/socioeconomic.php">SocioEconomicos</a>
                         <a href="../Branche/branche.php">Ramas</a>
                         <a href="../Structure_type/structure_type.php">Tipoestructuras</a>
-                        <a href="../Structure/structure.php">Estructuras</a>
+                        <a href="structure.php">Estructuras</a>
                       </div>
                     </li>
                     <li><a href="../../logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>
@@ -51,23 +51,69 @@ if (!isset($_SESSION['user_token'])) {
             </nav>
         </div>
     </header>
-<div class="container">
-  <br><br><br><br><br><br>
-  <h2>Agregar Sexo</h2>
-  
-  <form action="create_sexe.php" method="post">
-        <br>
-        <label for="">Nombre</label>
-        <input type="text" name="name">
-        <br>
-        <input type="submit" value="Agregar">
-    </form>
 
-</div>
-<footer>
+
+<div class="container">
+  <br><br>
+<?php
+function APIGET($ruta){
+  $url = "http://localhost:100/api/Structures/getList/";
+  $respuesta = $url . $ruta;
+  return $respuesta;
+}
+
+$token = APIGET("{token}");
+$json = file_get_contents($token);
+$datos = json_decode($json,true);
+?>
+
+<br>
+    <br>
+    <br>
+    <br>
+    <br><h1>Mantenedores de estructuras</h1>
+  <br> 
+  <div>
+    <a class='button' href="new_structure.php">Agregar</a>
+  </div> 
+
+  <hr>
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Tipo de estructura id</th>
+          <th>Parent id</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+          foreach ($datos["data"] as $clave => $value){
+            $id = $value["id"];
+            $nombre = $value["name"];
+            $structure_type_id = $value["structure_type_id"];
+            $parent_id = $value["parent_id"];
+
+            echo "<tr>";
+            echo "<td>" . $id . "</td>";
+            echo "<td>" . $nombre . "</td>";
+            echo "<td>" . $structure_type_id . "</td>";
+            echo "<td>" . $parent_id . "</td>";
+            echo "<td class='select'><a class='button' id='edit-button' href='update_structure.php?id=$id'>Editar</a><a class='buttoneliminate' href=''>Eliminar</a></td>";
+            echo "</tr>";
+          }
+      ?>
+      </tbody>
+    </table>
+  </main>
+
+</div> 
+  <footer>
         <h1>AGSCH - Derechos Reservados.<br>
             Comisión Nacional de Tecnologías de la Información.</h1>
-</footer>
+  </footer>
 </body>
 
 
