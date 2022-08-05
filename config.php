@@ -18,9 +18,9 @@ $client->addScope("email");
 $client->addScope("profile");
 
 // Connect to database
-$hostname = "localhost";
-$username = "root";
-$password = "";
-$database = "youtube-google-login";
+$hostname = "10.0.3.7";
+$username = "dev_ladyo";
+$password = "ZgACY5VN6FSL";
+$database = "youtube_google_login";
 
 $conn = mysqli_connect($hostname, $username, $password, $database);

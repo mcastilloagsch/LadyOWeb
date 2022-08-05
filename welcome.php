@@ -37,8 +37,7 @@ if(!isset($token['error']))
   
  
 
-  $url = "http://rcore.dev.guiasyscouts.cl/api/Login/Login";
-  //$url = "http://localhost:100/api/LogIn/LogInUser";
+  $url = "http://localhost:100/api/LogIn/LogInUser";
 
   $curl = curl_init($url);
   curl_setopt($curl, CURLOPT_URL, $url);
@@ -51,16 +50,13 @@ if(!isset($token['error']))
   curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 
   $correo = $userinfo['email'];
-  //echo json_encode($correo);
-  $correo2= 'mcastillo@guiasyscoutschile.cl';
 
   $data = <<<DATA
   {
-      "eMail" : "$correo2"
+      "eMail" : "$correo"
   }
   DATA;
   
-  //echo json_encode($data);
   curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 
   //for debug only!
@@ -69,13 +65,10 @@ if(!isset($token['error']))
 
   $resp = curl_exec($curl);
   curl_close($curl);
-  //echo "'".$resp."'";
   $respuesta= json_decode($resp,true);
-  //var_dump($respuesta);
-  //echo $respuesta["isValid"];
 
   
-  if ($respuesta["isValid"] == true){
+  if ($respuesta["response"]["isValid"] == true){
     
   // Verificando si el usuario existe en la base de datos
       $sql = "SELECT * FROM users WHERE email ='{$userinfo['email']}'";
@@ -83,13 +76,13 @@ if(!isset($token['error']))
       if (mysqli_num_rows($result) > 0) {
         // si el usuario existe
         $userinfo = mysqli_fetch_assoc($result);
-        $token = $respuesta['token'];
+        $token = $respuesta['response']['token'];
       } else {
         // si el usuario no existe
         $sql = "INSERT INTO users (email, first_name, last_name, gender, full_name, picture, verifiedEmail, token) VALUES ('{$userinfo['email']}', '{$userinfo['first_name']}', '{$userinfo['last_name']}', '{$userinfo['gender']}', '{$userinfo['full_name']}', '{$userinfo['picture']}', '{$userinfo['verifiedEmail']}', '{$respuesta['token']}')";
         $result = mysqli_query($conn, $sql);
         if ($result) {
-          $token = $respuesta['token'];
+          $token = $respuesta['response']['token'];
         } else {
           echo "User is not created";
           die();

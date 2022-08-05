@@ -44,6 +44,10 @@ if (!isset($_SESSION['user_token'])) {
                         <a href="Controllers/Gender/gender.php">Genero</a>
                         <a href="Controllers/Socioeconomic/socioeconomic.php">SocioEconomico</a>
                         <a href="Controllers/Branche/branche.php">Ramas</a>
+                        <a href="Controllers/Structure_type/structure_type.php">Tipoestructuras</a>
+                        <a href="Controllers/Structure/structure.php">Estructuras</a>
+                        <a href="Controllers/Religion/religion.php">Religiones</a>
+                        <a href="Controllers/Position/position.php">Posiciones</a>
                       </div>
                       
                     </li>
