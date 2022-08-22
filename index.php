@@ -105,7 +105,6 @@ img.avatar {
             border-radius: 1px;
             display: inline-block;
         }
-
         .g-sign-in-button .text-container {
             font-family: Roboto,arial,sans-serif;
             font-weight: 500;
