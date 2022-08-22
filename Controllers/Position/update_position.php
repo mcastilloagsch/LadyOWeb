@@ -5,7 +5,6 @@ if (!isset($_SESSION['user_token'])) {
   die();
 }
 ?>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta charset="UTF-8" />
@@ -21,6 +20,7 @@ if (!isset($_SESSION['user_token'])) {
     <link href="../../CSS/Dropbox.css" rel="stylesheet" type="text/css" />
     <link rel="icon" type="image/png" href="../../Img/Logo.png" />
     <script src="../../js/Dropbox.js"></script>
+    <link rel="stylesheet" href="../../CSS/Style2.css">
 </head>
 <body>
 <header>
@@ -34,7 +34,7 @@ if (!isset($_SESSION['user_token'])) {
                     <li>
                       <button onclick="myFunction()" class="dropbtn"><i class="fa fa-microchip" aria-hidden="true"></i> Controlador</button>
                       <div id="myDropdown" class="dropdown-content">
-                        <a href="country.php">Paises</a>
+                        <a href="../Country/country.php">Paises</a>
                         <a href="../Region/region.php">Regiones</a>
                         <a href="../Province/province.php">Provincias</a>
                         <a href="../Commune/commune.php">Comunas</a>
@@ -45,7 +45,7 @@ if (!isset($_SESSION['user_token'])) {
                         <a href="../Structure_type/structure_type.php">Tipoestructuras</a>
                         <a href="../Structure/structure.php">Estructuras</a>
                         <a href="../Religion/religion.php">Religiones</a>
-                        <a href="../Position/position.php">Posiciones</a>
+                        <a href="position.php">Posiciones</a>
                       </div>
                     </li>
                     <li><a href="../../logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>
@@ -54,68 +54,46 @@ if (!isset($_SESSION['user_token'])) {
         </div>
     </header>
 
-
 <div class="container">
-  <br><br>
-<?php
-function APIGET($ruta){
-  $url = "http://localhost:100/api/Countries/getList/";
-  $respuesta = $url . $ruta;
-  return $respuesta;
-}
+  <br><br><br><br><br><br><br><br>
+  <h2>Editar posiciones</h2>
+  <?php
+  function APIGET($ruta){
+    $url = "http://localhost:100/api/Positions/getObject/{token}/";
+    $respuesta = $url . $ruta;
+    return $respuesta;
+  }
 
-$token = APIGET("{token}");
-$json = file_get_contents($token);
-$datos = json_decode($json,true);
-?>
+  $var = $_GET['id'];
 
-<br>
-    <br>
-    <br>
-    <br>
-    <br><h1>Mantenedores de Paises</h1>
+  $ruta = APIGET($var);
+  $json = file_get_contents($ruta);
+  $datos = json_decode($json,true);
+  ?>
 
-  <br> 
-  <div>
-    <a class='button' href="new_country.php">Agregar</a>
-  </div> 
+  <?php
+  $idnew = $datos["data"]["id"];
+  $namenew = $datos["data"]["name"];
+  $structure_type_idnew = $datos["data"]["structure_type_id"];
 
-  <hr>
-  <div class="testeo">
-  <main>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Nacionalidad</th>
-          <th>ISO</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
-          foreach ($datos["data"] as $clave => $value){
-            $id = $value["id"];
-            $nombre = $value["name"];
-            $nation = $value["nationality"];
-            $iso = $value["iso"];
 
-            echo "<tr>";
-            echo "<td>" . $id . "</td>";
-            echo "<td>" . $nombre . "</td>";
-            echo "<td>" . $nation . "</td>";
-            echo "<td>" . $iso . "</td>";
-            echo "<td class='select'><a class='button' id='edit-button' href='update_country.php?id=$id'>Editar</a><a class='buttoneliminate' href=''>Eliminar</a></td>";
-            echo "</tr>";
-          }
-      ?>
-      </tbody>
-    </table>
-  </main>
-        </div>
-</div> 
-  <footer>
-      <h1>AGSCH - Derechos Reservados.<br>
-        Comisión Nacional de Tecnologías de la Información.</h1>
-  </footer>
+  echo "
+  <form action='edit_position.php' method='post'>
+  <input type='hidden' name='id' value='$idnew'>
+  <br>
+  <label for=''>Nombre</label>
+  <input type='text' name='name' value='$namenew'>
+  <br>
+  <label for=''>Tipo de estructura</label>
+  <input type='number' name='structure_type_id' value='$structure_type_idnew'>
+  <input type='submit' value='Editar'>
+  </form>";
+  ?>
+
+
+</div>
+<footer>
+        <h1>AGSCH - Derechos Reservados.<br>
+            Comisión Nacional de Tecnologías de la Información.</h1>
+</footer>
 </body>

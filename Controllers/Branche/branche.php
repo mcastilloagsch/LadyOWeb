@@ -34,14 +34,14 @@ if (!isset($_SESSION['user_token'])) {
                     <li>
                       <button onclick="myFunction()" class="dropbtn"><i class="fa fa-microchip" aria-hidden="true"></i> Controlador</button>
                       <div id="myDropdown" class="dropdown-content">
-                        <a href="country.php">Paises</a>
+                        <a href="../Country/country.php">Paises</a>
                         <a href="../Region/region.php">Regiones</a>
                         <a href="../Province/province.php">Provincias</a>
                         <a href="../Commune/commune.php">Comunas</a>
                         <a href="../Sexe/sexe.php">Sexos</a>
                         <a href="../Gender/gender.php">Generos</a>
                         <a href="../Socioeconomic/socioeconomic.php">SocioEconomicos</a>
-                        <a href="../Branche/branche.php">Ramas</a>
+                        <a href="branche.php">Ramas</a>
                         <a href="../Structure_type/structure_type.php">Tipoestructuras</a>
                         <a href="../Structure/structure.php">Estructuras</a>
                         <a href="../Religion/religion.php">Religiones</a>
@@ -59,7 +59,7 @@ if (!isset($_SESSION['user_token'])) {
   <br><br>
 <?php
 function APIGET($ruta){
-  $url = "http://localhost:100/api/Countries/getList/";
+  $url = "http://localhost:100/api/Branches/getList/";
   $respuesta = $url . $ruta;
   return $respuesta;
 }
@@ -73,11 +73,11 @@ $datos = json_decode($json,true);
     <br>
     <br>
     <br>
-    <br><h1>Mantenedores de Paises</h1>
+    <br><h1>Mantenedores de Branches</h1>
 
   <br> 
   <div>
-    <a class='button' href="new_country.php">Agregar</a>
+    <a class='button' href="new_branche.php">Agregar</a>
   </div> 
 
   <hr>
@@ -88,8 +88,8 @@ $datos = json_decode($json,true);
         <tr>
           <th>ID</th>
           <th>Nombre</th>
-          <th>Nacionalidad</th>
-          <th>ISO</th>
+          <th>Nombre unidad</th>
+          <th>Pequeño equipo</th>
         </tr>
       </thead>
       <tbody>
@@ -97,15 +97,15 @@ $datos = json_decode($json,true);
           foreach ($datos["data"] as $clave => $value){
             $id = $value["id"];
             $nombre = $value["name"];
-            $nation = $value["nationality"];
-            $iso = $value["iso"];
+            $unit_name = $value["unit_name"];
+            $small_team = $value["small_team"];
 
             echo "<tr>";
             echo "<td>" . $id . "</td>";
             echo "<td>" . $nombre . "</td>";
-            echo "<td>" . $nation . "</td>";
-            echo "<td>" . $iso . "</td>";
-            echo "<td class='select'><a class='button' id='edit-button' href='update_country.php?id=$id'>Editar</a><a class='buttoneliminate' href=''>Eliminar</a></td>";
+            echo "<td>" . $unit_name . "</td>";
+            echo "<td>" . $small_team . "</td>";
+            echo "<td class='select'><a class='button' id='edit-button' href='update_branche.php?id=$id'>Editar</a><a class='buttoneliminate' href=''>Eliminar</a></td>";
             echo "</tr>";
           }
       ?>

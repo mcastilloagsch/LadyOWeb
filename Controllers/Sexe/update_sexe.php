@@ -35,12 +35,17 @@ if (!isset($_SESSION['user_token'])) {
                       <button onclick="myFunction()" class="dropbtn"><i class="fa fa-microchip" aria-hidden="true"></i> Controlador</button>
                       <div id="myDropdown" class="dropdown-content">
                         <a href="../Country/country.php">Paises</a>
-                        <a href="region.php">Regiones</a>
+                        <a href="../Region/region.php">Regiones</a>
                         <a href="../Province/province.php">Provincias</a>
                         <a href="../Commune/commune.php">Comunas</a>
-                        <a href="../Sexe/sexe.php">Sexo</a>
-                        <a href="../Gender/gender.php">Genero</a>
-                        <a href="../Socioeconomic/socioeconomic.php">Socio Economico</a>
+                        <a href="sexe.php">Sexos</a>
+                        <a href="../Gender/gender.php">Generos</a>
+                        <a href="../Socioeconomic/socioeconomic.php">SocioEconomicos</a>
+                        <a href="../Branche/branche.php">Ramas</a>
+                        <a href="../Structure_type/structure_type.php">Tipoestructuras</a>
+                        <a href="../Structure/structure.php">Estructuras</a>
+                        <a href="../Religion/religion.php">Religiones</a>
+                        <a href="../Position/position.php">Posiciones</a>
                       </div>
                     </li>
                     <li><a href="../../logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>

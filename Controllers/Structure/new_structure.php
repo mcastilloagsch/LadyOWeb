@@ -5,7 +5,6 @@ if (!isset($_SESSION['user_token'])) {
   die();
 }
 ?>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta charset="UTF-8" />
@@ -21,6 +20,7 @@ if (!isset($_SESSION['user_token'])) {
     <link href="../../CSS/Dropbox.css" rel="stylesheet" type="text/css" />
     <link rel="icon" type="image/png" href="../../Img/Logo.png" />
     <script src="../../js/Dropbox.js"></script>
+    <link rel="stylesheet" href="../../CSS/Style2.css">
 </head>
 <body>
 <header>
@@ -34,7 +34,7 @@ if (!isset($_SESSION['user_token'])) {
                     <li>
                       <button onclick="myFunction()" class="dropbtn"><i class="fa fa-microchip" aria-hidden="true"></i> Controlador</button>
                       <div id="myDropdown" class="dropdown-content">
-                        <a href="country.php">Paises</a>
+                        <a href="../Country/country.php">Paises</a>
                         <a href="../Region/region.php">Regiones</a>
                         <a href="../Province/province.php">Provincias</a>
                         <a href="../Commune/commune.php">Comunas</a>
@@ -43,7 +43,7 @@ if (!isset($_SESSION['user_token'])) {
                         <a href="../Socioeconomic/socioeconomic.php">SocioEconomicos</a>
                         <a href="../Branche/branche.php">Ramas</a>
                         <a href="../Structure_type/structure_type.php">Tipoestructuras</a>
-                        <a href="../Structure/structure.php">Estructuras</a>
+                        <a href="structure.php">Estructuras</a>
                         <a href="../Religion/religion.php">Religiones</a>
                         <a href="../Position/position.php">Posiciones</a>
                       </div>
@@ -53,69 +53,29 @@ if (!isset($_SESSION['user_token'])) {
             </nav>
         </div>
     </header>
-
-
 <div class="container">
-  <br><br>
-<?php
-function APIGET($ruta){
-  $url = "http://localhost:100/api/Countries/getList/";
-  $respuesta = $url . $ruta;
-  return $respuesta;
-}
+  <br><br><br><br><br><br>
+  <h2>Agregar estructura</h2>
+  
+  <form action="create_structure.php" method="post">
+        <br>
+        <label for="">Nombre</label>
+        <input type="text" name="name">
+        <br>
+        <label for="">Tipo de estructura</label>
+        <input type="number" name="structure_type_id">
+        <br>
+        <label for="">Parent id</label>
+        <input type="number" name="parent_id">
+        <br>
+        <input type="submit" value="Agregar">
+    </form>
 
-$token = APIGET("{token}");
-$json = file_get_contents($token);
-$datos = json_decode($json,true);
-?>
-
-<br>
-    <br>
-    <br>
-    <br>
-    <br><h1>Mantenedores de Paises</h1>
-
-  <br> 
-  <div>
-    <a class='button' href="new_country.php">Agregar</a>
-  </div> 
-
-  <hr>
-  <div class="testeo">
-  <main>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Nacionalidad</th>
-          <th>ISO</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
-          foreach ($datos["data"] as $clave => $value){
-            $id = $value["id"];
-            $nombre = $value["name"];
-            $nation = $value["nationality"];
-            $iso = $value["iso"];
-
-            echo "<tr>";
-            echo "<td>" . $id . "</td>";
-            echo "<td>" . $nombre . "</td>";
-            echo "<td>" . $nation . "</td>";
-            echo "<td>" . $iso . "</td>";
-            echo "<td class='select'><a class='button' id='edit-button' href='update_country.php?id=$id'>Editar</a><a class='buttoneliminate' href=''>Eliminar</a></td>";
-            echo "</tr>";
-          }
-      ?>
-      </tbody>
-    </table>
-  </main>
-        </div>
-</div> 
-  <footer>
-      <h1>AGSCH - Derechos Reservados.<br>
-        Comisión Nacional de Tecnologías de la Información.</h1>
-  </footer>
+</div>
+<footer>
+        <h1>AGSCH - Derechos Reservados.<br>
+            Comisión Nacional de Tecnologías de la Información.</h1>
+</footer>
 </body>
+
+
