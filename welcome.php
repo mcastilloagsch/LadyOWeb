@@ -19,6 +19,7 @@ if(!isset($token['error']))
   $google_oauth = new Google_Service_Oauth2($client);
   $google_account_info = $google_oauth->userinfo->get();
 
+  // toma la información del usuario
   $userinfo = [
     'email' => $google_account_info['email'],
     'first_name' => $google_account_info['givenName'],
@@ -30,17 +31,19 @@ if(!isset($token['error']))
     'token' => $google_account_info['id'],
   ];
 
-  
+  //read file urls_api.config
+  $file = fopen( 'bin/urls_api.config', "r");
+  $url = array();
 
-  // toma la información del usuario
-  
-  
- 
+  while (!feof($file)) {
+      $url[] = fgetcsv($file,null,';');
+  }
+  fclose($file);
 
-  $url = "http://localhost:100/api/LogIn/LogInUser";
+  $APILogInUser = $url[0][1];
 
-  $curl = curl_init($url);
-  curl_setopt($curl, CURLOPT_URL, $url);
+  $curl = curl_init($APILogInUser);
+  curl_setopt($curl, CURLOPT_URL, $APILogInUser);
   curl_setopt($curl, CURLOPT_POST, true);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
