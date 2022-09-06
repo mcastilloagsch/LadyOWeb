@@ -56,7 +56,8 @@ if(!isset($token['error']))
 
   $data = <<<DATA
   {
-      "eMail" : "$correo"
+      "eMail" : "$correo",
+      "token" :  ""
   }
   DATA;
   
@@ -71,7 +72,7 @@ if(!isset($token['error']))
   $respuesta= json_decode($resp,true);
 
   
-  if ($respuesta["response"]["isValid"] == true){
+  if ($respuesta["isValid"] == true){
     
   // Verificando si el usuario existe en la base de datos
       $sql = "SELECT * FROM users WHERE email ='{$userinfo['email']}'";
@@ -79,13 +80,13 @@ if(!isset($token['error']))
       if (mysqli_num_rows($result) > 0) {
         // si el usuario existe
         $userinfo = mysqli_fetch_assoc($result);
-        $token = $respuesta['response']['token'];
+        $token = $respuesta['data']['token'];
       } else {
         // si el usuario no existe
         $sql = "INSERT INTO users (email, first_name, last_name, gender, full_name, picture, verifiedEmail, token) VALUES ('{$userinfo['email']}', '{$userinfo['first_name']}', '{$userinfo['last_name']}', '{$userinfo['gender']}', '{$userinfo['full_name']}', '{$userinfo['picture']}', '{$userinfo['verifiedEmail']}', '{$respuesta['token']}')";
         $result = mysqli_query($conn, $sql);
         if ($result) {
-          $token = $respuesta['response']['token'];
+          $token = $respuesta['data']['token'];
         } else {
           echo "User is not created";
           die();
