@@ -1,11 +1,6 @@
-<?php 
-session_start();
-if (!isset($_SESSION['user_token'])) {
-  header("Location: ../../index.php");
-  die();
-}
+<?php
+require_once '../authorization.php';
 ?>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta charset="UTF-8" />

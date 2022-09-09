@@ -3,6 +3,7 @@
 require_once 'vendor/autoload.php';
 
 session_start();
+//read file param.config
 $file = fopen( 'bin/param.config', "r");
 $param = array();
 

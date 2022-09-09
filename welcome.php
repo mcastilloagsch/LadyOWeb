@@ -19,6 +19,7 @@ if(!isset($token['error']))
   $google_oauth = new Google_Service_Oauth2($client);
   $google_account_info = $google_oauth->userinfo->get();
 
+  // toma la información del usuario
   $userinfo = [
     'email' => $google_account_info['email'],
     'first_name' => $google_account_info['givenName'],
@@ -30,17 +31,19 @@ if(!isset($token['error']))
     'token' => $google_account_info['id'],
   ];
 
-  
+  //read file urls_api.config
+  $file = fopen( 'bin/urls_api.config', "r");
+  $url = array();
 
-  // toma la información del usuario
-  
-  
- 
+  while (!feof($file)) {
+      $url[] = fgetcsv($file,null,';');
+  }
+  fclose($file);
 
-  $url = "http://localhost:100/api/LogIn/LogInUser";
+  $APILogInUser = $url[0][1];
 
-  $curl = curl_init($url);
-  curl_setopt($curl, CURLOPT_URL, $url);
+  $curl = curl_init($APILogInUser);
+  curl_setopt($curl, CURLOPT_URL, $APILogInUser);
   curl_setopt($curl, CURLOPT_POST, true);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
@@ -53,7 +56,8 @@ if(!isset($token['error']))
 
   $data = <<<DATA
   {
-      "eMail" : "$correo"
+      "eMail" : "$correo",
+      "token" :  ""
   }
   DATA;
   
@@ -68,7 +72,7 @@ if(!isset($token['error']))
   $respuesta= json_decode($resp,true);
 
   
-  if ($respuesta["response"]["isValid"] == true){
+  if ($respuesta["isValid"] == true){
     
   // Verificando si el usuario existe en la base de datos
       $sql = "SELECT * FROM users WHERE email ='{$userinfo['email']}'";
@@ -76,13 +80,13 @@ if(!isset($token['error']))
       if (mysqli_num_rows($result) > 0) {
         // si el usuario existe
         $userinfo = mysqli_fetch_assoc($result);
-        $token = $respuesta['response']['token'];
+        $token = $respuesta['data']['token'];
       } else {
         // si el usuario no existe
         $sql = "INSERT INTO users (email, first_name, last_name, gender, full_name, picture, verifiedEmail, token) VALUES ('{$userinfo['email']}', '{$userinfo['first_name']}', '{$userinfo['last_name']}', '{$userinfo['gender']}', '{$userinfo['full_name']}', '{$userinfo['picture']}', '{$userinfo['verifiedEmail']}', '{$respuesta['token']}')";
         $result = mysqli_query($conn, $sql);
         if ($result) {
-          $token = $respuesta['response']['token'];
+          $token = $respuesta['data']['token'];
         } else {
           echo "User is not created";
           die();
