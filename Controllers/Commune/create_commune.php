@@ -1,18 +1,34 @@
 <?php
+
 require_once '../authorization.php';
 
 $name = $_POST['name'];
 $province_id = $_POST['province_id'];
 $geom = $_POST['geom'];
+$token = $_SESSION['user_token'];
 
-$urlcreate = "http://localhost:100/api/Communes/ObjInsert/{token}";
-$curl = curl_init($urlcreate);
+function APIPOST($token){
+
+  $file = fopen( '../../bin/urls_api.config', "r");
+  $url = array();
+
+  while (!feof($file)) {
+      $url[] = fgetcsv($file,null,';');
+  }
+
+  fclose($file);
+  $APICommunesObjInsert = $url[7][1];
+  $respuesta = $APICommunesObjInsert . $token;
+  return $respuesta;
+}
+$ruta = APIPOST($token);
+$curl = curl_init($ruta);
 
 $objeto = array(
-    "name" => $name,
-    "province_id" => $province_id,
-    "geom" => $geom,
-  );
+  "name" => $name,
+  "province_id" => $province_id,
+  "geom" => $geom,
+);
 
 $jsonDataEncoded = json_encode($objeto);
 curl_setopt($curl, CURLOPT_POST, 1);
