@@ -4,15 +4,28 @@ require_once '../authorization.php';
 $name = $_POST['name'];
 $unit_name = $_POST['unit_name'];
 $small_team = $_POST['small_team'];
+$token = $_SESSION['user_token'];
 
-$urlcreate = "http://localhost:100/api/Branches/ObjInsert/{token}";
-$curl = curl_init($urlcreate);
+function APIPOST($token){
+  $file = fopen( '../../bin/urls_api.config', "r");
+  $url = array();
+
+  while (!feof($file)) {
+      $url[] = fgetcsv($file,null,';');
+  }
+  fclose($file);
+  $APIBranchesObjInsert = $url[2][1];
+  $respuesta = $APIBranchesObjInsert . $token;
+  return $respuesta;
+}
+$ruta = APIPOST($token);
+$curl = curl_init($ruta);
 
 $objeto = array(
-    "name" => $name,
-    "unit_name" => $unit_name,
-    "small_team" => $small_team,
-  );
+  "name" => $name,
+  "unit_name" => $unit_name,
+  "small_team" => $small_team,
+);
 
 $jsonDataEncoded = json_encode($objeto);
 curl_setopt($curl, CURLOPT_POST, 1);
