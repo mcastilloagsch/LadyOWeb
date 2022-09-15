@@ -2,9 +2,23 @@
 require_once '../authorization.php';
 
 $name = $_POST['name'];
+$token = $_SESSION['user_token'];
 
-$urlcreate = "http://localhost:100/api/Genders/ObjInsert/{token}";
-$curl = curl_init($urlcreate);
+
+function APIPOST($token){
+  $file = fopen( '../../bin/urls_api.config', "r");
+  $url = array();
+
+  while (!feof($file)) {
+      $url[] = fgetcsv($file,null,';');
+  }
+  fclose($file);
+  $APIGendersObjInsert = $url[15][1];
+  $respuesta = $APIGendersObjInsert . $token;
+  return $respuesta;
+}
+$ruta = APIPOST($token);
+$curl = curl_init($ruta);
 
 $objeto = array(
     "name" => $name,
