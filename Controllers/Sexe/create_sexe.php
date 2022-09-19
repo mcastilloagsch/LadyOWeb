@@ -2,13 +2,28 @@
 require_once '../authorization.php';
 
 $name = $_POST['name'];
+$token = $_SESSION['user_token'];
 
-$urlcreate = "http://localhost:100/api/Sexes/ObjInsert/{token}";
-$curl = curl_init($urlcreate);
+function APIPOST($token){
+  $file = fopen( '../../bin/urls_api.config', "r");
+  $url = array();
+
+  while (!feof($file)) {
+      $url[] = fgetcsv($file,null,';');
+  }
+  fclose($file);
+  $APISexesObjInsert = $url[34][1];
+  $respuesta = $APISexesObjInsert . $token;
+  return $respuesta;
+}
+
+$ruta = APIPOST($token);
+$curl = curl_init($ruta);
+
 
 $objeto = array(
-    "name" => $name,
-  );
+  "name" => $name,
+);
 
 $jsonDataEncoded = json_encode($objeto);
 curl_setopt($curl, CURLOPT_POST, 1);
