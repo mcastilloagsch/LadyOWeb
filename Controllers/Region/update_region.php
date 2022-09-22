@@ -54,15 +54,22 @@ require_once '../authorization.php';
   <br><br><br><br><br><br><br><br>
   <h2>Editar Region</h2>
   <?php
-  function APIGET($ruta){
-    $url = "http://localhost:100/api/Regions/getObject/{token}/";
-    $respuesta = $url . $ruta;
+  function APIGET($token,$id){
+    $file = fopen( '../../bin/urls_api.config', "r");
+    $url = array();
+
+    while (!feof($file)) {
+      $url[] = fgetcsv($file,null,';');
+    }
+    fclose($file);
+    $APIRegionsGetObject = $url[29][1];
+    $respuesta = $APIRegionsGetObject . $token . "/" . $id;
     return $respuesta;
   }
 
-  $var = $_GET['id'];
-
-  $ruta = APIGET($var);
+  $id = $_GET['id'];
+  $token = $_SESSION['user_token'];
+  $ruta = APIGET($token,$id);
   $json = file_get_contents($ruta);
   $datos = json_decode($json,true);
   ?>

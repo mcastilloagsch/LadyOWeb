@@ -54,25 +54,30 @@ require_once '../authorization.php';
   <br><br><br><br><br><br><br><br>
   <h2>Editar Pais</h2>
   <?php
-  function APIGET($ruta){
-    $url = "http://localhost:100/api/Countries/getObject/{token}/";
-    $respuesta = $url . $ruta;
-    return $respuesta;
+  function APIGET($token,$id){
+  $file = fopen( '../../bin/urls_api.config', "r");
+  $url = array();
+  
+  while (!feof($file)) {
+    $url[] = fgetcsv($file,null,';');
   }
+  fclose($file);
+  $APICountriesGetObject = $url[13][1];
+  $respuesta = $APICountriesGetObject . $token . "/" . $id;
+  return $respuesta;
+}
+ $id = $_GET['id'];
+ $token = $_SESSION['user_token'];
+ $ruta = APIGET($token,$id);
+ $json = file_get_contents($ruta);
+ $datos = json_decode($json,true);
+ ?>
 
-  $var = $_GET['id'];
-
-  $ruta = APIGET($var);
-  $json = file_get_contents($ruta);
-  $datos = json_decode($json,true);
-  ?>
-
-  <?php
-  $idnew = $datos["data"]["id"];
-  $namenew = $datos["data"]["name"];
-  $nationnew = $datos["data"]["nationality"];
-  $isonew = $datos["data"]["iso"];
-
+<?php
+ $idnew = $datos["data"]["id"];
+ $namenew = $datos["data"]["name"];
+ $nationnew = $datos["data"]["nationality"];
+ $isonew = $datos["data"]["iso"];
 
   echo "
   <form action='edit_country.php' method='post'>

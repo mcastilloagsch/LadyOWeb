@@ -54,14 +54,22 @@ require_once '../authorization.php';
 <div class="container">
   <br><br>
 <?php
-function APIGET($ruta){
-  $url = "http://localhost:100/api/Regions/getList/";
-  $respuesta = $url . $ruta;
+function APIGET($token){
+  $file = fopen( '../../bin/urls_api.config', "r");
+  $url = array();
+
+  while (!feof($file)) {
+      $url[] = fgetcsv($file,null,';');
+  }
+  fclose($file);
+  $APIRegionsGetlist = $url[26][1];
+  $respuesta = $APIRegionsGetlist . $token;
   return $respuesta;
 }
 
-$token = APIGET("{token}");
-$json = file_get_contents($token);
+$token = $_SESSION['user_token'];
+$ruta = APIGET($token);
+$json = file_get_contents($ruta);
 $datos = json_decode($json,true);
 ?>
 

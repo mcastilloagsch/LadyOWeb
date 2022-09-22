@@ -4,9 +4,22 @@ require_once '../authorization.php';
 $name = $_POST['name'];
 $region_id = $_POST['region_id'];
 $geom = $_POST['geom'];
+$token = $_SESSION['user_token'];
 
-$urlcreate = "http://localhost:100/api/Provinces/ObjInsert/{token}";
-$curl = curl_init($urlcreate);
+function APIPOST($token){
+  $file = fopen( '../../bin/urls_api.config', "r");
+  $url = array();
+
+  while (!feof($file)) {
+      $url[] = fgetcsv($file,null,';');
+  }
+  fclose($file);
+  $APIProvincesObjInsert = $url[23][1];
+  $respuesta = $APIProvincesObjInsert . $token;
+  return $respuesta;
+}
+$ruta = APIPOST($token);
+$curl = curl_init($ruta);
 
 $objeto = array(
     "name" => $name,
