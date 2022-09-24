@@ -13,7 +13,7 @@ function APIPOST($token){
       $url[] = fgetcsv($file,null,';');
   }
   fclose($file);
-  $APIRegionsObjInsert = $url[27][1];
+  $APIRegionsObjInsert = $url[26][1];
   $respuesta = $APIRegionsObjInsert . $token;
   return $respuesta;
 }

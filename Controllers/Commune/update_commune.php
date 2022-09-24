@@ -62,7 +62,7 @@ require_once '../authorization.php';
     $url[] = fgetcsv($file,null,';');
   }
   fclose($file);
-  $APICommunesGetObject = $url[9][1];
+  $APICommunesGetObject = $url[8][1];
   $respuesta = $APICommunesGetObject . $token . "/" . $id;
   return $respuesta;
 }

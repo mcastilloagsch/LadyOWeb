@@ -62,7 +62,7 @@ function APIGET($token,$id){
     $url[] = fgetcsv($file,null,';');
  }
 fclose($file);
-$APIGendersGetObject = $url[17][1];
+$APIGendersGetObject = $url[16][1];
 $respuesta = $APIGendersGetObject . $token . "/" . $id;
 return $respuesta;
 

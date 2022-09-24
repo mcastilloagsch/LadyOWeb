@@ -20,7 +20,7 @@ function APIPUT($token){
    $url[] = fgetcsv($file,null,';');
  }
  fclose($file);
-  $APIGendersObjUpdate = $url[16][1];
+  $APIGendersObjUpdate = $url[15][1];
   $respuesta = $APIGendersObjUpdate . $token;
   return $respuesta;
 }

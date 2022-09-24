@@ -27,7 +27,7 @@ function APIPUT($token){
   }
 
   fclose($file);
-  $APICommunesObjUpdate = $url[8][1];
+  $APICommunesObjUpdate = $url[7][1];
   $respuesta = $APICommunesObjUpdate . $token;  
   return $respuesta;
 

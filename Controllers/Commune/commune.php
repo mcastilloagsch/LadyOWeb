@@ -62,7 +62,7 @@ function APIGET($token){
     $url[] = fgetcsv($file,null,';');
 }
     fclose($file);
-    $APICommunesGetlist = $url[6][1];
+    $APICommunesGetlist = $url[5][1];
     $respuesta = $APICommunesGetlist . $token;
     return $respuesta;
   

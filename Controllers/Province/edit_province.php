@@ -26,7 +26,7 @@ $objeto = array(
         $url[] = fgetcsv($file,null,';');
     }
     fclose($file);
-    $APIProvincesObjUpdate = $url[24][1];
+    $APIProvincesObjUpdate = $url[23][1];
     $respuesta = $APIProvincesObjUpdate . $token;
     return $respuesta;
   }

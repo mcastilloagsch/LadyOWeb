@@ -22,7 +22,7 @@ function APIPUT($token){
       $url[] = fgetcsv($file,null,';');
   }
   fclose($file);
-  $APIPositionsObjUpdate = $url[20][1];
+  $APIPositionsObjUpdate = $url[19][1];
   $respuesta = $APIPositionsObjUpdate . $token;
   return $respuesta;
 }
