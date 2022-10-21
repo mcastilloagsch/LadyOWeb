@@ -54,7 +54,7 @@ require_once '../authorization.php';
   <br><br><br><br><br><br><br><br>
   <h2>Editar Genero</h2>
 <?php
-function APIGET($token,$id){
+function APIGET($id){
  $file = fopen( '../../bin/urls_api.config', "r");
  $url = array();
 
@@ -62,30 +62,30 @@ function APIGET($token,$id){
     $url[] = fgetcsv($file,null,';');
  }
 fclose($file);
-$APIGendersGetObject = $url[16][1];
-$respuesta = $APIGendersGetObject . $token . "/" . $id;
+$APIGenderGetObject = $url[18][1];
+$respuesta = $APIGenderGetObject . "/" . $id;
 return $respuesta;
 
 }
 
-$id = $_GET['id'];
+$id = $_GET['IdGender'];
 $token = $_SESSION['user_token'];
-$ruta = APIGET($token,$id);
+$ruta = APIGET($id);
 $json = file_get_contents($ruta);
 $datos = json_decode($json,true);
 ?>
 
   <?php
-  $idnew = $datos["data"]["id"];
-  $namenew = $datos["data"]["name"];
+  $idnew = $datos["data"]["IdGender"];
+  $namenew = $datos["data"]["GenderName"];
 
 
   echo "
   <form action='edit_gender.php' method='post'>
-  <input type='hidden' name='id' value='$idnew'>
+  <input type='hidden' name='IdGender' value='$idnew'>
   <br>
   <label for=''>Nombre</label>
-  <input type='text' name='name' value='$namenew'>
+  <input type='text' name='GenderName' value='$namenew'>
   <input type='submit' value='Editar'>
   </form>";
   ?>

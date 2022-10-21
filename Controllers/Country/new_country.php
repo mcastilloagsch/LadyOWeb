@@ -51,20 +51,15 @@ require_once '../authorization.php';
     </header>
 <div class="container">
   <br><br><br><br><br><br>
-  <h2>Agregar pais</h2>
+  <h2>Agregar país</h2>
   
   <form action="create_country.php" method="post">
         <br>
         <label for="">Nombre</label>
-        <input type="text" name="name">
-        <br>
-        <label for="">Nacionalidad</label>
-        <input type="text" name="nationality">
-        <br>
-        <label for="">ISO</label>
-        <input type="text" name="iso">
+        <input type="text" name="CountryName">
         <br>
         <input type="submit" value="Agregar">
+        <a href="region.php">Volver</a>
     </form>
 
 </div>

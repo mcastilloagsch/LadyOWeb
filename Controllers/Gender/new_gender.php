@@ -51,14 +51,15 @@ require_once '../authorization.php';
     </header>
 <div class="container">
   <br><br><br><br><br><br>
-  <h2>Agregar genero</h2>
+  <h2>Agregar género</h2>
   
   <form action="create_gender.php" method="post">
         <br>
         <label for="">Nombre</label>
-        <input type="text" name="name">
+        <input type="text" name="GenderName">
         <br>
         <input type="submit" value="Agregar">
+        <a href="gender.php">Volver</a>
     </form>
 
 </div>

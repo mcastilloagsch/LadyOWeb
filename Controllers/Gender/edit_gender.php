@@ -1,18 +1,18 @@
 <?php
 require_once '../authorization.php';
 
-$id = $_POST['id'];
-$name = $_POST['name'];
+$id = $_POST['IdGender'];
+$name = $_POST['GenderName'];
 $token = $_SESSION['user_token'];
 
 $id = intval($id);
 
 $objeto = array(
-    "id" => $id,
-    "name" => $name,
+    "IdGender" => $id,
+    "GenderName" => $name,
   );
 
-function APIPUT($token){
+function APIPUT(){
  $file = fopen( '../../bin/urls_api.config', "r");
  $url = array();
     
@@ -20,11 +20,11 @@ function APIPUT($token){
    $url[] = fgetcsv($file,null,';');
  }
  fclose($file);
-  $APIGendersObjUpdate = $url[15][1];
-  $respuesta = $APIGendersObjUpdate . $token;
+  $APIGenderObjUpdate = $url[17][1];
+  $respuesta = $APIGenderObjUpdate;
   return $respuesta;
 }
-$ruta = APIPUT($token);
+$ruta = APIPUT();
 $curl = curl_init($ruta);
 
 

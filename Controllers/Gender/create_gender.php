@@ -1,11 +1,11 @@
 <?php
 require_once '../authorization.php';
 
-$name = $_POST['name'];
+$name = $_POST['GenderName'];
 $token = $_SESSION['user_token'];
 
 
-function APIPOST($token){
+function APIPOST(){
   $file = fopen( '../../bin/urls_api.config', "r");
   $url = array();
 
@@ -13,15 +13,15 @@ function APIPOST($token){
       $url[] = fgetcsv($file,null,';');
   }
   fclose($file);
-  $APIGendersObjInsert = $url[14][1];
-  $respuesta = $APIGendersObjInsert . $token;
+  $APIGenderObjInsert = $url[16][1];
+  $respuesta = $APIGenderObjInsert;
   return $respuesta;
 }
-$ruta = APIPOST($token);
+$ruta = APIPOST();
 $curl = curl_init($ruta);
 
 $objeto = array(
-    "name" => $name,
+    "GenderName" => $name,
   );
 
 $jsonDataEncoded = json_encode($objeto);

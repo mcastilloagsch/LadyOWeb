@@ -54,7 +54,7 @@ require_once '../authorization.php';
 <div class="container">
   <br><br>
 <?php
-function APIGET($token){
+function APIGET(){
  $file = fopen ( '../../bin/urls_api.config', "r");
  $url = array();
 
@@ -62,14 +62,14 @@ function APIGET($token){
   $url[] = fgetcsv($file,null,';');
 }
   fclose($file);
-  $APICountriesGetList = $url[9][1];
-  $respuesta = $APICountriesGetList . $token;
+  $APICountryGetlist = $url[10][1];
+  $respuesta = $APICountryGetlist;
   return $respuesta;
   
 }
 
 $token = $_SESSION['user_token'];
-$ruta = APIGET($token);
+$ruta = APIGET();
 $json = file_get_contents($ruta);
 $datos = json_decode($json,true);
 ?>
@@ -91,26 +91,23 @@ $datos = json_decode($json,true);
     <table>
       <thead>
         <tr>
-          <th>ID</th>
+          <th>ID Country</th>
           <th>Nombre</th>
-          <th>Nacionalidad</th>
-          <th>ISO</th>
+          <th>Is Deleted</th>          
         </tr>
       </thead>
       <tbody>
         <?php
           foreach ($datos["data"] as $clave => $value){
-            $id = $value["id"];
-            $nombre = $value["name"];
-            $nation = $value["nationality"];
-            $iso = $value["iso"];
+            $id = $value["IdCountry"];
+            $nombre = $value["CountryName"];
+            $isDel = $value["IsDeleted"];            
 
             echo "<tr>";
             echo "<td>" . $id . "</td>";
             echo "<td>" . $nombre . "</td>";
-            echo "<td>" . $nation . "</td>";
-            echo "<td>" . $iso . "</td>";
-            echo "<td class='select'><a class='button' id='edit-button' href='update_country.php?id=$id'>Editar</a><a class='buttoneliminate' href=''>Eliminar</a></td>";
+            echo "<td>" . $isDel . "</td>";
+            echo "<td class='select'><a class='button' id='edit-button' href='update_country.php?IdCountry=$id'>Editar</a><a class='buttoneliminate' href='delete_country.php?IdCountry=$id'>Eliminar</a></td>";
             echo "</tr>";
           }
       ?>

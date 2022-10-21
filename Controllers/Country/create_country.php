@@ -1,13 +1,11 @@
 <?php
 require_once '../authorization.php';
 
-$name = $_POST['name'];
-$nationality = $_POST['nationality'];
-$iso = $_POST['iso'];
+$name = $_POST['CountryName'];
 $token = $_SESSION['user_token'];
 
 
-function APIPOST($token){
+function APIPOST(){
 
  $file = fopen( '../../bin/urls_api.config', "r");
  $url = array();
@@ -17,18 +15,16 @@ function APIPOST($token){
  }
 
  fclose($file);
- $APICountriesObjInsert = $url[10][1];
- $respuesta = $APICountriesObjInsert . $token;
+ $APICountryObjInsert = $url[11][1];
+ $respuesta = $APICountryObjInsert;
  return $respuesta;
 }
 
-$ruta = APIPOST($token);
+$ruta = APIPOST();
 $curl = curl_init($ruta);
 
 $objeto = array(
- "name" => $name,
- "nationality" => $nationality,
- "iso" => $iso,
+ "CountryName" => $name
 );
 
 $jsonDataEncoded = json_encode($objeto);

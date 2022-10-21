@@ -56,7 +56,7 @@ require_once '../authorization.php';
   <form action="create_sexe.php" method="post">
         <br>
         <label for="">Nombre</label>
-        <input type="text" name="name">
+        <input type="text" name="SexName">
         <br>
         <input type="submit" value="Agregar">
     </form>

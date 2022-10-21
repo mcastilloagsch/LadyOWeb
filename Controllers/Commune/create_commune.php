@@ -2,12 +2,11 @@
 
 require_once '../authorization.php';
 
-$name = $_POST['name'];
-$province_id = $_POST['province_id'];
-$geom = $_POST['geom'];
+$province_id = $_POST['IdProvince'];
+$name = $_POST['CommuneName'];
 $token = $_SESSION['user_token'];
 
-function APIPOST($token){
+function APIPOST(){
 
   $file = fopen( '../../bin/urls_api.config', "r");
   $url = array();
@@ -17,17 +16,17 @@ function APIPOST($token){
   }
 
   fclose($file);
-  $APICommunesObjInsert = $url[6][1];
-  $respuesta = $APICommunesObjInsert . $token;
+  $APICommuneObjInsert = $url[6][1];
+  $respuesta = $APICommuneObjInsert;
   return $respuesta;
 }
-$ruta = APIPOST($token);
+$ruta = APIPOST();
 $curl = curl_init($ruta);
 
 $objeto = array(
-  "name" => $name,
-  "province_id" => $province_id,
-  "geom" => $geom,
+  "IdProvince" => $province_id,
+  "CommuneName" => $name
+  
 );
 
 $jsonDataEncoded = json_encode($objeto);

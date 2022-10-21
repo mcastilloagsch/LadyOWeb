@@ -54,7 +54,7 @@ require_once '../authorization.php';
   <br><br><br><br><br><br><br><br>
   <h2>Editar Pais</h2>
   <?php
-  function APIGET($token,$id){
+  function APIGET($id){
   $file = fopen( '../../bin/urls_api.config', "r");
   $url = array();
   
@@ -62,36 +62,28 @@ require_once '../authorization.php';
     $url[] = fgetcsv($file,null,';');
   }
   fclose($file);
-  $APICountriesGetObject = $url[12][1];
-  $respuesta = $APICountriesGetObject . $token . "/" . $id;
+  $APICountryGetObject = $url[13][1];
+  $respuesta = $APICountryGetObject . "/" . $id;
   return $respuesta;
 }
- $id = $_GET['id'];
+ $id = $_GET['IdCountry'];
  $token = $_SESSION['user_token'];
- $ruta = APIGET($token,$id);
+ $ruta = APIGET($id);
  $json = file_get_contents($ruta);
  $datos = json_decode($json,true);
  ?>
 
 <?php
- $idnew = $datos["data"]["id"];
- $namenew = $datos["data"]["name"];
- $nationnew = $datos["data"]["nationality"];
- $isonew = $datos["data"]["iso"];
+ $idnew = $datos["data"]["IdCountry"];
+ $namenew = $datos["data"]["CountryName"];
 
   echo "
   <form action='edit_country.php' method='post'>
-  <input type='hidden' name='id' value='$idnew'>
+  <input type='hidden' name='IdCountry' value='$idnew'>
   <br>
   <label for=''>Nombre</label>
-  <input type='text' name='name' value='$namenew'>
-  <br>
-  <label for=''>Nacionalidad</label>
-  <input type='text' name='nationality' value='$nationnew'>
-  <br>
-  <label for=''>ISO</label>
-  <input type='text' name='iso' value='$isonew'>
-  <br>
+  <input type='text' name='CountryName' value='$namenew'>
+  <br> 
   <input type='submit' value='Editar'>
   </form>";
   ?>
