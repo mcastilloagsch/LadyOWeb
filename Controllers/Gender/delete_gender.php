@@ -19,7 +19,7 @@ function APIDELETE(){
   }
 
   fclose($file);
-  $APIGenderObjDelete = $url[19][1];
+  $APIGenderObjDelete = $url[20][1];
   $respuesta = $APIGenderObjDelete;  
   return $respuesta;
 

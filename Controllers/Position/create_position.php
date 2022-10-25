@@ -1,11 +1,11 @@
 <?php
 require_once '../authorization.php';
 
-$name = $_POST['name'];
-$structure_type_id = $_POST['structure_type_id'];
+$name = $_POST['PositionName'];
+$structure_type_id = $_POST['IdStructureType'];
 $token = $_SESSION['user_token'];
 
-function APIPOST($token){
+function APIPOST(){
   $file = fopen( '../../bin/urls_api.config', "r");
   $url = array();
 
@@ -13,17 +13,17 @@ function APIPOST($token){
       $url[] = fgetcsv($file,null,';');
   }
   fclose($file);
-  $APIPositionsObjInsert = $url[18][1];
-  $respuesta = $APIPositionsObjInsert . $token;
+  $APIPositionObjInsert = $url[22][1];
+  $respuesta = $APIPositionObjInsert;
   return $respuesta;
 }
 
-$ruta = APIPOST($token);
+$ruta = APIPOST();
 $curl = curl_init($ruta);
 
 $objeto = array(
-  "name" => $name,
-  "structure_type_id" => $structure_type_id,
+  "PositionName" => $name,
+  "IdStructureType" => $structure_type_id,
 );
 
 $jsonDataEncoded = json_encode($objeto);

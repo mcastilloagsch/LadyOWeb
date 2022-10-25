@@ -62,7 +62,7 @@ function APIGET($id){
     $url[] = fgetcsv($file,null,';');
  }
 fclose($file);
-$APIGenderGetObject = $url[18][1];
+$APIGenderGetObject = $url[19][1];
 $respuesta = $APIGenderGetObject . "/" . $id;
 return $respuesta;
 

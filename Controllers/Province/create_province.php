@@ -1,12 +1,12 @@
 <?php
 require_once '../authorization.php';
 
-$name = $_POST['name'];
-$region_id = $_POST['region_id'];
-$geom = $_POST['geom'];
+
+$region_id = $_POST['IdRegion'];
+$name = $_POST['ProvinceName'];
 $token = $_SESSION['user_token'];
 
-function APIPOST($token){
+function APIPOST(){
   $file = fopen( '../../bin/urls_api.config', "r");
   $url = array();
 
@@ -14,18 +14,17 @@ function APIPOST($token){
       $url[] = fgetcsv($file,null,';');
   }
   fclose($file);
-  $APIProvincesObjInsert = $url[22][1];
-  $respuesta = $APIProvincesObjInsert . $token;
+  $APIProvinceObjInsert = $url[27][1];
+  $respuesta = $APIProvinceObjInsert;
   return $respuesta;
 }
-$ruta = APIPOST($token);
+$ruta = APIPOST();
 $curl = curl_init($ruta);
 
-$objeto = array(
-    "name" => $name,
-    "region_id" => $region_id,
-    "geom" => $geom,
-  );
+$objeto = array(  
+  "IdRegion" => $region_id,
+  "ProvinceName" => $name
+);
 
 $jsonDataEncoded = json_encode($objeto);
 curl_setopt($curl, CURLOPT_POST, 1);

@@ -54,15 +54,11 @@ require_once '../authorization.php';
   <h2>Agregar provincia</h2>
   
   <form action="create_province.php" method="post">
+        <label for="">Id Region</label>
+        <input type="text" name="IdRegion">
         <br>
         <label for="">Nombre</label>
-        <input type="text" name="name">
-        <br>
-        <label for="">Id Region</label>
-        <input type="text" name="region_id">
-        <br>
-        <label for="">Geometry</label>
-        <input type="text" name="geom">
+        <input type="text" name="ProvinceName">
         <br>
         <input type="submit" value="Agregar">
     </form>

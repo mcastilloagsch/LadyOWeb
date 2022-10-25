@@ -24,7 +24,7 @@ function APIPUT(){
   }
 
   fclose($file);
-  $APICountryObjUpdate = $url[12][1];
+  $APICountryObjUpdate = $url[13][1];
   $respuesta = $APICountryObjUpdate;  
   return $respuesta;
 

@@ -16,7 +16,7 @@ function APIPOST(){
   }
 
   fclose($file);
-  $APICommuneObjInsert = $url[6][1];
+  $APICommuneObjInsert = $url[7][1];
   $respuesta = $APICommuneObjInsert;
   return $respuesta;
 }

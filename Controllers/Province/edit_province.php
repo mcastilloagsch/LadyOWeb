@@ -2,23 +2,21 @@
 
 require_once '../authorization.php';
 
-$id = $_POST['id'];
-$name = $_POST['name'];
-$region_id = $_POST['region_id'];
-$geom = $_POST['geom'];
+$id = $_POST['IdProvince'];
+$region_id = $_POST['IdRegion'];
+$name = $_POST['ProvinceName'];
 $token = $_SESSION['user_token'];
 
 
 $id = intval($id);
 
 $objeto = array(
-    "id" => $id,
-    "name" => $name,
-    "region_id" => $region_id,
-    "geom" => $geom,
+    "IdProvince" => $id,    
+    "IdRegion" => $region_id,
+    "ProvinceName" => $name
   );
 
-  function APIPUT($token){
+  function APIPUT(){
     $file = fopen( '../../bin/urls_api.config', "r");
     $url = array();
     
@@ -26,11 +24,11 @@ $objeto = array(
         $url[] = fgetcsv($file,null,';');
     }
     fclose($file);
-    $APIProvincesObjUpdate = $url[23][1];
-    $respuesta = $APIProvincesObjUpdate . $token;
+    $APIProvinceObjUpdate = $url[28][1];
+    $respuesta = $APIProvinceObjUpdate;
     return $respuesta;
   }
-  $ruta = APIPUT($token);
+  $ruta = APIPUT();
   $curl = curl_init($ruta);
   
   $jsonDataEncoded = json_encode($objeto);

@@ -19,7 +19,7 @@ function APIDELETE(){
   }
 
   fclose($file);
-  $APICommuneObjDelete = $url[9][1];
+  $APICommuneObjDelete = $url[10][1];
   $respuesta = $APICommuneObjDelete;  
   return $respuesta;
 

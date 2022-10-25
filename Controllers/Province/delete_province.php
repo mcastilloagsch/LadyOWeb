@@ -1,12 +1,12 @@
 <?php
 require_once '../authorization.php';
 
-$id = $_GET['IdCountry'];
+$id = $_GET['IdProvince'];
 
 $id = intval($id);
 
 $objeto = array(
-  "IdCountry" => $id
+  "IdProvince" => $id
 );
 
 function APIDELETE(){
@@ -19,8 +19,8 @@ function APIDELETE(){
   }
 
   fclose($file);
-  $APICountryObjDelete = $url[15][1];
-  $respuesta = $APICountryObjDelete;  
+  $APIProvinceObjDelete = $url[30][1];
+  $respuesta = $APIProvinceObjDelete;  
   return $respuesta;
 
 }
@@ -34,6 +34,6 @@ curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
 curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($objeto)); 
 $result = curl_exec($curl);
-header("Location: country.php");
+header("Location: province.php");
 
 ?>
