@@ -54,44 +54,57 @@ require_once '../authorization.php';
   <br><br><br><br><br><br><br><br>
   <h2>Editar Pais</h2>
   <?php
-  function APIGET($token,$id){
-  $file = fopen( '../../bin/urls_api.config', "r");
-  $url = array();
-  
-  while (!feof($file)) {
-    $url[] = fgetcsv($file,null,';');
+
+function PARAMGET($api_abs_path){
+
+  $config = file('../../bin/param.config');
+
+  foreach($config as $linea){
+    $valores=explode(';',$linea);
+    $url[$valores[0]] = $valores[1];    
   }
-  fclose($file);
-  $APICountriesGetObject = $url[13][1];
-  $respuesta = $APICountriesGetObject . $token . "/" . $id;
-  return $respuesta;
+  
+  if ( $url[$api_abs_path] ) return $url[$api_abs_path];
+  else return "";
 }
- $id = $_GET['id'];
- $token = $_SESSION['user_token'];
- $ruta = APIGET($token,$id);
- $json = file_get_contents($ruta);
- $datos = json_decode($json,true);
- ?>
+
+function APIGET($api_url){  
+ 
+ $archivo = file('../../bin/urls_api.config');
+ 
+ foreach($archivo as $linea){
+   $valores=explode(';',$linea);
+   $url[$valores[0]] = $valores[1];    
+ }
+ 
+ if ( $url[$api_url] ) return $url[$api_url];
+ else return "";
+}
+
+$id = $_GET['IdCountry'];
+
+$API_URL=APIGET('APICountryGetObject');
+$API_ABS_PATH=PARAMGET('API_ABS_PATH');
+
+$config_api = trim($API_ABS_PATH.$API_URL);
+
+$json = file_get_contents($config_api."/".$id);
+$datos = json_decode($json,true);
+
+
+?>
 
 <?php
- $idnew = $datos["data"]["id"];
- $namenew = $datos["data"]["name"];
- $nationnew = $datos["data"]["nationality"];
- $isonew = $datos["data"]["iso"];
+ $idnew = $datos["data"]["IdCountry"];
+ $namenew = $datos["data"]["CountryName"];
 
   echo "
   <form action='edit_country.php' method='post'>
-  <input type='hidden' name='id' value='$idnew'>
+  <input type='hidden' name='IdCountry' value='$idnew'>
   <br>
   <label for=''>Nombre</label>
-  <input type='text' name='name' value='$namenew'>
-  <br>
-  <label for=''>Nacionalidad</label>
-  <input type='text' name='nationality' value='$nationnew'>
-  <br>
-  <label for=''>ISO</label>
-  <input type='text' name='iso' value='$isonew'>
-  <br>
+  <input type='text' name='CountryName' value='$namenew'>
+  <br> 
   <input type='submit' value='Editar'>
   </form>";
   ?>

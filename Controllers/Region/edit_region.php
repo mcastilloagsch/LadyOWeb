@@ -23,7 +23,7 @@ function APIPUT($token){
     $url[] = fgetcsv($file,null,';');
   }
   fclose($file);
-  $APIRegionsObjUpdate = $url[28][1];
+  $APIRegionsObjUpdate = $url[27][1];
   $respuesta = $APIRegionsObjUpdate . $token;
   return $respuesta;
   }

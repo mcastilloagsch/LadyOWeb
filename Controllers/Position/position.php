@@ -54,7 +54,7 @@ require_once '../authorization.php';
 <div class="container">
   <br><br>
 <?php
-function APIGET($token){
+function APIGET(){
   $file = fopen( '../../bin/urls_api.config', "r");
   $url = array();
 
@@ -62,14 +62,14 @@ function APIGET($token){
       $url[] = fgetcsv($file,null,';');
   }
   fclose($file);
-  $APIPositionsGetlist = $url[18][1];
-  $respuesta = $APIPositionsGetlist . $token;
+  $APIPositionGetlist = $url[21][1];
+  $respuesta = $APIPositionGetlist;
   return $respuesta;
 }
 
 
 $token = $_SESSION['user_token'];
-$ruta = APIGET($token);
+$ruta = APIGET();
 $json = file_get_contents($ruta);
 $datos = json_decode($json,true);
 ?>
@@ -92,20 +92,23 @@ $datos = json_decode($json,true);
           <th>ID</th>
           <th>Nombre</th>
           <th>Tipo de estructura</th>
+          <th>Is deleted</th>
         </tr>
       </thead>
       <tbody>
         <?php
           foreach ($datos["data"] as $clave => $value){
-            $id = $value["id"];
-            $nombre = $value["name"];
-            $structure_type_id = $value["structure_type_id"];
+            $id = $value["IdPosition"];
+            $nombre = $value["PositionName"];
+            $structure_type_id = $value["IdStructureType"];
+            $isDel = $value["IsDeleted"];
 
             echo "<tr>";
             echo "<td>" . $id . "</td>";
             echo "<td>" . $nombre . "</td>";
             echo "<td>" . $structure_type_id . "</td>";
-            echo "<td class='select'><a class='button' id='edit-button' href='update_position.php?id=$id'>Editar</a><a class='buttoneliminate' href=''>Eliminar</a></td>";
+            echo "<td>" . $isDel . "</td>";
+            echo "<td class='select'><a class='button' id='edit-button' href='update_position.php?IdPosition=$id'>Editar</a><a class='buttoneliminate' href=delete_position.php?IdPosition=$id'>Eliminar</a></td>";
             echo "</tr>";
           }
       ?>

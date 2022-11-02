@@ -54,7 +54,7 @@ require_once '../authorization.php';
   <br><br><br><br><br><br><br><br>
   <h2>Editar Comuna</h2>
   <?php
-  function APIGET($token,$id){
+  function APIGET($id){
   $file = fopen( '../../bin/urls_api.config', "r");
   $url = array();
 
@@ -62,37 +62,33 @@ require_once '../authorization.php';
     $url[] = fgetcsv($file,null,';');
   }
   fclose($file);
-  $APICommunesGetObject = $url[9][1];
-  $respuesta = $APICommunesGetObject . $token . "/" . $id;
+  $APICommuneGetObject = $url[9][1];
+  $respuesta = $APICommuneGetObject . "/" . $id;
   return $respuesta;
 }
-  $id = $_GET['id'];
+  $id = $_GET['IdCommune'];
   $token = $_SESSION['user_token'];
-  $ruta = APIGET($token,$id);
+  $ruta = APIGET($id);
   $json = file_get_contents($ruta);
   $datos = json_decode($json,true);
   ?>
 
   <?php
-  $idnew = $datos["data"]["id"];
-  $namenew = $datos["data"]["name"];
-  $province_idnew = $datos["data"]["province_id"];
-  $geomnew = $datos["data"]["geom"];
+  $idnew = $datos["data"]["IdCommune"];
+  $province_idnew = $datos["data"]["IdProvince"];
+  $namenew = $datos["data"]["CommuneName"];
 
 
   echo "
   <form action='edit_commune.php' method='post'>
-  <input type='hidden' name='id' value='$idnew'>
+  <input type='hidden' name='IdCommune' value='$idnew'>
   <br>
   <label for=''>Nombre</label>
-  <input type='text' name='name' value='$namenew'>
+  <input type='text' name='CommuneName' value='$namenew'>
   <br>
   <label for=''>Id Provincia</label>
-  <input type='text' name='province_id' value='$province_idnew'>
-  <br>
-  <label for=''>Geometry</label>
-  <input type='text' name='geom' value='$geomnew'>
-  <br>
+  <input type='text' name='IdProvince' value='$province_idnew'>
+  <br>  
   <input type='submit' value='Editar'>
   </form>";
   ?>

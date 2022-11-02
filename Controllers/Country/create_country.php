@@ -1,34 +1,43 @@
 <?php
 require_once '../authorization.php';
 
-$name = $_POST['name'];
-$nationality = $_POST['nationality'];
-$iso = $_POST['iso'];
-$token = $_SESSION['user_token'];
+$name = $_POST['CountryName'];
 
+function PARAMGET($api_abs_path){
 
-function APIPOST($token){
-
- $file = fopen( '../../bin/urls_api.config', "r");
- $url = array();
-
- while (!feof($file)) {
-  $url[] = fgetcsv($file,null,';');
- }
-
- fclose($file);
- $APICountriesObjInsert = $url[11][1];
- $respuesta = $APICountriesObjInsert . $token;
- return $respuesta;
+    $config = file('../../bin/param.config');
+  
+    foreach($config as $linea){
+      $valores=explode(';',$linea);
+      $url[$valores[0]] = $valores[1];    
+    }
+    
+    if ( $url[$api_abs_path] ) return $url[$api_abs_path];
+    else return "";  
+}
+  
+function APIPOST($api_url){  
+   
+    $archivo = file('../../bin/urls_api.config');
+   
+    foreach($archivo as $linea){
+      $valores=explode(';',$linea);
+      $url[$valores[0]] = $valores[1];    
+    }
+   
+    if ( $url[$api_url] ) return $url[$api_url];
+    else return ""; 
 }
 
-$ruta = APIPOST($token);
-$curl = curl_init($ruta);
+$API_URL=APIPOST('APICountryObjInsert');
+$API_ABS_PATH=PARAMGET('API_ABS_PATH');
+
+$config_api = trim($API_ABS_PATH.$API_URL);
+
+$curl = curl_init($config_api);
 
 $objeto = array(
- "name" => $name,
- "nationality" => $nationality,
- "iso" => $iso,
+ "CountryName" => $name
 );
 
 $jsonDataEncoded = json_encode($objeto);

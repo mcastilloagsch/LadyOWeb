@@ -54,14 +54,22 @@ require_once '../authorization.php';
 <div class="container">
   <br><br>
 <?php
-function APIGET($ruta){
-  $url = "http://localhost:100/api/Sexes/getList/";
-  $respuesta = $url . $ruta;
+function APIGET(){
+  $file = fopen( '../../bin/urls_api.config', "r");
+  $url = array();
+
+  while (!feof($file)) {
+      $url[] = fgetcsv($file,null,';');
+  }
+  fclose($file);
+  $APISexGetlist = $url[36][1];
+  $respuesta = $APISexGetlist;
   return $respuesta;
 }
 
-$token = APIGET("{token}");
-$json = file_get_contents($token);
+$token = $_SESSION['user_token'];
+$ruta = APIGET();
+$json = file_get_contents($ruta);
 $datos = json_decode($json,true);
 ?>
 
@@ -87,13 +95,13 @@ $datos = json_decode($json,true);
       <tbody>
         <?php
           foreach ($datos["data"] as $clave => $value){
-            $id = $value["id"];
-            $nombre = $value["name"];
+            $id = $value["IdSex"];
+            $nombre = $value["SexName"];
 
             echo "<tr>";
             echo "<td>" . $id . "</td>";
             echo "<td>" . $nombre . "</td>";
-            echo "<td class='select'><a class='button' id='edit-button' href='update_sexe.php?id=$id'>Editar</a><a class='buttoneliminate' href=''>Eliminar</a></td>";
+            echo "<td class='select'><a class='button' id='edit-button' href='update_sexe.php?IdSex=$id'>Editar</a><a class='buttoneliminate' href=delete_sexe.php?IdSex=$id'>Eliminar</a></td>";
             echo "</tr>";
           }
       ?>

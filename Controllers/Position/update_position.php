@@ -54,7 +54,7 @@ require_once '../authorization.php';
   <br><br><br><br><br><br><br><br>
   <h2>Editar posiciones</h2>
   <?php
-  function APIGET($token,$id){
+  function APIGET($id){
    $file = fopen( '../../bin/urls_api.config', "r");
    $url = array();
 
@@ -62,33 +62,33 @@ require_once '../authorization.php';
       $url[] = fgetcsv($file,null,';');
     }
     fclose($file);
-    $APIPositionsGetObject = $url[21][1];
-    $respuesta = $APIPositionsGetObject . $token . "/" . $id;
+    $APIPositionGetObject = $url[24][1];
+    $respuesta = $APIPositionGetObject . "/" . $id;
     return $respuesta;
   }
 
-  $id = $_GET['id'];
+  $id = $_GET['IdPosition'];
   $token = $_SESSION['user_token'];
-  $ruta = APIGET($token,$id);
+  $ruta = APIGET($id);
   $json = file_get_contents($ruta);
   $datos = json_decode($json,true);
   ?>
 
   <?php
-  $idnew = $datos["data"]["id"];
-  $namenew = $datos["data"]["name"];
-  $structure_type_idnew = $datos["data"]["structure_type_id"];
+  $idnew = $datos["data"]["IdPosition"];
+  $namenew = $datos["data"]["PositionName"];
+  $structure_type_idnew = $datos["data"]["IdStructureType"];
 
 
   echo "
   <form action='edit_position.php' method='post'>
-  <input type='hidden' name='id' value='$idnew'>
+  <input type='hidden' name='IdPosition' value='$idnew'>
   <br>
   <label for=''>Nombre</label>
-  <input type='text' name='name' value='$namenew'>
+  <input type='text' name='PositionName' value='$namenew'>
   <br>
   <label for=''>Tipo de estructura</label>
-  <input type='number' name='structure_type_id' value='$structure_type_idnew'>
+  <input type='number' name='IdStructureType' value='$structure_type_idnew'>
   <input type='submit' value='Editar'>
   </form>";
   ?>

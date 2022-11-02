@@ -55,14 +55,11 @@ require_once '../authorization.php';
   
   <form action="create_commune.php" method="post">
         <br>
-        <label for="">Nombre</label>
-        <input type="text" name="name">
-        <br>
         <label for="">Id Provincia</label>
-        <input type="text" name="province_id">
+        <input type="text" name="IdProvince">
         <br>
-        <label for="">Geometry</label>
-        <input type="text" name="geom">
+        <label for="">Nombre</label>
+        <input type="text" name="CommuneName">        
         <br>
         <input type="submit" value="Agregar">
     </form>
