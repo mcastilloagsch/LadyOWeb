@@ -50,28 +50,36 @@ require_once '../authorization.php';
         </div>
     </header>
 
-
 <div class="container">
   <br><br>
 <?php
-function APIGET(){
- $file = fopen ( '../../bin/urls_api.config', "r");
- $url = array();
 
- while (!feof($file)) {
-  $url[] = fgetcsv($file,null,';');
-}
-  fclose($file);
-  $APICountryGetlist = $url[11][1];
-  $respuesta = $APICountryGetlist;
-  return $respuesta;
+function PARAMGET($api_abs_path){
+
+  $config = file('../../bin/param.config');
+
+  foreach($config as $linea){
+    $valores=explode(';',$linea);
+    $url[$valores[0]] = $valores[1];    
+  }
   
+  if ( $url[$api_abs_path] ) return $url[$api_abs_path];
+  else return "";
 }
 
-$token = $_SESSION['user_token'];
-$ruta = APIGET();
-$json = file_get_contents($ruta);
-$datos = json_decode($json,true);
+function APIGET($api_url){  
+ 
+  $archivo = file('../../bin/urls_api.config');
+ 
+  foreach($archivo as $linea){
+    $valores=explode(';',$linea);
+    $url[$valores[0]] = $valores[1];    
+  }
+ 
+  if ( $url[$api_url] ) return $url[$api_url];
+  else return ""; 
+}
+
 ?>
 
 <br>
@@ -98,10 +106,19 @@ $datos = json_decode($json,true);
       </thead>
       <tbody>
         <?php
+
+        $API_URL=APIGET('APICountryGetlist');
+        $API_ABS_PATH=PARAMGET('API_ABS_PATH');
+        
+        $config_api = trim($API_ABS_PATH.$API_URL);
+        
+        $json = file_get_contents($config_api);
+        $datos = json_decode($json,true);
+        
           foreach ($datos["data"] as $clave => $value){
             $id = $value["IdCountry"];
             $nombre = $value["CountryName"];
-            $isDel = $value["IsDeleted"];            
+            $isDel = $value["IsDeleted"];
 
             echo "<tr>";
             echo "<td>" . $id . "</td>";
