@@ -1,14 +1,12 @@
 <?php
 require_once '../authorization.php';
 
-$id = $_POST['IdCountry'];
-$name = $_POST['CountryName'];
+$id = $_GET['IdCountry'];
 
 $id = intval($id);
 
 $objeto = array(
-  "IdCountry" => $id,
-  "CountryName" => $name
+  "IdCountry" => $id
 );
 
 function PARAMGET($api_abs_path){
@@ -24,7 +22,7 @@ function PARAMGET($api_abs_path){
   else return "";
 }
 
-function APIPUT($api_url){  
+function APIDELETE($api_url){  
  
   $archivo = file('../../bin/urls_api.config');
  
@@ -35,20 +33,20 @@ function APIPUT($api_url){
  
   if ( $url[$api_url] ) return $url[$api_url];
   else return ""; 
- }
+}
 
-$API_URL=APIPUT('APICountryObjUpdate');
+$API_URL=APIDELETE('APICountryObjDelete');
 $API_ABS_PATH=PARAMGET('API_ABS_PATH');
 
 $config_api = trim($API_ABS_PATH.$API_URL);
 $curl = curl_init($config_api);
 
 $jsonDataEncoded = json_encode($objeto);
+curl_setopt($curl, CURLOPT_URL,$config_api);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
+curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
 curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($objeto)); 
 $result = curl_exec($curl);
 header("Location: country.php");
-
 
 ?>

@@ -1,39 +1,39 @@
 <?php
 require_once '../authorization.php';
 
-$id = $_POST['IdSex'];
-$name = $_POST['SexName'];
-$token = $_SESSION['user_token'];
+$id = $_GET['IdSex'];
 
 $id = intval($id);
 
 $objeto = array(
-  "IdSex" => $id,
-  "SexName" => $name,
+  "IdSex" => $id
 );
 
-function APIPUT(){
+function APIDELETE(){
+ 
   $file = fopen( '../../bin/urls_api.config', "r");
   $url = array();
-  
+    
   while (!feof($file)) {
-      $url[] = fgetcsv($file,null,';');
+    $url[] = fgetcsv($file,null,';');
   }
+
   fclose($file);
-  $APISexObjUpdate = $url[38][1];
-  $respuesta = $APISexObjUpdate;
+  $APISexObjDelete = $url[40][1];
+  $respuesta = $APISexObjDelete;  
   return $respuesta;
+
 }
 
-$ruta = APIPUT();
+$ruta = APIDELETE();
 $curl = curl_init($ruta);
 
 $jsonDataEncoded = json_encode($objeto);
+curl_setopt($curl, CURLOPT_URL,$ruta);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
-curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($objeto));
+curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($objeto)); 
 $result = curl_exec($curl);
 header("Location: sexe.php");
-
 
 ?>

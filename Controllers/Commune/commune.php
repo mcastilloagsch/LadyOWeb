@@ -54,7 +54,7 @@ require_once '../authorization.php';
 <div class="container">
   <br><br>
 <?php
-function APIGET($token){
+function APIGET(){
   $file = fopen ( '../../bin/urls_api.config', "r");
   $url = array();
 
@@ -62,14 +62,14 @@ function APIGET($token){
     $url[] = fgetcsv($file,null,';');
 }
     fclose($file);
-    $APICommunesGetlist = $url[6][1];
-    $respuesta = $APICommunesGetlist . $token;
+    $APICommuneGetlist = $url[6][1];
+    $respuesta = $APICommuneGetlist;
     return $respuesta;
   
 }
 
 $token = $_SESSION['user_token'];
-$ruta = APIGET($token);
+$ruta = APIGET();
 $json = file_get_contents($ruta);
 $datos = json_decode($json,true);
 ?>
@@ -91,26 +91,26 @@ $datos = json_decode($json,true);
     <table>
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Id Provincia</th>
-          <th>Geometry</th>
+          <th>ID Comuna</th>
+          <th>ID Provincia</th>
+          <th>Nombre Comuna</th>
+          <th>Is deleted</th>
         </tr>
       </thead>
       <tbody>
         <?php
           foreach ($datos["data"] as $clave => $value){
-            $id = $value["id"];
-            $nombre = $value["name"];
-            $province_id = $value["province_id"];
-            $geom = $value["geom"];
+            $id = $value["IdCommune"];            
+            $province_id = $value["IdProvince"];
+            $nombre = $value["CommuneName"];
+            $isDel = $value["IsDeleted"];
 
             echo "<tr>";
-            echo "<td>" . $id . "</td>";
-            echo "<td>" . $nombre . "</td>";
+            echo "<td>" . $id . "</td>";            
             echo "<td>" . $province_id . "</td>";
-            echo "<td>" . $geom . "</td>";
-            echo "<td class='select'><a class='button' id='edit-button' href='update_commune.php?id=$id'>Editar</a><a class='buttoneliminate' href=''>Eliminar</a></td>";
+            echo "<td>" . $nombre . "</td>";
+            echo "<td>" . $isDel . "</td>";
+            echo "<td class='select'><a class='button' id='edit-button' href='update_commune.php?IdCommune=$id'>Editar</a><a class='buttoneliminate' href=delete_commune.php?IdCommune=$id'>Eliminar</a></td>";
             echo "</tr>";
           }
       ?>

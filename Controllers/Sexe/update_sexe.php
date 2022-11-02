@@ -54,30 +54,37 @@ require_once '../authorization.php';
   <br><br><br><br><br><br><br><br>
   <h2>Editar Sexo</h2>
   <?php
-  function APIGET($ruta){
-    $url = "http://localhost:100/api/Sexes/getObject/{token}/";
-    $respuesta = $url . $ruta;
+  function APIGET($id){
+    $file = fopen( '../../bin/urls_api.config', "r");
+    $url = array();
+
+    while (!feof($file)) {
+        $url[] = fgetcsv($file,null,';');
+    }
+    fclose($file);
+    $APISexGetObject = $url[39][1];
+    $respuesta = $APISexGetObject . "/" . $id;
     return $respuesta;
   }
 
-  $var = $_GET['id'];
-
-  $ruta = APIGET($var);
+  $id = $_GET['IdSex'];
+  $token = $_SESSION['user_token'];
+  $ruta = APIGET($id);
   $json = file_get_contents($ruta);
   $datos = json_decode($json,true);
   ?>
 
   <?php
-  $idnew = $datos["data"]["id"];
-  $namenew = $datos["data"]["name"];
+  $idnew = $datos["data"]["IdSex"];
+  $namenew = $datos["data"]["SexName"];
 
 
   echo "
   <form action='edit_sexe.php' method='post'>
-  <input type='hidden' name='id' value='$idnew'>
+  <input type='hidden' name='IdSex' value='$idnew'>
   <br>
   <label for=''>Nombre</label>
-  <input type='text' name='name' value='$namenew'>
+  <input type='text' name='SexName' value='$namenew'>
   <input type='submit' value='Editar'>
   </form>";
   ?>

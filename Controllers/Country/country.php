@@ -50,28 +50,36 @@ require_once '../authorization.php';
         </div>
     </header>
 
-
 <div class="container">
   <br><br>
 <?php
-function APIGET($token){
- $file = fopen ( '../../bin/urls_api.config', "r");
- $url = array();
 
- while (!feof($file)) {
-  $url[] = fgetcsv($file,null,';');
-}
-  fclose($file);
-  $APICountriesGetList = $url[10][1];
-  $respuesta = $APICountriesGetList . $token;
-  return $respuesta;
+function PARAMGET($api_abs_path){
+
+  $config = file('../../bin/param.config');
+
+  foreach($config as $linea){
+    $valores=explode(';',$linea);
+    $url[$valores[0]] = $valores[1];    
+  }
   
+  if ( $url[$api_abs_path] ) return $url[$api_abs_path];
+  else return "";
 }
 
-$token = $_SESSION['user_token'];
-$ruta = APIGET($token);
-$json = file_get_contents($ruta);
-$datos = json_decode($json,true);
+function APIGET($api_url){  
+ 
+  $archivo = file('../../bin/urls_api.config');
+ 
+  foreach($archivo as $linea){
+    $valores=explode(';',$linea);
+    $url[$valores[0]] = $valores[1];    
+  }
+ 
+  if ( $url[$api_url] ) return $url[$api_url];
+  else return ""; 
+}
+
 ?>
 
 <br>
@@ -91,26 +99,32 @@ $datos = json_decode($json,true);
     <table>
       <thead>
         <tr>
-          <th>ID</th>
+          <th>ID Country</th>
           <th>Nombre</th>
-          <th>Nacionalidad</th>
-          <th>ISO</th>
+          <th>Is Deleted</th>          
         </tr>
       </thead>
       <tbody>
         <?php
+
+        $API_URL=APIGET('APICountryGetlist');
+        $API_ABS_PATH=PARAMGET('API_ABS_PATH');
+        
+        $config_api = trim($API_ABS_PATH.$API_URL);
+        
+        $json = file_get_contents($config_api);
+        $datos = json_decode($json,true);
+        
           foreach ($datos["data"] as $clave => $value){
-            $id = $value["id"];
-            $nombre = $value["name"];
-            $nation = $value["nationality"];
-            $iso = $value["iso"];
+            $id = $value["IdCountry"];
+            $nombre = $value["CountryName"];
+            $isDel = $value["IsDeleted"];
 
             echo "<tr>";
             echo "<td>" . $id . "</td>";
             echo "<td>" . $nombre . "</td>";
-            echo "<td>" . $nation . "</td>";
-            echo "<td>" . $iso . "</td>";
-            echo "<td class='select'><a class='button' id='edit-button' href='update_country.php?id=$id'>Editar</a><a class='buttoneliminate' href=''>Eliminar</a></td>";
+            echo "<td>" . $isDel . "</td>";
+            echo "<td class='select'><a class='button' id='edit-button' href='update_country.php?IdCountry=$id'>Editar</a><a class='buttoneliminate' href='delete_country.php?IdCountry=$id'>Eliminar</a></td>";
             echo "</tr>";
           }
       ?>

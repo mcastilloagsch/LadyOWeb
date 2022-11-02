@@ -56,10 +56,10 @@ require_once '../authorization.php';
   <form action="create_position.php" method="post">
         <br>
         <label for="">Nombre</label>
-        <input type="text" name="name">
+        <input type="text" name="PositionName">
         <br>
         <label for="">Tipo de estructura</label>
-        <input type="number" name="structure_type_id">
+        <input type="number" name="IdStructureType">
         <br>
         <input type="submit" value="Agregar">
     </form>
