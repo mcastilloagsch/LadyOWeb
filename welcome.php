@@ -1,5 +1,6 @@
 <?php
 require_once 'config.php';
+include("Common/funtions.php");
 
 function function_alert($message) {
       
@@ -32,15 +33,9 @@ if(!isset($token['error']))
   ];
 
   //read file urls_api.config
-  $file = fopen( 'bin/urls_api.config', "r");
-  $url = array();
 
-  while (!feof($file)) {
-      $url[] = fgetcsv($file,null,';');
-  }
-  fclose($file);
-
-  $APILogInUser = $url[0][1];
+  $API_ABS_PATH=PARAMGET('API_ABS_PATH');
+  $APILogInUser = APIGET("APILogInUser");
 
   $curl = curl_init($APILogInUser);
   curl_setopt($curl, CURLOPT_URL, $APILogInUser);
