@@ -37,7 +37,7 @@ if(!isset($token['error']))
   $API_ABS_PATH=PARAMGET('API_ABS_PATH');
   $APILogInUser = APIGET("APILogInUser");
 
-  $curl = curl_init($APILogInUser);
+  $curl = curl_init($API_ABS_PATH.$APILogInUser);
   curl_setopt($curl, CURLOPT_URL, $APILogInUser);
   curl_setopt($curl, CURLOPT_POST, true);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
