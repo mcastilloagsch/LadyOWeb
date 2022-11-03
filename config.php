@@ -1,22 +1,16 @@
 <?php
 
 require_once 'vendor/autoload.php';
+include_once 'Common/functions.php';
+
 
 session_start();
-//read file param.config
-$file = fopen( 'bin/param.config', "r");
-$param = array();
-
-while (!feof($file)) {
-    $param[] = fgetcsv($file,null,';');
-}
-fclose($file);
 // init configuration
-$clientID = $param[0][1];
-$clientSecret = $param[1][1];
-$redirectUri = $param[2][1];
+$clientID = PARAMGET('clientID');
+$clientSecret = PARAMGET('clientSecret');
+$redirectUri = PARAMGET('redirectUri');
 
-// create Client Request to access Google API 
+// create Client Request to access Google API
 $client = new Google_Client();
 $client->setClientId($clientID);
 $client->setClientSecret($clientSecret);
@@ -25,9 +19,9 @@ $client->addScope("email");
 $client->addScope("profile");
 
 // Connect to database
-$hostname = $param[3][1];
-$username = $param[4][1];
-$password = $param[5][1];
-$database = $param[6][1];
+$hostname = PARAMGET('hostname');
+$username = PARAMGET('username');
+$password = PARAMGET('password');
+$database = PARAMGET('database');
 
 $conn = mysqli_connect($hostname, $username, $password, $database);

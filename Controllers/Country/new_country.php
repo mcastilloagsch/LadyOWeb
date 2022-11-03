@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once '../authorization.php';
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -52,14 +52,14 @@ require_once '../authorization.php';
 <div class="container">
   <br><br><br><br><br><br>
   <h2>Agregar país</h2>
-  
+
   <form action="create_country.php" method="post">
         <br>
         <label for="">Nombre</label>
         <input type="text" name="CountryName">
         <br>
         <input type="submit" value="Agregar">
-        <a href="region.php">Volver</a>
+        <a href="country.php">Volver</a>
     </form>
 
 </div>
