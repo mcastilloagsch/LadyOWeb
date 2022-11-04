@@ -1,5 +1,6 @@
 <?php 
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -55,40 +56,11 @@ require_once '../authorization.php';
   <h2>Editar Pais</h2>
   <?php
 
-function PARAMGET($api_abs_path){
-
-  $config = file('../../bin/param.config');
-
-  foreach($config as $linea){
-    $valores=explode(';',$linea);
-    $url[$valores[0]] = $valores[1];    
-  }
-  
-  if ( $url[$api_abs_path] ) return $url[$api_abs_path];
-  else return "";
-}
-
-function APIGET($api_url){  
- 
- $archivo = file('../../bin/urls_api.config');
- 
- foreach($archivo as $linea){
-   $valores=explode(';',$linea);
-   $url[$valores[0]] = $valores[1];    
- }
- 
- if ( $url[$api_url] ) return $url[$api_url];
- else return "";
-}
-
 $id = $_GET['IdCountry'];
 
-$API_URL=APIGET('APICountryGetObject');
-$API_ABS_PATH=PARAMGET('API_ABS_PATH');
+$API_URL=APIGET('APICountryGetObject')."/".$id;
 
-$config_api = trim($API_ABS_PATH.$API_URL);
-
-$json = file_get_contents($config_api."/".$id);
+$json = file_get_contents($API_URL);
 $datos = json_decode($json,true);
 
 

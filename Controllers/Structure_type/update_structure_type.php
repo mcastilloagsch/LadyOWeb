@@ -1,5 +1,6 @@
 <?php 
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -54,15 +55,10 @@ require_once '../authorization.php';
   <br><br><br><br><br><br><br><br>
   <h2>Editar tipo de estructura</h2>
   <?php
-  function APIGET($ruta){
-    $url = "http://localhost:100/api/StructureType/getObject/{token}/";
-    $respuesta = $url . $ruta;
-    return $respuesta;
-  }
 
   $var = $_GET['id'];
 
-  $ruta = APIGET($var);
+  $ruta = APIGET("APIStructureTypeGetObject")."/{token}/".$var;
   $json = file_get_contents($ruta);
   $datos = json_decode($json,true);
   ?>

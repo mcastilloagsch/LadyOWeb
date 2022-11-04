@@ -1,5 +1,6 @@
 <?php
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 
 $id = $_GET['IdCountry'];
 
@@ -9,37 +10,8 @@ $objeto = array(
   "IdCountry" => $id
 );
 
-function PARAMGET($api_abs_path){
-
-  $config = file('../../bin/param.config');
-
-  foreach($config as $linea){
-    $valores=explode(';',$linea);
-    $url[$valores[0]] = $valores[1];    
-  }
-  
-  if ( $url[$api_abs_path] ) return $url[$api_abs_path];
-  else return "";
-}
-
-function APIDELETE($api_url){  
- 
-  $archivo = file('../../bin/urls_api.config');
- 
-  foreach($archivo as $linea){
-    $valores=explode(';',$linea);
-    $url[$valores[0]] = $valores[1];    
-  }
- 
-  if ( $url[$api_url] ) return $url[$api_url];
-  else return ""; 
-}
-
-$API_URL=APIDELETE('APICountryObjDelete');
-$API_ABS_PATH=PARAMGET('API_ABS_PATH');
-
-$config_api = trim($API_ABS_PATH.$API_URL);
-$curl = curl_init($config_api);
+$API_URL=APIGET('APICountryObjDelete');
+$curl = curl_init($API_URL);
 
 $jsonDataEncoded = json_encode($objeto);
 curl_setopt($curl, CURLOPT_URL,$config_api);

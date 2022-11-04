@@ -79,11 +79,8 @@ include_once '../../Common/functions.php';
         <?php
 
         $API_URL=APIGET('APICountryGetlist');
-        $API_ABS_PATH=PARAMGET('API_ABS_PATH');
         
-        $config_api = trim($API_ABS_PATH.$API_URL);
-        
-        $json = file_get_contents($config_api);
+        $json = file_get_contents($API_URL);
         $datos = json_decode($json,true);
         
           foreach ($datos["data"] as $clave => $value){

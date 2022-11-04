@@ -1,5 +1,6 @@
 <?php
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 
 $id = $_POST['id'];
 $confesion = $_POST['confesion'];
@@ -13,7 +14,7 @@ $objeto = array(
     "confesion" => $confesion,
   );
 
-$urlcreate = "http://localhost:100/api/Religions/ObjUpdate/{token}/$id";
+$urlcreate = APIGET("APIReligionObjUpdate")."/{token}/".$id;
 $curl = curl_init($urlcreate);
 
 $jsonDataEncoded = json_encode($objeto);

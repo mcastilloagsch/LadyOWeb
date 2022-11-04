@@ -1,5 +1,6 @@
 <?php
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 
 $id = $_POST['id'];
 $name = $_POST['name'];
@@ -14,7 +15,7 @@ $objeto = array(
     "values" => $values,
   );
 
-$urlcreate = "http://localhost:100/api/Socioeconomics/ObjUpdate/{token}/$id";
+$urlcreate = APIGET("APISocioeconomicsObjUpdate")."/{token}/".$id;
 $curl = curl_init($urlcreate);
 
 $jsonDataEncoded = json_encode($objeto);

@@ -1,24 +1,12 @@
 <?php
 require_once '../authorization.php';
-
+include_once '../../Common/functions.php';
 
 $region_id = $_POST['IdRegion'];
 $name = $_POST['ProvinceName'];
 $token = $_SESSION['user_token'];
 
-function APIPOST(){
-  $file = fopen( '../../bin/urls_api.config', "r");
-  $url = array();
-
-  while (!feof($file)) {
-      $url[] = fgetcsv($file,null,';');
-  }
-  fclose($file);
-  $APIProvinceObjInsert = $url[27][1];
-  $respuesta = $APIProvinceObjInsert;
-  return $respuesta;
-}
-$ruta = APIPOST();
+$ruta = APIGET("APIProvinceObjInsert");
 $curl = curl_init($ruta);
 
 $objeto = array(  

@@ -1,5 +1,6 @@
 <?php
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 
 $name = $_POST['name'];
 $geom = $_POST['geom'];
@@ -18,7 +19,7 @@ function APIPOST($token){
   return $respuesta;
 }
 
-$ruta = APIPOST($token);
+$ruta = APIGET("APIRegionsObjInsert").$token;
 $curl = curl_init($ruta);
 
 $objeto = array(

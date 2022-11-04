@@ -25,13 +25,11 @@ if (isset($_GET['code'])) {
       'token' => $google_account_info['id'],
     ];
 
-    //read file urls_api.config
 
-    $API_ABS_PATH = PARAMGET('API_ABS_PATH');
     $APILogInUser = APIGET('APILogInUser');
 
     $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, $API_ABS_PATH.$APILogInUser);
+    curl_setopt($curl, CURLOPT_URL, $APILogInUser);
     curl_setopt($curl, CURLOPT_POST, true);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 

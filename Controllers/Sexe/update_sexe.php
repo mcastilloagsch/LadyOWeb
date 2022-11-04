@@ -1,5 +1,6 @@
 <?php 
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -54,22 +55,10 @@ require_once '../authorization.php';
   <br><br><br><br><br><br><br><br>
   <h2>Editar Sexo</h2>
   <?php
-  function APIGET($id){
-    $file = fopen( '../../bin/urls_api.config', "r");
-    $url = array();
-
-    while (!feof($file)) {
-        $url[] = fgetcsv($file,null,';');
-    }
-    fclose($file);
-    $APISexGetObject = $url[39][1];
-    $respuesta = $APISexGetObject . "/" . $id;
-    return $respuesta;
-  }
 
   $id = $_GET['IdSex'];
   $token = $_SESSION['user_token'];
-  $ruta = APIGET($id);
+  $ruta = APIGET("APISexGetObject")."/".$id);
   $json = file_get_contents($ruta);
   $datos = json_decode($json,true);
   ?>

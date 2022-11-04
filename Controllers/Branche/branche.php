@@ -1,5 +1,6 @@
 <?php
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -53,21 +54,9 @@ require_once '../authorization.php';
 <div class="container">
   <br><br>
 <?php
-function APIGET($token){
-  $file = fopen( '../../bin/urls_api.config', "r");
-  $url = array();
-
-  while (!feof($file)) {
-      $url[] = fgetcsv($file,null,';');
-  }
-  fclose($file);
-  $APIBranchesGetlist = $url[1][1];
-  $respuesta = $APIBranchesGetlist . $token;
-  return $respuesta;
-}
 
 $token = $_SESSION['user_token'];
-$ruta = APIGET($token);
+$ruta = APIGET("APIBranchGetlist").$token;
 $json = file_get_contents($ruta);
 $datos = json_decode($json,true);
 ?>

@@ -1,5 +1,6 @@
 <?php
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 
 $id = $_POST['IdSex'];
 $name = $_POST['SexName'];
@@ -25,7 +26,7 @@ function APIPUT(){
   return $respuesta;
 }
 
-$ruta = APIPUT();
+$ruta = APIGET("APISexObjUpdate");
 $curl = curl_init($ruta);
 
 $jsonDataEncoded = json_encode($objeto);

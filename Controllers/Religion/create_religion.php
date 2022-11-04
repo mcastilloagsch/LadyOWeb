@@ -1,10 +1,11 @@
 <?php
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 
 $name = $_POST['name'];
 $confesion = $_POST['confesion'];
 
-$urlcreate = "http://localhost:100/api/Religions/ObjInsert/{token}";
+$urlcreate = APIGET("APIReligionObjInsert")."/{token}";
 $curl = curl_init($urlcreate);
 
 $objeto = array(

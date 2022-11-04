@@ -1,6 +1,6 @@
 <?php
 require_once '../authorization.php';
-
+include_once '../../Common/functions.php';
 
 $id = $_POST['IdCommune'];
 $province_id = $_POST['IdProvince'];
@@ -15,23 +15,7 @@ $objeto = array(
   "CommuneName" => $name
 );
 
-function APIPUT(){
- 
-  $file = fopen( '../../bin/urls_api.config', "r");
-  $url = array();
-    
-  while (!feof($file)) {
-    $url[] = fgetcsv($file,null,';');
-  }
-
-  fclose($file);
-  $APICommuneObjUpdate = $url[8][1];
-  $respuesta = $APICommuneObjUpdate;  
-  return $respuesta;
-
-}
-
-$ruta = APIPUT();
+$ruta = APIGET("APICommuneObjUpdate");
 $curl = curl_init($ruta);
 
 $jsonDataEncoded = json_encode($objeto);

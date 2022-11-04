@@ -1,5 +1,6 @@
 <?php 
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">

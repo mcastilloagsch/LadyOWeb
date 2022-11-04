@@ -1,5 +1,6 @@
 <?php
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 
 $id = $_GET['IdProvince'];
 
@@ -9,23 +10,7 @@ $objeto = array(
   "IdProvince" => $id
 );
 
-function APIDELETE(){
- 
-  $file = fopen( '../../bin/urls_api.config', "r");
-  $url = array();
-    
-  while (!feof($file)) {
-    $url[] = fgetcsv($file,null,';');
-  }
-
-  fclose($file);
-  $APIProvinceObjDelete = $url[30][1];
-  $respuesta = $APIProvinceObjDelete;  
-  return $respuesta;
-
-}
-
-$ruta = APIDELETE();
+$ruta = APIGET("APIProvinceObjDelete");
 $curl = curl_init($ruta);
 
 $jsonDataEncoded = json_encode($objeto);

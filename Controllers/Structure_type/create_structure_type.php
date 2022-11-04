@@ -1,10 +1,11 @@
 <?php
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 
 $name = $_POST['name'];
 $priority = $_POST['priority'];
 
-$urlcreate = "http://localhost:100/api/StructureType/ObjInsert/{token}";
+$urlcreate = APIGET("APIStructureTypeObjInsert")."/{token}";
 $curl = curl_init($urlcreate);
 
 $objeto = array(

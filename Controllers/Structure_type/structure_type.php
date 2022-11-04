@@ -1,5 +1,6 @@
 <?php 
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -54,13 +55,8 @@ require_once '../authorization.php';
 <div class="container">
   <br><br>
 <?php
-function APIGET($ruta){
-  $url = "http://localhost:100/api/StructureType/getList/";
-  $respuesta = $url . $ruta;
-  return $respuesta;
-}
 
-$token = APIGET("{token}");
+$token = APIGET("APIStructureTypeGetlist")."/{token}";
 $json = file_get_contents($token);
 $datos = json_decode($json,true);
 ?>

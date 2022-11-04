@@ -1,23 +1,12 @@
 <?php
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 
 $name = $_POST['GenderName'];
 $token = $_SESSION['user_token'];
 
 
-function APIPOST(){
-  $file = fopen( '../../bin/urls_api.config', "r");
-  $url = array();
-
-  while (!feof($file)) {
-      $url[] = fgetcsv($file,null,';');
-  }
-  fclose($file);
-  $APIGenderObjInsert = $url[17][1];
-  $respuesta = $APIGenderObjInsert;
-  return $respuesta;
-}
-$ruta = APIPOST();
+$ruta = APIGET("APIGenderObjInsert");
 $curl = curl_init($ruta);
 
 $objeto = array(

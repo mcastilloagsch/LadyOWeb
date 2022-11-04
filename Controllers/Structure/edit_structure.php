@@ -1,5 +1,6 @@
 <?php
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 
 $id = $_POST['id'];
 $name = $_POST['name'];
@@ -16,7 +17,7 @@ $objeto = array(
     "parent_id" => $parent_id,
   );
 
-$urlcreate = "http://localhost:100/api/Structures/ObjUpdate/{token}/$id";
+$urlcreate = APIGET("APIStructuresObjUpdate")."/{token}/".$id;
 $curl = curl_init($urlcreate);
 
 $jsonDataEncoded = json_encode($objeto);

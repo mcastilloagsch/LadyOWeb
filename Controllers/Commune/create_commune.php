@@ -1,26 +1,13 @@
 <?php
 
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 
 $province_id = $_POST['IdProvince'];
 $name = $_POST['CommuneName'];
 $token = $_SESSION['user_token'];
 
-function APIPOST(){
-
-  $file = fopen( '../../bin/urls_api.config', "r");
-  $url = array();
-
-  while (!feof($file)) {
-      $url[] = fgetcsv($file,null,';');
-  }
-
-  fclose($file);
-  $APICommuneObjInsert = $url[7][1];
-  $respuesta = $APICommuneObjInsert;
-  return $respuesta;
-}
-$ruta = APIPOST();
+$ruta = APIGET("APICommuneObjInsert");
 $curl = curl_init($ruta);
 
 $objeto = array(

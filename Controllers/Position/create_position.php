@@ -1,24 +1,12 @@
 <?php
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 
 $name = $_POST['PositionName'];
 $structure_type_id = $_POST['IdStructureType'];
 $token = $_SESSION['user_token'];
 
-function APIPOST(){
-  $file = fopen( '../../bin/urls_api.config', "r");
-  $url = array();
-
-  while (!feof($file)) {
-      $url[] = fgetcsv($file,null,';');
-  }
-  fclose($file);
-  $APIPositionObjInsert = $url[22][1];
-  $respuesta = $APIPositionObjInsert;
-  return $respuesta;
-}
-
-$ruta = APIPOST();
+$ruta = APIGET("APIPositionObjInsert");
 $curl = curl_init($ruta);
 
 $objeto = array(

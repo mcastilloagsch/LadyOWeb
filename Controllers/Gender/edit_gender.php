@@ -1,5 +1,6 @@
 <?php
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 
 $id = $_POST['IdGender'];
 $name = $_POST['GenderName'];
@@ -12,19 +13,7 @@ $objeto = array(
     "GenderName" => $name,
   );
 
-function APIPUT(){
- $file = fopen( '../../bin/urls_api.config', "r");
- $url = array();
-    
- while (!feof($file)) {
-   $url[] = fgetcsv($file,null,';');
- }
- fclose($file);
-  $APIGenderObjUpdate = $url[18][1];
-  $respuesta = $APIGenderObjUpdate;
-  return $respuesta;
-}
-$ruta = APIPUT();
+$ruta = APIGET("APIGenderObjUpdate");
 $curl = curl_init($ruta);
 
 

@@ -1,6 +1,7 @@
 <?php
 
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 
 $id = $_POST['IdProvince'];
 $region_id = $_POST['IdRegion'];
@@ -16,19 +17,7 @@ $objeto = array(
     "ProvinceName" => $name
   );
 
-  function APIPUT(){
-    $file = fopen( '../../bin/urls_api.config', "r");
-    $url = array();
-    
-    while (!feof($file)) {
-        $url[] = fgetcsv($file,null,';');
-    }
-    fclose($file);
-    $APIProvinceObjUpdate = $url[28][1];
-    $respuesta = $APIProvinceObjUpdate;
-    return $respuesta;
-  }
-  $ruta = APIPUT();
+  $ruta = APIGET("APIProvinceObjUpdate");
   $curl = curl_init($ruta);
   
   $jsonDataEncoded = json_encode($objeto);

@@ -1,5 +1,6 @@
 <?php
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 
 $id = $_GET['IdPosition'];
 
@@ -9,23 +10,7 @@ $objeto = array(
   "IdPosition" => $id
 );
 
-function APIDELETE(){
- 
-  $file = fopen( '../../bin/urls_api.config', "r");
-  $url = array();
-    
-  while (!feof($file)) {
-    $url[] = fgetcsv($file,null,';');
-  }
-
-  fclose($file);
-  $APIPositionObjDelete = $url[25][1];
-  $respuesta = $APIPositionObjDelete;  
-  return $respuesta;
-
-}
-
-$ruta = APIDELETE();
+$ruta = APIGET("APIPositionObjDelete");
 $curl = curl_init($ruta);
 
 $jsonDataEncoded = json_encode($objeto);

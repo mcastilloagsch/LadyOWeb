@@ -20,8 +20,9 @@ function PARAMGET($param){
 
 function APIGET($api){
 
+  $API_ABS_PATH = PARAMGET('API_ABS_PATH');
   #$archivo = file('../../bin/urls_api.config');
-  return GET_PARAM_FILE($api,'/bin/urls_api.config');
+  return $API_ABS_PATH.GET_PARAM_FILE($api,'/bin/urls_api.config');
 }
 
 ?>

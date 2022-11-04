@@ -1,6 +1,6 @@
 <?php
 require_once '../authorization.php';
-
+include_once '../../Common/functions.php';
 
 $id = $_POST['id'];
 $name = $_POST['name'];
@@ -18,19 +18,7 @@ $objeto = array(
   "small_team" => $small_team,
 );
 
-function APIPUT($token){
-  $file = fopen( '../../bin/urls_api.config', "r");
-  $url = array();
-  
-  while (!feof($file)) {
-      $url[] = fgetcsv($file,null,';');
-  }
-  fclose($file);
-  $APIBranchesObjUpdate = $url[3][1];
-  $respuesta = $APIBranchesObjUpdate . $token;
-  return $respuesta;
-}
-$ruta = APIPUT($token);
+$ruta = APIGET("APIBranchesObjUpdate").$token;
 $curl = curl_init($ruta);
 
 $jsonDataEncoded = json_encode($objeto);
