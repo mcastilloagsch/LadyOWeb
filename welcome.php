@@ -49,7 +49,6 @@ if (isset($_GET['code'])) {
     }
     DATA;
 
-    error_log(print_r($data,TRUE).PHP_EOL,0);
 
     curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 
@@ -60,58 +59,65 @@ if (isset($_GET['code'])) {
     $resp = curl_exec($curl);
     curl_close($curl);
 
-    $respuesta= json_decode($resp,true);
+    if (is_null($resp)){
+      echo("<script>
+              alert('No se tiene acceso a $API_ABS_PATH, contactate con el administrador');
+              window.location.href='index.php';
+              </script>");
+      session_destroy();
+      die();
+    }
+    else {
 
-    
-    error_log(print_r($resp,TRUE).PHP_EOL,0);
-    error_log(print_r($respuesta,TRUE).PHP_EOL,0); 
+      $respuesta= json_decode($resp,true);
 
-    if ($respuesta["isValid"] == true) {
+      if ($respuesta["isValid"] == true) {
 
-    // Verificando si el usuario existe en la base de datos
-      $sql = "SELECT * FROM users WHERE email ='{$userinfo['email']}'";
-      $result = mysqli_query($conn, $sql);
-      if (mysqli_num_rows($result) > 0) {
-        // si el usuario existe
-        $userinfo = mysqli_fetch_assoc($result);
-        $token = $respuesta['data']['token'];
-      } else {
-        // si el usuario no existe
-        $sql = "INSERT INTO users (email, first_name, last_name, gender, full_name, picture, verifiedEmail, token) VALUES ('{$userinfo['email']}', '{$userinfo['first_name']}', '{$userinfo['last_name']}', '{$userinfo['gender']}', '{$userinfo['full_name']}', '{$userinfo['picture']}', '{$userinfo['verifiedEmail']}', '{$respuesta['token']}')";
+      // Verificando si el usuario existe en la base de datos
+        $sql = "SELECT * FROM users WHERE email ='{$userinfo['email']}'";
         $result = mysqli_query($conn, $sql);
-        if ($result) {
+        if (mysqli_num_rows($result) > 0) {
+          // si el usuario existe
+          $userinfo = mysqli_fetch_assoc($result);
           $token = $respuesta['data']['token'];
         } else {
-          echo("User is not created");
-          die();
+          // si el usuario no existe
+          $sql = "INSERT INTO users (email, first_name, last_name, gender, full_name, picture, verifiedEmail, token) VALUES ('{$userinfo['email']}', '{$userinfo['first_name']}', '{$userinfo['last_name']}', '{$userinfo['gender']}', '{$userinfo['full_name']}', '{$userinfo['picture']}', '{$userinfo['verifiedEmail']}', '{$respuesta['token']}')";
+          $result = mysqli_query($conn, $sql);
+          if ($result) {
+            $token = $respuesta['data']['token'];
+          } else {
+            echo("User is not created");
+            die();
+          }
         }
-      }
 
-      // guardar los datos del usuario
-      $_SESSION['user_token'] = $token;
-      header("Location: home.php");
-    } else {
-      if (!isset($_SESSION['user_token'])) {
-        echo("<script>
-            alert('Tu usuario no es apto para ingresar, contactate con el administrador');
-            window.location.href='index.php';
-            </script>");
-        session_destroy();
-        die();
-      }
-
-      /* verificando si el usuario existe en la base de datos */
-      $temp = "{$_SESSION['user_token']}";
-      $sql = "SELECT * FROM users WHERE token = $temp";
-      $result = mysqli_query($conn, $sql);
-      if (mysqli_num_rows($result) > 0) {
-        /* si el usuario existe */
-        $userinfo = mysqli_fetch_assoc($result);
+        // guardar los datos del usuario
+        $_SESSION['user_token'] = $token;
         header("Location: home.php");
       } else {
-        session_destroy();
-        header("Location: home.php");
-     }
+        if (!isset($_SESSION['user_token'])) {
+          echo("<script>
+              alert('Tu usuario no es apto para ingresar, contactate con el administrador');
+              window.location.href='index.php';
+              </script>");
+          session_destroy();
+          die();
+        }
+
+        /* verificando si el usuario existe en la base de datos */
+        $temp = "{$_SESSION['user_token']}";
+        $sql = "SELECT * FROM users WHERE token = $temp";
+        $result = mysqli_query($conn, $sql);
+        if (mysqli_num_rows($result) > 0) {
+          /* si el usuario existe */
+          $userinfo = mysqli_fetch_assoc($result);
+          header("Location: home.php");
+        } else {
+          session_destroy();
+          header("Location: home.php");
+       }
+      }
     }
   } else {
     session_destroy();
