@@ -60,9 +60,9 @@ if (isset($_GET['code'])) {
 
     $respuesta= json_decode($resp,true);
 
-    error_log("GOGO\n");
-    error_log(var_dump($resp));
-    error_log(var_dump($respuesta)); 
+    
+    error_log(var_dump($resp),0);
+    error_log(var_dump($respuesta),0); 
 
     if ($respuesta["isValid"] == true) {
 
