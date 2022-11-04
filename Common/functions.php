@@ -1,6 +1,6 @@
 <?php
 function GET_PARAM_FILE($param, $file){
-  $config = file($file);
+  $config = file($_SERVER['DOCUMENT_ROOT'].$file);
 
   foreach($config as $line){
     $values=explode(';',$line);
@@ -15,14 +15,13 @@ function GET_PARAM_FILE($param, $file){
 function PARAMGET($param){
 
   #$config = file('../../bin/param.config');
-  error_log(dirname(__DIR__));
-  return GET_PARAM_FILE($param,'bin/param.config');
+  return GET_PARAM_FILE($param,'/bin/param.config');
 }
 
 function APIGET($api){
 
   #$archivo = file('../../bin/urls_api.config');
-  return GET_PARAM_FILE($api,'bin/urls_api.config');
+  return GET_PARAM_FILE($api,'/bin/urls_api.config');
 }
 
 ?>
