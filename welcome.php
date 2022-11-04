@@ -49,7 +49,7 @@ if (isset($_GET['code'])) {
     }
     DATA;
 
-    error_log(var_dump($data,0));
+    error_log(print_r($data,TRUE).PHP_EOL,0);
 
     curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 
@@ -63,8 +63,8 @@ if (isset($_GET['code'])) {
     $respuesta= json_decode($resp,true);
 
     
-    error_log(var_dump($resp),0);
-    error_log(var_dump($respuesta),0); 
+    error_log(print_r($resp,TRUE).PHP_EOL,0);
+    error_log(print_r($respuesta,TRUE).PHP_EOL,0); 
 
     if ($respuesta["isValid"] == true) {
 
