@@ -54,24 +54,43 @@ require_once '../authorization.php';
   <br><br><br><br><br><br><br><br>
   <h2>Editar Provincia</h2>
   <?php
-  function APIGET($id){
-    $file = fopen( '../../bin/urls_api.config', "r");
-    $url = array();
 
-    while (!feof($file)) {
-        $url[] = fgetcsv($file,null,';');
+  function PARAMGET($api_abs_path){
+
+    $config = file('../../bin/param.config');
+  
+    foreach($config as $linea){
+      $valores=explode(';',$linea);
+      $url[$valores[0]] = $valores[1];    
     }
-    fclose($file);
-    $APIProvinceGetObject = $url[29][1];
-    $respuesta = $APIProvinceGetObject . "/" . $id;
-    return $respuesta;
+    
+    if ( $url[$api_abs_path] ) return $url[$api_abs_path];
+    else return "";
   }
 
+  function APIGET($api_url){  
+ 
+    $archivo = file('../../bin/urls_api.config');
+    
+    foreach($archivo as $linea){
+      $valores=explode(';',$linea);
+      $url[$valores[0]] = $valores[1];    
+    }
+    
+    if ( $url[$api_url] ) return $url[$api_url];
+    else return "";
+   }
+
   $id = $_GET['IdProvince'];
-  $token = $_SESSION['user_token'];
-  $ruta = APIGET($id);
-  $json = file_get_contents($ruta);
+
+  $API_URL=APIGET('APIProvinceGetObject');
+  $API_ABS_PATH=PARAMGET('API_ABS_PATH');
+
+  $config_api = trim($API_ABS_PATH.$API_URL);
+
+  $json = file_get_contents($config_api."/".$id);
   $datos = json_decode($json,true);
+
   ?>
 
   <?php

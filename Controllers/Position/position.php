@@ -50,28 +50,36 @@ require_once '../authorization.php';
         </div>
     </header>
 
-
 <div class="container">
   <br><br>
 <?php
-function APIGET(){
-  $file = fopen( '../../bin/urls_api.config', "r");
-  $url = array();
 
-  while (!feof($file)) {
-      $url[] = fgetcsv($file,null,';');
+function PARAMGET($api_abs_path){
+
+  $config = file('../../bin/param.config');
+
+  foreach($config as $linea){
+    $valores=explode(';',$linea);
+    $url[$valores[0]] = $valores[1];    
   }
-  fclose($file);
-  $APIPositionGetlist = $url[21][1];
-  $respuesta = $APIPositionGetlist;
-  return $respuesta;
+  
+  if ( $url[$api_abs_path] ) return $url[$api_abs_path];
+  else return "";
 }
 
+function APIGET($api_url){  
+ 
+  $archivo = file('../../bin/urls_api.config');
+ 
+  foreach($archivo as $linea){
+    $valores=explode(';',$linea);
+    $url[$valores[0]] = $valores[1];    
+  }
+ 
+  if ( $url[$api_url] ) return $url[$api_url];
+  else return ""; 
+}
 
-$token = $_SESSION['user_token'];
-$ruta = APIGET();
-$json = file_get_contents($ruta);
-$datos = json_decode($json,true);
 ?>
 
 <br>
@@ -97,20 +105,29 @@ $datos = json_decode($json,true);
       </thead>
       <tbody>
         <?php
-          foreach ($datos["data"] as $clave => $value){
-            $id = $value["IdPosition"];
-            $nombre = $value["PositionName"];
-            $structure_type_id = $value["IdStructureType"];
-            $isDel = $value["IsDeleted"];
 
-            echo "<tr>";
-            echo "<td>" . $id . "</td>";
-            echo "<td>" . $nombre . "</td>";
-            echo "<td>" . $structure_type_id . "</td>";
-            echo "<td>" . $isDel . "</td>";
-            echo "<td class='select'><a class='button' id='edit-button' href='update_position.php?IdPosition=$id'>Editar</a><a class='buttoneliminate' href=delete_position.php?IdPosition=$id'>Eliminar</a></td>";
-            echo "</tr>";
-          }
+        $API_URL=APIGET('APIPositionGetlist');
+        $API_ABS_PATH=PARAMGET('API_ABS_PATH');
+        
+        $config_api = trim($API_ABS_PATH.$API_URL);
+        
+        $json = file_get_contents($config_api);
+        $datos = json_decode($json,true);
+
+        foreach ($datos["data"] as $clave => $value){
+          $id = $value["IdPosition"];
+          $nombre = $value["PositionName"];
+          $structure_type_id = $value["IdStructureType"];
+          $isDel = $value["IsDeleted"];
+
+          echo "<tr>";
+          echo "<td>" . $id . "</td>";
+          echo "<td>" . $nombre . "</td>";
+          echo "<td>" . $structure_type_id . "</td>";
+          echo "<td>" . $isDel . "</td>";
+          echo "<td class='select'><a class='button' id='edit-button' href='update_position.php?IdPosition=$id'>Editar</a><a class='buttoneliminate' href=delete_position.php?IdPosition=$id'>Eliminar</a></td>";
+          echo "</tr>";
+        }
       ?>
       </tbody>
     </table>

@@ -54,31 +54,52 @@ require_once '../authorization.php';
   <br><br><br><br><br><br><br><br>
   <h2>Editar Comuna</h2>
   <?php
-  function APIGET($id){
-  $file = fopen( '../../bin/urls_api.config', "r");
-  $url = array();
+  
+  function PARAMGET($api_abs_path){
 
-  while (!feof($file)) {
-    $url[] = fgetcsv($file,null,';');
+  $config = file('../../bin/param.config');
+
+    foreach($config as $linea){
+    $valores=explode(';',$linea);
+    $url[$valores[0]] = $valores[1];    
+   }
+  
+    if ( $url[$api_abs_path] ) return $url[$api_abs_path];
+    else return "";
   }
-  fclose($file);
-  $APICommuneGetObject = $url[9][1];
-  $respuesta = $APICommuneGetObject . "/" . $id;
-  return $respuesta;
-}
+
+  function APIGET($api_url){  
+ 
+    $archivo = file('../../bin/urls_api.config');
+    
+    foreach($archivo as $linea){
+      $valores=explode(';',$linea);
+      $url[$valores[0]] = $valores[1];    
+    }
+    
+    if ( $url[$api_url] ) return $url[$api_url];
+    else return "";
+   }
+
+
   $id = $_GET['IdCommune'];
-  $token = $_SESSION['user_token'];
-  $ruta = APIGET($id);
-  $json = file_get_contents($ruta);
+
+  $API_URL=APIGET('APICommuneGetObject');
+  $API_ABS_PATH=PARAMGET('API_ABS_PATH');
+
+  $config_api = trim($API_ABS_PATH.$API_URL);
+
+  $json = file_get_contents($config_api."/".$id);
   $datos = json_decode($json,true);
+
   ?>
 
   <?php
+
   $idnew = $datos["data"]["IdCommune"];
   $province_idnew = $datos["data"]["IdProvince"];
   $namenew = $datos["data"]["CommuneName"];
-
-
+  
   echo "
   <form action='edit_commune.php' method='post'>
   <input type='hidden' name='IdCommune' value='$idnew'>

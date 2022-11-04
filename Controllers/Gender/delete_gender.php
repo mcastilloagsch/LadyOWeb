@@ -9,27 +9,40 @@ $objeto = array(
   "IdGender" => $id
 );
 
-function APIDELETE(){
- 
-  $file = fopen( '../../bin/urls_api.config', "r");
-  $url = array();
-    
-  while (!feof($file)) {
-    $url[] = fgetcsv($file,null,';');
+function PARAMGET($api_abs_path){
+
+  $config = file('../../bin/param.config');
+
+  foreach($config as $linea){
+    $valores=explode(';',$linea);
+    $url[$valores[0]] = $valores[1];    
   }
-
-  fclose($file);
-  $APIGenderObjDelete = $url[20][1];
-  $respuesta = $APIGenderObjDelete;  
-  return $respuesta;
-
+  
+  if ( $url[$api_abs_path] ) return $url[$api_abs_path];
+  else return "";
 }
 
-$ruta = APIDELETE();
-$curl = curl_init($ruta);
+function APIDELETE($api_url){  
+ 
+  $archivo = file('../../bin/urls_api.config');
+ 
+  foreach($archivo as $linea){
+    $valores=explode(';',$linea);
+    $url[$valores[0]] = $valores[1];    
+  }
+ 
+  if ( $url[$api_url] ) return $url[$api_url];
+  else return ""; 
+}
+
+$API_URL=APIDELETE('APIGenderObjDelete');
+$API_ABS_PATH=PARAMGET('API_ABS_PATH');
+
+$config_api = trim($API_ABS_PATH.$API_URL);
+$curl = curl_init($config_api);
 
 $jsonDataEncoded = json_encode($objeto);
-curl_setopt($curl, CURLOPT_URL,$ruta);
+curl_setopt($curl, CURLOPT_URL,$config_api);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
 curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($objeto)); 
