@@ -57,7 +57,10 @@ if (isset($_GET['code'])) {
 
     $resp = curl_exec($curl);
     curl_close($curl);
+
     $respuesta= json_decode($resp,true);
+
+    error_log(print_r($respuesta, TRUE)); 
 
     if ($respuesta["isValid"] == true) {
 
