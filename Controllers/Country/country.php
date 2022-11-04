@@ -1,5 +1,6 @@
 <?php 
 require_once '../authorization.php';
+include_once 'Common/functions.php';
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -52,36 +53,6 @@ require_once '../authorization.php';
 
 <div class="container">
   <br><br>
-<?php
-
-function PARAMGET($api_abs_path){
-
-  $config = file('../../bin/param.config');
-
-  foreach($config as $linea){
-    $valores=explode(';',$linea);
-    $url[$valores[0]] = $valores[1];    
-  }
-  
-  if ( $url[$api_abs_path] ) return $url[$api_abs_path];
-  else return "";
-}
-
-function APIGET($api_url){  
- 
-  $archivo = file('../../bin/urls_api.config');
- 
-  foreach($archivo as $linea){
-    $valores=explode(';',$linea);
-    $url[$valores[0]] = $valores[1];    
-  }
- 
-  if ( $url[$api_url] ) return $url[$api_url];
-  else return ""; 
-}
-
-?>
-
 <br>
     <br>
     <br>
