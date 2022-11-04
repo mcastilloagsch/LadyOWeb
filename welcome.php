@@ -49,6 +49,8 @@ if (isset($_GET['code'])) {
     }
     DATA;
 
+    error_log(var_dump($data,0));
+
     curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 
     //for debug only!
