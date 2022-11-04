@@ -59,7 +59,9 @@ if (isset($_GET['code'])) {
     $resp = curl_exec($curl);
     curl_close($curl);
 
-    if (is_null($resp)){
+    $respuesta= json_decode($resp,true);
+
+    if (is_null($respuesta)){
       echo("<script>
               alert('No se tiene acceso a $API_ABS_PATH, contactate con el administrador');
               window.location.href='index.php';
@@ -68,8 +70,6 @@ if (isset($_GET['code'])) {
       die();
     }
     else {
-
-      $respuesta= json_decode($resp,true);
 
       if ($respuesta["isValid"] == true) {
 
