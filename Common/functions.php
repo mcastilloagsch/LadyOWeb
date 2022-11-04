@@ -15,6 +15,7 @@ function GET_PARAM_FILE($param, $file){
 function PARAMGET($param){
 
   #$config = file('../../bin/param.config');
+  error_log(dirname(__DIR__));
   return GET_PARAM_FILE($param,'bin/param.config');
 }
 
