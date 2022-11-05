@@ -85,8 +85,9 @@ $datos = json_decode($json,true);
         <?php
           if (!is_null($datos)){
             foreach ($datos["data"] as $clave => $value){
+              $id = $value["IdRegion"];
               echo "<tr>";
-              echo "<td>" . $value["IdRegion"] . "</td>";
+              echo "<td>" . $id . "</td>";
               echo "<td>" . $value["RegionName"] . "</td>";
               #echo "<td>" . $value["geom"] . "</td>";
               echo "<td class='select'><a class='button' id='edit-button' href='update_region.php?id=$id'>Editar</a><a class='buttoneliminate' href=''>Eliminar</a></td>";
