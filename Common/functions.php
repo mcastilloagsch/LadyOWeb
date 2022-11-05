@@ -26,7 +26,7 @@ function APIGET($api){
 }
 
 function CURL_POST($api, $object, $location){
-  $jsonDataEncoded = json_encode($objet);
+  $jsonDataEncoded = json_encode($object);
 
   $curl = curl_init(APIGET($api));
   curl_setopt($curl, CURLOPT_POST, 1);
