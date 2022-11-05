@@ -38,6 +38,22 @@ function CURL_POST($api, $object, $location){
   return $result;
 }
 
+function CURL_DELETE($api, $object, $location){
+  $jsonDataEncoded = json_encode($object);
+  $curl = curl_init(APIGET($api));
+
+  curl_setopt($curl, CURLOPT_POSTFIELDS, $jsonDataEncoded);
+  curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+  curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+  curl_setopt($curl, CURLOPT_HEADER, 0); 
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+  $result =  curl_exec($curl);
+  header($location);
+
+  return $result;
+}
+
 function CURL_PUT($api, $object, $location, $url_extra){
   $url = APIGET($api);
 
