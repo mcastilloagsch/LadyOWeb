@@ -76,8 +76,6 @@ include_once '../../Common/functions.php';
   <label for=''>Nombre</label>
   <input type='text' name='name' value='$namenew'>
   <br>
-  <label for=''>Geometry</label>
-  <!-- <input type='text' name='geom' value='$geomnnew' -->
   <input type='submit' value='Editar'>
   </form>";
   ?>
