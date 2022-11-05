@@ -11,8 +11,8 @@ $token = $_SESSION['user_token'];
 $id = intval($id);
 
 $objeto = array(
-    "id" => $id,
-    "name" => $name,
+    "IdRegion" => $id,
+    "RegionName" => $name,
     #"geom" => $geom,
   );
 

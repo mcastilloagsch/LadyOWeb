@@ -64,8 +64,8 @@ include_once '../../Common/functions.php';
   ?>
 
   <?php
-  $idnew = $datos["data"]["id"];
-  $namenew = $datos["data"]["name"];
+  $idnew = $datos["data"]["IdRegion"];
+  $namenew = $datos["data"]["RegionName"];
   #$geomnnew = $datos["data"]["geom"];
 
 
