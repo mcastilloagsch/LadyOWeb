@@ -79,7 +79,6 @@ $datos = json_decode($json,true);
         <tr>
           <th>ID</th>
           <th>Nombre</th>
-          <!th>Geometry\<\/th>
         </tr>
       </thead>
       <tbody>
