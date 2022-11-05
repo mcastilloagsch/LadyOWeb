@@ -56,7 +56,7 @@ include_once '../../Common/functions.php';
   <br><br>
 <?php
 
-$token = APIGET("APIStructuresGetlist")."/{token}";
+$token = APIGET("APIStructuresGetlist");
 $json = file_get_contents($token);
 $datos = json_decode($json,true);
 ?>
