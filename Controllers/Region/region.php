@@ -90,7 +90,10 @@ $datos = json_decode($json,true);
               echo "<td>" . $id . "</td>";
               echo "<td>" . $value["RegionName"] . "</td>";
               #echo "<td>" . $value["geom"] . "</td>";
-              echo "<td class='select'><a class='button' id='edit-button' href='update_region.php?id=$id'>Editar</a><a class='buttoneliminate' href=''>Eliminar</a></td>";
+              echo "<td class='select'>";
+              echo "<a class='button' id='edit-button' href='update_region.php?id=$id'>Editar</a>";
+              echo "<a class='buttoneliminate' href='delete_region.php?id=$id'>Eliminar</a>";
+              echo "</td>";
               echo "</tr>";
             }
           }
