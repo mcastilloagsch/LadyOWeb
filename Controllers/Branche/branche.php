@@ -65,7 +65,7 @@ $datos = json_decode($json,true);
     <br>
     <br>
     <br>
-    <br><h1>Mantenedores de Branches</h1>
+    <br><h1>Mantenedores de Ramas</h1>
 
   <br> 
   <div>
@@ -78,10 +78,10 @@ $datos = json_decode($json,true);
     <table>
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Nombre unidad</th>
-          <th>Pequeño equipo</th>
+          <th>ID |</th>
+          <th>Nombre |</th>
+          <th>Nombre unidad |</th>
+          <th>Pequeño equipo |</th>
         </tr>
       </thead>
       <tbody>
