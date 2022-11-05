@@ -56,7 +56,7 @@ include_once '../../Common/functions.php';
   <br><br>
 <?php
 $token = $_SESSION['user_token'];
-$ruta = APIGET("APIGenderGetlist").$token;
+$ruta = APIGET("APIGenderGetlist");
 $json = file_get_contents($ruta);
 $datos = json_decode($json,true);
 ?>
