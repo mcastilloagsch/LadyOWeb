@@ -57,7 +57,7 @@ include_once '../../Common/functions.php';
 <?php
 
 $token = $_SESSION['user_token'];
-$ruta = APIGET('APICommuneGetlist')."/$token";
+$ruta = APIGET('APICommuneGetlist');
 $json = file_get_contents($ruta);
 $datos = json_decode($json,true);
 ?>
