@@ -11,7 +11,7 @@ $curl = curl_init($ruta);
 
 $objeto = array(
     "name" => $name,
-    "geom" => $geom,
+    #"geom" => $geom,
   );
 
 $jsonDataEncoded = json_encode($objeto);
