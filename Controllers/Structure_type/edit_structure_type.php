@@ -15,15 +15,6 @@ $objeto = array(
     "priority" => $priority,
   );
 
-$urlcreate = APIGET("APIStructuresObjUpdate")."/{token}/".$id;
-$curl = curl_init($urlcreate);
-
-$jsonDataEncoded = json_encode($objeto);
-curl_setopt($curl, CURLOPT_POST, 1);
-curl_setopt($curl, CURLOPT_POSTFIELDS, $jsonDataEncoded);
-curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json')); 
-$result = curl_exec($curl);
-header("Location: structure_type.php");
-
+$result = CURL_PUT("APIStructuresTypesObjUpdate", $objeto, "Location: structure_type.php", "/{token}/".$id);
 
 ?>

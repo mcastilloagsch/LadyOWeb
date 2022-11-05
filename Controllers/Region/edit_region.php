@@ -16,15 +16,6 @@ $objeto = array(
     "geom" => $geom,
   );
 
-$ruta = APIGET("APIRegionObjUpdate")."/".$token;
-$curl = curl_init($ruta);
-
-$jsonDataEncoded = json_encode($objeto);
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
-curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($objeto));
-$result = curl_exec($curl);
-header("Location: region.php");
-
+$result = CURL_PUT("APIRegionObjUpdate", $objeto, "Location: region.php", "");
 
 ?>

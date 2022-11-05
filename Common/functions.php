@@ -27,12 +27,31 @@ function APIGET($api){
 
 function CURL_POST($api, $object, $location){
   $jsonDataEncoded = json_encode($object);
-
   $curl = curl_init(APIGET($api));
+
   curl_setopt($curl, CURLOPT_POST, 1);
   curl_setopt($curl, CURLOPT_POSTFIELDS, $jsonDataEncoded);
   curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json')); 
   $result =  curl_exec($curl);
+  header($location);
+
+  return $result;
+}
+
+function CURL_PUT($api, $object, $location, $url_extra){
+  $url = APIGET($api);
+
+  if (!is_null($url_extra)){
+    $url = $url.$url_extra;
+  }
+
+  $curl = curl_init($url);  
+  $query = http_build_query($object);
+
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
+  curl_setopt($curl, CURLOPT_POSTFIELDS, $query);
+  $result = curl_exec($curl);
   header($location);
 
   return $result;
