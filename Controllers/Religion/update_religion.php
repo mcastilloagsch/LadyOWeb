@@ -58,7 +58,7 @@ include_once '../../Common/functions.php';
 
   $var = $_GET['id'];
 
-  $ruta = APIGET("APIRegionGetObject")."/{token}/".$var;
+  $ruta = APIGET("APIReligionGetObject")."/{token}/".$var;
   $json = file_get_contents($ruta);
   $datos = json_decode($json,true);
   ?>
