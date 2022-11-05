@@ -16,7 +16,7 @@ $objeto = array(
     "geom" => $geom,
   );
 
-$ruta = APIGET("APIRegionsObjUpdate")."/".$token;
+$ruta = APIGET("APIRegionObjUpdate")."/".$token;
 $curl = curl_init($ruta);
 
 $jsonDataEncoded = json_encode($objeto);

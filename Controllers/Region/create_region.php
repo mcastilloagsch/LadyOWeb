@@ -19,7 +19,7 @@ function APIPOST($token){
   return $respuesta;
 }
 
-$ruta = APIGET("APIRegionsObjInsert").$token;
+$ruta = APIGET("APIRegionObjInsert")."/".$token;
 $curl = curl_init($ruta);
 
 $objeto = array(
