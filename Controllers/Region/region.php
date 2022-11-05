@@ -84,17 +84,19 @@ $datos = json_decode($json,true);
       </thead>
       <tbody>
         <?php
-          foreach ($datos["data"] as $clave => $value){
-            $id = $value["id"];
-            $nombre = $value["name"];
-            $geom = $value["geom"];
+          if (!is_null($datos)){
+            foreach ($datos["data"] as $clave => $value){
+              $id = $value["id"];
+              $nombre = $value["name"];
+              $geom = $value["geom"];
 
-            echo "<tr>";
-            echo "<td>" . $id . "</td>";
-            echo "<td>" . $nombre . "</td>";
-            echo "<td>" . $geom . "</td>";
-            echo "<td class='select'><a class='button' id='edit-button' href='update_region.php?id=$id'>Editar</a><a class='buttoneliminate' href=''>Eliminar</a></td>";
-            echo "</tr>";
+              echo "<tr>";
+              echo "<td>" . $id . "</td>";
+              echo "<td>" . $nombre . "</td>";
+              echo "<td>" . $geom . "</td>";
+              echo "<td class='select'><a class='button' id='edit-button' href='update_region.php?id=$id'>Editar</a><a class='buttoneliminate' href=''>Eliminar</a></td>";
+              echo "</tr>";
+            }
           }
       ?>
       </tbody>
