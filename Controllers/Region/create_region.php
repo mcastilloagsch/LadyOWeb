@@ -6,19 +6,6 @@ $name = $_POST['name'];
 $geom = $_POST['geom'];
 $token = $_SESSION['user_token'];
 
-function APIPOST($token){
-  $file = fopen( '../../bin/urls_api.config', "r");
-  $url = array();
-
-  while (!feof($file)) {
-      $url[] = fgetcsv($file,null,';');
-  }
-  fclose($file);
-  $APIRegionsObjInsert = $url[26][1];
-  $respuesta = $APIRegionsObjInsert . $token;
-  return $respuesta;
-}
-
 $ruta = APIGET("APIRegionObjInsert")."/".$token;
 $curl = curl_init($ruta);
 
