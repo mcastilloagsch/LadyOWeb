@@ -7,7 +7,7 @@ $unit_name = $_POST['unit_name'];
 $small_team = $_POST['small_team'];
 $token = $_SESSION['user_token'];
 
-$ruta = APIGET("APIBranchesObjInsert").$token;
+$ruta = APIGET("APIBranchesObjInsert")."/$token";
 $curl = curl_init($ruta);
 
 $objeto = array(

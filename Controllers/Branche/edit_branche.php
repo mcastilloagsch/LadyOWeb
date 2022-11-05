@@ -18,7 +18,7 @@ $objeto = array(
   "small_team" => $small_team,
 );
 
-$ruta = APIGET("APIBranchesObjUpdate").$token;
+$ruta = APIGET("APIBranchesObjUpdate")."/$token";
 $curl = curl_init($ruta);
 
 $jsonDataEncoded = json_encode($objeto);
