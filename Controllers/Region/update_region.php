@@ -58,7 +58,7 @@ include_once '../../Common/functions.php';
 
   $id = $_GET['id'];
   $token = $_SESSION['user_token'];
-  $ruta = APIGET("APIRegionsGetObject").$token."/".$id;
+  $ruta = APIGET("APIRegionGetObject").$token."/".$id;
   $json = file_get_contents($ruta);
   $datos = json_decode($json,true);
   ?>
