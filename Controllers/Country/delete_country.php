@@ -2,7 +2,7 @@
 require_once '../authorization.php';
 include_once '../../Common/functions.php';
 
-id = $_POST['IdCountry'];
+$id = $_POST['IdCountry'];
 $name = $_POST['CountryName'];
 
 $id = intval($id);
