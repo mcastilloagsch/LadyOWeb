@@ -66,7 +66,7 @@ include_once '../../Common/functions.php';
   <?php
   $idnew = $datos["data"]["id"];
   $namenew = $datos["data"]["name"];
-  $geomnnew = $datos["data"]["geom"];
+  #$geomnnew = $datos["data"]["geom"];
 
 
   echo "

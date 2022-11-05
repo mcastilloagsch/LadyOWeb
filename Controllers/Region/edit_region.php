@@ -13,7 +13,7 @@ $id = intval($id);
 $objeto = array(
     "id" => $id,
     "name" => $name,
-    "geom" => $geom,
+    #"geom" => $geom,
   );
 
 $result = CURL_PUT("APIRegionObjUpdate", $objeto, "Location: region.php", "");
