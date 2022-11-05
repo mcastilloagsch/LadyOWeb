@@ -79,10 +79,10 @@ $datos = json_decode($json,true);
     <table>
       <thead>
         <tr>
-          <th>ID Comuna</th>
-          <th>ID Provincia</th>
-          <th>Nombre Comuna</th>
-          <th>Is deleted</th>
+          <th>ID Comuna |</th>
+          <th>ID Provincia |</th>
+          <th>Nombre Comuna |</th>
+          <th>Borrada</th>
         </tr>
       </thead>
       <tbody>
