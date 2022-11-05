@@ -7,7 +7,7 @@ $geom = $_POST['geom'];
 $token = $_SESSION['user_token'];
 
 $objeto = array(
-    "name" => $name,
+    "RegionName" => $name,
     #"geom" => $geom,
   );
 
