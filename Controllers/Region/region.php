@@ -86,7 +86,7 @@ $datos = json_decode($json,true);
         <?php
           if (!is_null($datos)){
             foreach ($datos["data"] as $clave => $value){
-              $id = $value["idRegion"];
+              $id = $value["IdRegion"];
               $nombre = $value["RegionName"];
               #$geom = $value["geom"];
 
