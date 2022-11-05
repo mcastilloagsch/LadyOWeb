@@ -5,7 +5,7 @@ include_once '../../Common/functions.php';
 $name = $_POST['name'];
 $priority = $_POST['priority'];
 
-$urlcreate = APIGET("APIStructureTypeObjInsert")."/{token}";
+$urlcreate = APIGET("APIStructureTypeObjInsert");
 $curl = curl_init($urlcreate);
 
 $objeto = array(

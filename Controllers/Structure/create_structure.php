@@ -6,7 +6,7 @@ $name = $_POST['name'];
 $structure_type_id = $_POST['structure_type_id'];
 $parent_id = $_POST['parent_id'];
 
-$urlcreate = APIGET("APIStructuresObjInsert")."/{token}";
+$urlcreate = APIGET("APIStructuresObjInsert");
 $curl = curl_init($urlcreate);
 
 $objeto = array(

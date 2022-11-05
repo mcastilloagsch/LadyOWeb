@@ -5,7 +5,7 @@ include_once '../../Common/functions.php';
 $name = $_POST['name'];
 $confesion = $_POST['confesion'];
 
-$urlcreate = APIGET("APIReligionObjInsert")."/{token}";
+$urlcreate = APIGET("APIReligionObjInsert");
 $curl = curl_init($urlcreate);
 
 $objeto = array(

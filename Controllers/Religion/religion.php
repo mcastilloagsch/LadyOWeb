@@ -56,7 +56,7 @@ include_once '../../Common/functions.php';
   <br><br>
 <?php
 
-$token = APIGET("APIReligionGetlist")."/{token}");
+$token = APIGET("APIReligionGetlist");
 $json = file_get_contents($token);
 $datos = json_decode($json,true);
 ?>

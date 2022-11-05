@@ -5,7 +5,7 @@ include_once '../../Common/functions.php';
 $name = $_POST['name'];
 $values = $_POST['values'];
 
-$urlcreate = APIGET("APISocioeconomicsObjInsert")."/{token}";
+$urlcreate = APIGET("APISocioeconomicsObjInsert");
 $curl = curl_init($urlcreate);
 
 $objeto = array(

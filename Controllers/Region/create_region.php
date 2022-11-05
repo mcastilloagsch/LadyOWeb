@@ -6,7 +6,7 @@ $name = $_POST['name'];
 $geom = $_POST['geom'];
 $token = $_SESSION['user_token'];
 
-$ruta = APIGET("APIRegionObjInsert")."/".$token;
+$ruta = APIGET("APIRegionObjInsert");
 $curl = curl_init($ruta);
 
 $objeto = array(
