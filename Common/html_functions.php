@@ -39,7 +39,7 @@ function header_html($local){
         ["path" => "Socioeconomic", "controller" => "socioeconomic.php", "text" => "SocioEconomicos"],
         ["path" => "Branche", "controller" => "branche.php", "text" => "Ramas"],
         ["path" => "Structure_type", "controller" => "structure_type.php", "text" => "Tipoestructuras"],
-        ["path" => "Structure", "controller" => "structure.php", "text" => "Estructuras<"],
+        ["path" => "Structure", "controller" => "structure.php", "text" => "Estructuras"],
         ["path" => "Religion", "controller" => "religion.php", "text" => "Religiones"],
         ["path" => "Position", "controller" => "position.php", "text" => "Posiciones"],
     ];
@@ -57,14 +57,16 @@ function header_html($local){
                 <button onclick="myFunction()" class="dropbtn"><i class="fa fa-microchip" aria-hidden="true"></i> Controlador</button>
                 <div id="myDropdown" class="dropdown-content">
     HTML;
-    echo $html;
+    echo "$html\n";
 
     foreach($controllers as $i => $controller){
         $html = "<a href='";
+
         if($local != $controller["controller"]){
             $html = $html."../".$controller["path"]."/";
         }
-        $html = $html.$controller["controller"].">".$controller["text"]."</a>\n";
+
+        $html = $html.$controller["controller"]."'>".$controller["text"]."</a>\n";
         echo $html;
     }
     $html = <<<HTML
