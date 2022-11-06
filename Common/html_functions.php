@@ -116,11 +116,13 @@ function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $ite
         foreach($keys as $i => $key){
             $display_value = $value[$key];
             
-            if ($key == "IsDeleted" and $display_value = "") {
+            if ($key == "IsDeleted" )
+                if ( $display_value = "") {
                 $display_value = 0;
-            }
-            else {
+                }
+                else {
                 $display_value = 1;
+                }
             }
             echo "<td>" . $display_value . "</td>\n";
         }
