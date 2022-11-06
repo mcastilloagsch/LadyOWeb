@@ -1,6 +1,7 @@
 <?php 
 require_once '../authorization.php';
 include_once '../../Common/functions.php';
+include_once '../../Common/html_functions.php';
 
 $general_buttons = [
   ["id" => "new_country.php", "text" => "Agregar"]
