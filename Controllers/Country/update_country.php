@@ -5,9 +5,9 @@ include_once '../../Common/html_functions.php';
 
 $titulo = "Editar País";
 $items = [
-    [ "for" => "", "type" => "text", "name" => "IdCountry", "hidden" => 1],
+    [ "for" => "", "type" => "", "name" => "IdCountry", "hidden" => 1],
     [ "for" => "Nombre", "type" => "text", "name" => "CountryName", "hidden" => 0],
-    [ "for" => "", "type" => "text", "name" => "IsDeleted", "hidden" => 1]
+    [ "for" => "", "type" => "", "name" => "IsDeleted", "hidden" => 1]
 ];
 
 $action = "edit_country.php";
