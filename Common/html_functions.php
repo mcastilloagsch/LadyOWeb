@@ -116,6 +116,7 @@ function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $ite
         foreach($keys as $i => $key){
             $display_value = $value[$key];
             
+            /*
             if ($key == "IsDeleted" ){
                 if ( $display_value = "") {
                 $display_value = 0;
@@ -124,7 +125,8 @@ function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $ite
                 $display_value = 1;
                 }
             }
-            echo "<td>" . $display_value . "</td>\n";
+            */
+            echo "<td>-" . $display_value . "-</td>\n";
         }
         
         echo "<td class='select'>\n";
