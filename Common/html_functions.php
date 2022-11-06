@@ -111,18 +111,18 @@ function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $ite
     foreach ($datos["data"] as $clave => $value){
         $id = $value[$id_key];
         
-        echo "<tr>";
+        echo "<tr>\n";
 
         foreach($keys as $key => $value2){
-            echo "<td>" . $keys[$key] . "</td>";
+            echo "<td>" . $keys[$key] . "</td>\n";
         }
         
-        echo "<td class='select'>";
+        echo "<td class='select'>\n";
 
         foreach($item_buttons as $i => $value3){
-            echo "<a class='button' id='".$item_buttons[$i]["id"]."' href='".$item_buttons[$i]["href"]."=$id'>".$item_buttons[$i]["text"]." </a>";  
+            echo "<a class='button' id='".$item_buttons[$i]["id"]."' href='".$item_buttons[$i]["href"]."=$id'>".$item_buttons[$i]["text"]." </a> ";  
         }
-        echo "</tr>";
+        echo "</tr>\n";
     }
 
     $html = <<<HTML
