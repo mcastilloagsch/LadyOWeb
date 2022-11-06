@@ -117,7 +117,7 @@ function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $ite
             $display_value = $value[$key];
             
             if ($key == "IsDeleted" ){
-                if ( $display_value = "") {
+                if ( $display_value == "") {
                 $display_value = 0;
                 }
                 else {
