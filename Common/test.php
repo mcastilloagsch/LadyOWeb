@@ -14,13 +14,14 @@ function APIS_GET(){
 function API_SEARCH($api,$urls){
 
   $API_ABS_PATH = PARAMGET('API_ABS_PATH');
-  echo "<h3>Patron : $api </h3>\n";
+  echo "<h3>Patron : $api,";
   foreach($urls as $key => $url){
     if ( preg_match("/$api/",$key) == 1) {
       #echo "<h3> $key => $url </h3>\n";
       $urls_match[$key] = $API_ABS_PATH.$url;
     }
   }
+  echo count($urls)."</h3>\n";
   return $urls_match;
 }
 
@@ -35,7 +36,14 @@ function test_Get_List($urls){
     #  echo "<h3>".$i." = ".$item."</h3>\n";
     #}
 
-    echo "<h3> $key => $curl_url ".$answer["isValid"]."count = ".count($answer["data"]).", "</h3>";
+    echo "<h3> $key => $curl_url ";
+    if ($answer["isValid"] == true){
+      echo "ok count = ".count($answer["data"]);
+    }
+    else{
+      echo "fail";
+    }
+    echo "</h3>\n";
   }
 }
 
