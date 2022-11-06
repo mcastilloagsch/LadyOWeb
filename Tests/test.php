@@ -30,9 +30,9 @@ function API_SEARCH($api,$urls){
 function testGetList($api){
   $answer = GET_CONTENTS($api);
 
-  echo "<h3> $api => $curl_url ";
+  echo "<h3> $api : ";
   if ($answer["isValid"] == true ){
-    echo "ok count = ".count($answer["data"]);
+    echo "ok, count = ".count($answer["data"]);
     $salida = 1;
   }
   else{
@@ -53,18 +53,16 @@ function testGetLists($urls){
   return $Getlists;
 }
 
-/*
-function BranchTest($Getlists){
+function APITests($API,$Getlists){
   echo "<h2> BranchTest <\h2>\n";
   if ($Getlists["APIBranchGetlist"]==1){
-
+    $BranchApis=API_SEARCH("Branch")
   }
   else{
     echo "SKIP";
   }
   echo "<\h3>\n"
 }
-*/
 
 $urls = APIS_GET();
 head_html(0);
