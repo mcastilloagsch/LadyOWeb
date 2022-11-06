@@ -3,6 +3,8 @@ require_once '../authorization.php';
 include_once '../../Common/functions.php';
 include_once '../../Common/html_functions.php';
 
+$caller = "country.php";
+
 $titulo = "Mantenedores de Paises";
 
 $general_buttons = [
@@ -21,6 +23,6 @@ $item_buttons = [
 ];
 $id_key = "IdCountry";
 
-controller_page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $item_buttons, $id_key);
+controller_page_html($caller, $titulo, $general_buttons, $label_items, $api_url, $keys, $item_buttons, $id_key);
 
 ?>

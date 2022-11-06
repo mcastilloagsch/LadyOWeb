@@ -27,7 +27,23 @@ function head_html($style){
     
 }
 
-function header_html(){
+function header_html($local){
+
+    $controllers = [
+        ["path" => "Country", "controller" => "country.php", "text" => "Paises"],
+        ["path" => "Region", "controller" => "region.php", "text" => "Regiones"],
+        ["path" => "Province", "controller" => "province.php", "text" => "Provincias"],
+        ["path" => "Commune", "controller" => "commune.php", "text" => "Comunas"],
+        ["path" => "Sexe", "controller" => "sexe.php", "text" => "Sexos<"],
+        ["path" => "Gender", "controller" => "gender.php", "text" => "Generos"],
+        ["path" => "Socioeconomic", "controller" => "socioeconomic.php", "text" => "SocioEconomicos"],
+        ["path" => "Branche", "controller" => "branche.php", "text" => "Ramas"],
+        ["path" => "Structure_type", "controller" => "structure_type.php", "text" => "Tipoestructuras"],
+        ["path" => "Structure", "controller" => "structure.php", "text" => "Estructuras<"],
+        ["path" => "Religion", "controller" => "religion.php", "text" => "Religiones"],
+        ["path" => "Position", "controller" => "position.php", "text" => "Posiciones"],
+    ];
+
     $html =  <<<HTML
     <header>
     <div style="width: 100%; margin: auto; width: 100%;">
@@ -40,18 +56,18 @@ function header_html(){
               <li>
                 <button onclick="myFunction()" class="dropbtn"><i class="fa fa-microchip" aria-hidden="true"></i> Controlador</button>
                 <div id="myDropdown" class="dropdown-content">
-                  <a href="country.php">Paises</a>
-                  <a href="../Region/region.php">Regiones</a>
-                  <a href="../Province/province.php">Provincias</a>
-                  <a href="../Commune/commune.php">Comunas</a>
-                  <a href="../Sexe/sexe.php">Sexos</a>
-                  <a href="../Gender/gender.php">Generos</a>
-                  <a href="../Socioeconomic/socioeconomic.php">SocioEconomicos</a>
-                  <a href="../Branche/branche.php">Ramas</a>
-                  <a href="../Structure_type/structure_type.php">Tipoestructuras</a>
-                  <a href="../Structure/structure.php">Estructuras</a>
-                  <a href="../Religion/religion.php">Religiones</a>
-                  <a href="../Position/position.php">Posiciones</a>
+    HTML;
+    echo $html;
+
+    foreach($controllers as $i => $controller){
+        $html = "<a href='";
+        if($local != $controller["controller"]){
+            $html = $html."../".$controlller["path"]."/";
+        }
+        $html = $html.$controller["controller"].">".$controller["text"]."</a>\n";
+        echo $html;
+    }
+    $html = <<<HTML
                 </div>
               </li>
               <li><a href="../../logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>
@@ -63,9 +79,9 @@ function header_html(){
     echo $html;
 }
 
-function controller_page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $item_buttons, $id_key){
+function controller_page_html($caller, $titulo,$general_buttons, $label_items, $api_url, $keys, $item_buttons, $id_key){
   head_html(0);
-  header_html();
+  header_html($caller);
   $html = <<<HTML
   <body>
     <div class="container">
