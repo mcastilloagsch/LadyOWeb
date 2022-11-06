@@ -90,7 +90,7 @@ function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $ite
           <thead>
             <tr>
    HTML;
-   echo $HTML;
+   echo $html;
 
    foreach ($label_items as $i => $value) { 
      echo "<th>".$label_items[$i]." </th>";
