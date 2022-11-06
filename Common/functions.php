@@ -31,10 +31,10 @@ function GET_CONTENTS($api_url){
   $data = json_decode($json,true);
 
   if ($data["isValid"] != true) {
-    $datos[ "isValid"] = false;
+    $data[ "isValid"] = false;
   }
 
-  return $datos;
+  return $data;
 }
 
 function CURL_POST($api, $object, $location){
