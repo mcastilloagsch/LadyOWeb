@@ -21,7 +21,7 @@ function head_html($style){
     echo $html;
 
     if($style == 1) {
-        echo "<link rel="stylesheet" href="../../CSS/Style2.css">\n";
+        echo "<link rel='stylesheet' href='../../CSS/Style2.css'>\n";
     }
     echo "</head>\n";
     
@@ -166,7 +166,7 @@ function controller_new_item_page($titulo,$items,$action,$method,$back){
     HTML;
     echo $html;
 
-    echo "<form action="$action" method="$method">\n";
+    echo "<form action='$action' method='$method'>\n";
     echo "<br>\n";
     
     foreach($items as $i => $item){
@@ -174,8 +174,8 @@ function controller_new_item_page($titulo,$items,$action,$method,$back){
         echo "<input type='".$item["type"]."' name='".$item["name"]."'>\n";
         echo "<br>\n";
     }
-    echo "<input type="submit" value="Agregar">\n";
-    echo "    <a href="".$back."">Volver</a>\n";
+    echo "<input type='submit' value='Agregar'>\n";
+    echo "    <a href='".$back."'>Volver</a>\n";
 
     $html = <<< HTML
     </form>
