@@ -96,7 +96,7 @@ function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $ite
      echo "<th>".$label_items[$i]." </th>";
    }
    
-   $html = <<<HTML       
+   $html = <<<HTML
         </tr>
       </thead>
     <tbody>
