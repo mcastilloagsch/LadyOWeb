@@ -119,8 +119,8 @@ function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $ite
         
         echo "<td class='select'>\n";
 
-        foreach($item_buttons as $i => $value3){
-            echo "<a class='button' id='".$item_buttons[$i]["id"]."' href='".$item_buttons[$i]["href"]."=$id'>".$item_buttons[$i]["text"]." </a> ";  
+        foreach($item_buttons as $i => $item){
+            echo "<a class='button' id='".$item["id"]."' href='".$item["href"]."=$id'>".$item["text"]." </a> ";  
         }
         echo "</tr>\n";
     }
