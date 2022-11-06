@@ -32,7 +32,7 @@ function test_Get_List($urls){
     $answer = json_decode($json,true);
 
     foreach($answer["data"] as $i => $item){
-      echo "<h3>".$item[0]." = ".$item[1]."</h3>\n";
+      echo "<h3>".$i." = ".$item."</h3>\n";
     }
   }
 }
