@@ -53,10 +53,32 @@ function testGetLists($urls){
   return $Getlists;
 }
 
+function testIntsert($api,$post){
+  $name = $_POST['name'];
+  $unit_name = $_POST['unit_name'];
+  $small_team = $_POST['small_team'];
+  $token = $_SESSION['user_token'];
+
+  $objeto = array(
+    "name" => $name,
+    "unit_name" => $unit_name,
+    "small_team" => $small_team,
+  );
+
+  $result = CURL_POST("APIBranchesObjInsert", $objeto,"Location: branche.php");
+}
+
 function APITests($API,$Getlists){
-  echo "<h2> BranchTest <\h2>\n";
-  if ($Getlists["APIBranchGetlist"]==1){
-    $BranchApis=API_SEARCH("Branch")
+  echo "<h2> $API Test <\h2>\n";
+  $api_getlist="API".$API."Getlist";
+  if ($Getlists[$api_getlist]==1){
+    $TestApis=API_SEARCH($API);
+    if (count($TestApis) == 5) {
+      $api_insert=API_SEARCH("insert",$TestApis);
+      $api_get=API_SEARCH("get",$TestApis);
+      $api_update=API_SEARCH("update",$TestApis);
+      $api_delete=API_SEARCH("delte",$TestApis);
+    }
   }
   else{
     echo "SKIP";
@@ -69,7 +91,7 @@ head_html(0);
 echo "<body>\n";
 echo "<h1>TESTS</h1>\n";
 $Getlists = testGetLists($urls);
-
+APITests("Branch",$Getlists);
 echo "</body>\n";
 
 
