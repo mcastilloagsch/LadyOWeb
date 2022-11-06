@@ -1,7 +1,7 @@
 <?php
 
 function head_html(){
-    $html = <<HTML
+    $html = <<<HTML
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head runat="server">
         <meta charset="UTF-8" />
@@ -23,7 +23,7 @@ function head_html(){
 }
 
 function header_html(){
-    $html =  <<HTML
+    $html =  <<<HTML
     <header>
     <div style="width: 100%; margin: auto; width: 100%;">
         <div class="logo">
@@ -61,7 +61,7 @@ function header_html(){
 function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $item_buttons, $id_key){
   head_html();
   header_html();
-  $html = <<HTML
+  $html = <<<HTML
   <body>
     <div class="container">
         <br>
@@ -82,7 +82,7 @@ function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $ite
       echo "</div>";
   }
   
-  $html = <<HTML
+  $html = <<<HTML
       <hr>
       <div class="testeo">
       <main>
@@ -96,7 +96,7 @@ function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $ite
      echo "<th>".$label_items[$i]." </th>";
    }
    
-   $html = <<HTML       
+   $html = <<<HTML       
         </tr>
       </thead>
     <tbody>
@@ -125,7 +125,7 @@ function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $ite
         echo "</tr>";
     }
 
-    $html = <<HTML
+    $html = <<<HTML
                         </tbody>
                     </table>
                 </main>
