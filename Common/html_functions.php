@@ -226,8 +226,6 @@ function controller_update_item_page($titulo,$items,$action,$method,$back){
     $datos = json_decode($json,true);
     
     echo "<form action='$action' method='$method'>\n";
-    echo "<input type='hidden' name='IdCountry' value='$idnew'>\n";
-    echo "<br>\n";
     
     foreach($items as $i => $item){
         $actual = $datos["data"][$item["name"]];
