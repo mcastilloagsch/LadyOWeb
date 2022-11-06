@@ -1,6 +1,8 @@
 <?php
-include_once '../Common/html_functions.php';
+
 include_once '../Common/functions.php';
+include_once '../Common/html_functions.php';
+
 
 function APIS_GET(){
   $config = file($_SERVER['DOCUMENT_ROOT'].'/bin/urls_api.config');
@@ -45,7 +47,7 @@ function testGetLists($urls){
   $urls_api = API_SEARCH("Getlist",$urls);
 
   foreach($urls_api as $api => $curl_url){
-    $answer = GET_CONTENTS($curl_url);
+    $answer = GET_CONTENTS($api);
     $Getlists[$api] = testGetList($api);
   }
   return $Getlists;
