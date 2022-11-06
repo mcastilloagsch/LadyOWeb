@@ -53,7 +53,7 @@ function header_html(){
           </ul>
         </nav>
     </div>
-</header>
+    </header>
     HTML;
     echo $html;
 }
