@@ -15,5 +15,5 @@ $item_buttons = [
 ];
 $id_key = "IdCountry";
 
-page_html("Mantenedores de Paises",$general_buttons,$label_items,$keys,$item_buttons, $id_key);
+page_html("Mantenedores de Paises",$general_buttons,$label_buttons,$keys,$item_buttons, $id_key);
 ?>
