@@ -42,12 +42,18 @@ function CURL_DELETE($api, $object, $location){
   $jsonDataEncoded = json_encode($object);
   $curl = curl_init(APIGET($api));
 
-  curl_setopt($curl, CURLOPT_POSTFIELDS, $jsonDataEncoded);
-  curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-  curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
-  curl_setopt($curl, CURLOPT_HEADER, 0); 
-  curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+  $jsonDataEncoded = json_encode($object);
+  curl_setopt($curl, CURLOPT_URL,$curl);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
   curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+  curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($object)); 
+
+  
+  #curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+  #curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+  #curl_setopt($curl, CURLOPT_HEADER, 0); 
+  #curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+  
   $result =  curl_exec($curl);
   header($location);
 
