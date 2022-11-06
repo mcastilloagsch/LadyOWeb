@@ -18,8 +18,8 @@ $api_url = "APICountryGetlist";
 $keys = [ "IdCountry","CountryName","IsDeleted"];
 
 $item_buttons = [
-    ["id" => "edit-button","href" => "update_country.php?IdCountry=", "text" => "Editar"],
-    ["id" => "delete-button","href" => "delete_country.php?IdCountry=", "text" => "Eliminar"]
+    ["id" => "edit-button","href" => "update_country.php?IdCountry=", "text" => "Editar", "active" => 1],
+    ["id" => "delete-button","href" => "delete_country.php?IdCountry=", "text" => "Eliminar", "active" => 1]
 ];
 $id_key = "IdCountry";
 

@@ -3,6 +3,7 @@ require_once '../authorization.php';
 include_once '../../Common/functions.php';
 include_once '../../Common/html_functions.php';
 
+$id_get = "id";
 $titulo = "Editar Rama";
 $items = [
     [ "for" => "", "type" => "", "name" => "id", "hidden" => 1],
@@ -15,5 +16,5 @@ $action = "edit_branche.php";
 $method = "post";
 $back = "branche.php";
 
-controller_update_item_page($titulo, $items, $action, $method, $back);
+controller_update_item_page($id_get, $titulo, $items, $action, $method, $back);
 ?>

@@ -18,10 +18,11 @@ $api_url = "APIBranchGetlist";
 $keys = [ "id","name","unit_name","small_team"];
 
 $item_buttons = [
-    ["id" => "edit-button","href" => "update_branche.php?id=", "text" => "Editar"],
-    ["id" => "delete-button","href" => "delete_branche.php?id=", "text" => "Eliminar"]
+    ["id" => "edit-button","href" => "update_branche.php?id=", "text" => "Editar", "active" => 1],
+    ["id" => "delete-button","href" => "delete_branche.php?id=", "text" => "Eliminar", "active" => 1]
 ];
-$id_key = "IdCountry";
+
+$id_key = "id";
 
 controller_page_html($caller, $titulo, $general_buttons, $label_items, $api_url, $keys, $item_buttons, $id_key);
 

@@ -153,7 +153,13 @@ function controller_page_html($caller, $titulo,$general_buttons, $label_items, $
         echo "<td class='select'>\n";
 
         foreach($item_buttons as $i => $item){
-            echo "<a class='button' id='".$item["id"]."' href='".$item["href"]."$id'>".$item["text"]." </a> ";  
+            if ( $item["active"] == 1){
+                echo "<a class='button' id='".$item["id"]."' href='".$item["href"]."$id'>".$item["text"]." </a> ";
+            }
+            else {
+                echo "<a class='buttoneliminate' href=''>".$item["text"]."</a></td>";
+            }
+
         }
         echo "</tr>\n";
     }
@@ -207,7 +213,7 @@ function controller_new_item_page($titulo,$items,$action,$method,$back){
     HTML;
 }
 
-function controller_update_item_page($titulo,$items,$action,$method,$back){
+function controller_update_item_page($id_get,$titulo,$items,$action,$method,$back){
     head_html(1);
     echo "<body>\n";
     header_html($back);
@@ -218,7 +224,7 @@ function controller_update_item_page($titulo,$items,$action,$method,$back){
     HTML;
     echo $html;
 
-    $id = $_GET['IdCountry'];
+    $id = $_GET[$id_get];
 
     $API_URL=APIGET('APICountryGetObject')."/".$id;
 
