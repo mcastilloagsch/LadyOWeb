@@ -114,7 +114,7 @@ function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $ite
         echo "<tr>\n";
 
         foreach($keys as $key => $value2){
-            echo "<td>" . $keys[$key] . "</td>\n";
+            echo "<td>" . $datos["data"][$keys[$key]] . "</td>\n";
         }
         
         echo "<td class='select'>\n";
