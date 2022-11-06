@@ -4,8 +4,6 @@ include_once 'functions.php';
 
 function APIS_GET(){
   $config = file($_SERVER['DOCUMENT_ROOT'].'/bin/urls_api.config');
-
-  $API_ABS_PATH = PARAMGET('API_ABS_PATH');
   foreach($config as $line){
     $values=explode(';',$line);
     $url[trim($values[0])] = trim($values[1]);
@@ -15,10 +13,26 @@ function APIS_GET(){
 
 function API_SEARCH($api,$urls){
 
+  $API_ABS_PATH = PARAMGET('API_ABS_PATH');
   echo "<h3>Patron : $api </h3>\n";
   foreach($urls as $key => $url){
     if ( preg_match("/$api/",$key) == 1) {
-      echo "<h3> $key => $url </h3>\n";
+      #echo "<h3> $key => $url </h3>\n";
+      $urls_match[$key] = $API_ABS_PATH.$url;
+    }
+  }
+  return $urls_match;
+}
+
+function test_Get_List($urls){
+  $urls_api = API_SEARCH("Getlist",$urls);
+
+  foreach($urls_api as $key => $curl){
+    $json = file_get_contents($API_URL);
+    $answer = json_decode($json,true);
+
+    foreach($answer["data"] as $i => $item){
+      echo "<h3>".$item[0]." = ".$item[1]."</h3>\n";
     }
   }
 }
@@ -27,7 +41,7 @@ $urls = APIS_GET();
 head_html(0);
 echo "<body>\n";
 echo "<h1>TESTS</h1>\n";
-API_SEARCH("Getlist",$urls);
+test_Get_List($urls);
 echo "</body>\n";
 
 
