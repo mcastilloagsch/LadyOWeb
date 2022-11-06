@@ -24,8 +24,8 @@ function API_SEARCH($api,$urls){
 $urls = APIS_GET();
 head_html(0);
 echo "<body>\n";
-echo "<h1>TESTS<\h1>\n";
-API_SEARCH(".*Getlist.*",$urls);
+echo "<h1>TESTS</h1>\n";
+API_SEARCH("Getlist",$urls);
 echo "</body>\n";
 
 
