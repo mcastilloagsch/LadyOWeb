@@ -83,13 +83,13 @@ function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $ite
   }
   
   $html = <<<HTML
-      <hr>
-      <div class="testeo">
-      <main>
-        <table>
-          <thead>
-            <tr>
-       HTML;
+  <hr>
+  <div class="testeo">
+  <main>
+    <table>
+      <thead>
+        <tr>
+   HTML;
    echo $HTML;
 
    foreach ($label_items as $i => $value) { 
