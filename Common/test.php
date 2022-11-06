@@ -1,5 +1,4 @@
 <?php
-require_once '../authorization.php';
 include_once 'html_functions.php';
 include_once 'functions.php';
 
