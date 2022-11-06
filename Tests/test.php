@@ -1,6 +1,6 @@
 <?php
-include_once 'html_functions.php';
-include_once 'functions.php';
+include_once '../Common/html_functions.php';
+include_once '../Common/functions.php';
 
 function APIS_GET(){
   $config = file($_SERVER['DOCUMENT_ROOT'].'/bin/urls_api.config');
@@ -29,7 +29,7 @@ function testGetList($api){
   $answer = GET_CONTENTS($api);
 
   echo "<h3> $api => $curl_url ";
-  if ($answer["isValid"] == true){
+  if ($answer["isValid"] == true ){
     echo "ok count = ".count($answer["data"]);
     $salida = 1;
   }
@@ -51,6 +51,7 @@ function testGetLists($urls){
   return $Getlists;
 }
 
+/*
 function BranchTest($Getlists){
   echo "<h2> BranchTest <\h2>\n";
   if ($Getlists["APIBranchGetlist"]==1){
@@ -61,12 +62,13 @@ function BranchTest($Getlists){
   }
   echo "<\h3>\n"
 }
+*/
 
 $urls = APIS_GET();
 head_html(0);
 echo "<body>\n";
 echo "<h1>TESTS</h1>\n";
-$Getlists = test_Get_List($urls);
+$Getlists = testGetLists($urls);
 
 echo "</body>\n";
 
