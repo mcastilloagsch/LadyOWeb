@@ -19,10 +19,11 @@ function head_html(){
 		<script src="../../js/Dropbox.js"></script>
 	</head>
 	HTML;
+	echo $html;
 }
 
 function header_html(){
-	return <<<HTML
+	$html =  <<<HTML
 	<header>
   	<div style="width: 100%; margin: auto; width: 100%;">
 		<div class="logo">
@@ -54,6 +55,7 @@ function header_html(){
 	</div>
 </header>
 	HTML;
+	echo $html;
 }
 
 function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $item_buttons, $id_key){
