@@ -74,7 +74,7 @@ function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $ite
         <h1>$titulo</h1>
         <br> 
   HTML;
-  echo $HTML;
+  echo $html;
 
   foreach ($general_buttons as [$endpoint_php => $text]) {
       echo "<div>";
