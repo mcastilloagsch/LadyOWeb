@@ -27,8 +27,8 @@ function API_SEARCH($api,$urls){
 function test_Get_List($urls){
   $urls_api = API_SEARCH("Getlist",$urls);
 
-  foreach($urls_api as $key => $curl){
-    $json = file_get_contents($API_URL);
+  foreach($urls_api as $key => $curl_url){
+    $json = file_get_contents($curl_url);
     $answer = json_decode($json,true);
 
     foreach($answer["data"] as $i => $item){
