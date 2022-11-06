@@ -76,9 +76,9 @@ function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $ite
   HTML;
   echo $html;
 
-  foreach ($general_buttons as [$endpoint_php => $text]) {
+  foreach ($general_buttons as $i => $value) {
       echo "<div>";
-      echo "  <a class='button' href=$endpoint_php >$text </a>";
+      echo "  <a class='button' href='".$general_buttons[$i]["href"]."' >".$general_buttons[$i]["text"]." </a>";
       echo "</div>";
   }
   
@@ -119,7 +119,7 @@ function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $ite
         
         echo "<td class='select'>";
 
-        foreach($item_buttons as $i => $value){
+        foreach($item_buttons as $i => $value3){
             echo "<a class='button' id='".$item_buttons[$i]["id"]."' href='".$item_buttons[$i]["href"]."=$id'>".$item_buttons[$i]["text"]." </a>";  
         }
         echo "</tr>";
