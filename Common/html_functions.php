@@ -1,6 +1,6 @@
 <?php
 
-function head_html(){
+function head_html($style){
     $html = <<<HTML
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head runat="server">
@@ -17,9 +17,14 @@ function head_html(){
         <link href="../../CSS/Dropbox.css" rel="stylesheet" type="text/css" />
         <link rel="icon" type="image/png" href="../../Img/Logo.png" />
         <script src="../../js/Dropbox.js"></script>
-    </head>
     HTML;
     echo $html;
+
+    if($style == 1) {
+        echo "<link rel="stylesheet" href="../../CSS/Style2.css">\n";
+    }
+    echo "</head>\n";
+    
 }
 
 function header_html(){
@@ -58,8 +63,8 @@ function header_html(){
     echo $html;
 }
 
-function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $item_buttons, $id_key){
-  head_html();
+function controller_page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $item_buttons, $id_key){
+  head_html(0);
   header_html();
   $html = <<<HTML
   <body>
@@ -148,5 +153,39 @@ function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $ite
     </body>
     HTML;
     echo $html;
+}
+
+function controller_new_item_page($titulo,$items,$action,$method,$back){
+    head_html(1);
+    echo "<body>\n";
+    header_html();
+    $html = <<<HTML
+    <div class="container">
+    <br><br><br><br><br><br>
+    <h2>$titulo</h2>
+    HTML;
+    echo $html;
+
+    echo "<form action="$action" method="$method">\n";
+    echo "<br>\n";
+    
+    foreach($items as $i => $item){
+        echo "<label for=''>".$item["for"]."</label>\n";
+        echo "<input type='".$item["type"]."' name='".$item["name"]."'>\n";
+        echo "<br>\n";
+    }
+    echo "<input type="submit" value="Agregar">\n";
+    echo "    <a href="".$back."">Volver</a>\n";
+
+    $html = <<< HTML
+    </form>
+
+    </div>
+    <footer>
+        <h1>AGSCH - Derechos Reservados.<br>
+            Comisión Nacional de Tecnologías de la Información.</h1>
+    </footer>
+    </body>
+    HTML;
 }
 ?>

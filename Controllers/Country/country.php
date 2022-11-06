@@ -21,6 +21,6 @@ $item_buttons = [
 ];
 $id_key = "IdCountry";
 
-page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $item_buttons, $id_key);
+controller_page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $item_buttons, $id_key);
 
 ?>
