@@ -77,9 +77,9 @@ function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $ite
   echo $HTML;
 
   foreach ($general_buttons as [$endpoint_php => $text]) {
-      <div>
-        <a class='button' href=$endpoint_php>$text</a>
-      </div>
+      echo "<div>";
+      echo "  <a class='button' href=$endpoint_php >$text </a>";
+      echo "</div>";
   }
   
   $html = <<<HTML
