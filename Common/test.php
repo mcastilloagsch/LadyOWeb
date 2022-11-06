@@ -35,7 +35,7 @@ function test_Get_List($urls){
     #  echo "<h3>".$i." = ".$item."</h3>\n";
     #}
 
-    echo "<h3> $curl_url, count = ".count($answer["data"])."</h3>";
+    echo "<h3> $key => $curl_url ".$answer["isValid"]."count = ".count($answer["data"]).", "</h3>";
   }
 }
 
