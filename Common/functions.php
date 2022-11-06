@@ -5,8 +5,7 @@ function GET_PARAM_FILE($param, $file){
   foreach($config as $line){
     $values=explode(';',$line);
     $url[trim($values[0])] = trim($values[1]);
-  }
-
+  } 
   if ( $url[$param] ) return $url[$param];
   else return "";
 }
@@ -23,6 +22,19 @@ function APIGET($api){
   $API_ABS_PATH = PARAMGET('API_ABS_PATH');
   #$archivo = file('../../bin/urls_api.config');
   return $API_ABS_PATH.GET_PARAM_FILE($api,'/bin/urls_api.config');
+}
+
+function GET_CONTENTS($api_url){
+  $API_URL=APIGET($api_url);
+
+  $json = file_get_contents($API_URL);
+  $data = json_decode($json,true);
+
+  if ($data["isValid"] != true) {
+    $datos = [ "isValid" = false ];
+  }
+
+  return $datos;
 }
 
 function CURL_POST($api, $object, $location){
