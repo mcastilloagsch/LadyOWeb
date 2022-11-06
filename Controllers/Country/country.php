@@ -9,7 +9,7 @@ $general_buttons = [
   ["href" => "new_country.php", "text" => "Agregar"]
 ];
 
-$label_items = [ "ID Country","Nombre","Borrado"];
+$label_items = [ "ID","Nombre","Borrado"];
 
 $api_url = "APICountryGetlist";
 
