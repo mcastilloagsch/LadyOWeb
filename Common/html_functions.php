@@ -83,12 +83,12 @@ function page_html($titulo,$general_buttons, $label_items, $api_url, $keys, $ite
   }
   
   $html = <<<HTML
-  <hr>
-  <div class="testeo">
-  <main>
-    <table>
-      <thead>
-        <tr>
+      <hr>
+      <div class="testeo">
+      <main>
+        <table>
+          <thead>
+            <tr>
    HTML;
    echo $HTML;
 
