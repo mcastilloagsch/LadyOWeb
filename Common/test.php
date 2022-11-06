@@ -4,7 +4,7 @@ include_once 'html_functions.php';
 include_once 'functions.php';
 
 function APIS_GET(){
-  $config = file($_SERVER['DOCUMENT_ROOT'].$'/bin/urls_api.config');
+  $config = file($_SERVER['DOCUMENT_ROOT'].'/bin/urls_api.config');
 
   $API_ABS_PATH = PARAMGET('API_ABS_PATH');
   foreach($config as $line){
