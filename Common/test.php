@@ -31,9 +31,11 @@ function test_Get_List($urls){
     $json = file_get_contents($curl_url);
     $answer = json_decode($json,true);
 
-    foreach($answer["data"] as $i => $item){
-      echo "<h3>".$i." = ".$item."</h3>\n";
-    }
+    #foreach($answer["data"] as $i => $item){
+    #  echo "<h3>".$i." = ".$item."</h3>\n";
+    #}
+
+    echo "<h3> $curl_url, count = ".$count($answer["data"]."</h3>";
   }
 }
 
