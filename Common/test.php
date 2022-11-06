@@ -15,7 +15,9 @@ function APIS_GET(){
 
 function API_SEARCH($api,$urls){
   foreach($urls as $key => $url){
-    echo "<h2> $key => $url </h2>\n";
+    if ( preg_match($api,$key) == 1) {
+      echo "<h3> $key => $url </h3>\n";
+    }
   }
 }
 
@@ -23,7 +25,7 @@ $urls = APIS_GET();
 head_html(0);
 echo "<body>\n";
 echo "<h1>TESTS<\h1>\n";
-API_SEARCH("",$urls);
+API_SEARCH(".*Getlist.*",$urls);
 echo "</body>\n";
 
 
