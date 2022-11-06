@@ -25,33 +25,49 @@ function API_SEARCH($api,$urls){
   return $urls_match;
 }
 
-function test_Get_List($urls){
+function testGetList($api){
+  $answer = GET_CONTENTS($api);
+
+  echo "<h3> $api => $curl_url ";
+  if ($answer["isValid"] == true){
+    echo "ok count = ".count($answer["data"]);
+    $salida = 1;
+  }
+  else{
+    echo "fail";
+    $salida = 0;
+  }
+  echo "</h3>\n";
+  return $salida;
+}
+
+function testGetLists($urls){
   $urls_api = API_SEARCH("Getlist",$urls);
 
-  foreach($urls_api as $key => $curl_url){
-    $json = file_get_contents($curl_url);
-    $answer = json_decode($json,true);
-
-    #foreach($answer["data"] as $i => $item){
-    #  echo "<h3>".$i." = ".$item."</h3>\n";
-    #}
-
-    echo "<h3> $key => $curl_url ";
-    if ($answer["isValid"] == true){
-      echo "ok count = ".count($answer["data"]);
-    }
-    else{
-      echo "fail";
-    }
-    echo "</h3>\n";
+  foreach($urls_api as $api => $curl_url){
+    $answer = GET_CONTENTS($curl_url);
+    $Getlists[$api] = testGetList($api);
   }
+  return $Getlists;
+}
+
+function BranchTest($Getlists){
+  echo "<h2> BranchTest <\h2>\n";
+  if ($Getlists["APIBranchGetlist"]==1){
+
+  }
+  else{
+    echo "SKIP";
+  }
+  echo "<\h3>\n"
 }
 
 $urls = APIS_GET();
 head_html(0);
 echo "<body>\n";
 echo "<h1>TESTS</h1>\n";
-test_Get_List($urls);
+$Getlists = test_Get_List($urls);
+
 echo "</body>\n";
 
 
