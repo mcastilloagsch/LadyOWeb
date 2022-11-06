@@ -34,7 +34,7 @@ function header_html($local){
         ["path" => "Region", "controller" => "region.php", "text" => "Regiones"],
         ["path" => "Province", "controller" => "province.php", "text" => "Provincias"],
         ["path" => "Commune", "controller" => "commune.php", "text" => "Comunas"],
-        ["path" => "Sexe", "controller" => "sexe.php", "text" => "Sexos<"],
+        ["path" => "Sexe", "controller" => "sexe.php", "text" => "Sexos"],
         ["path" => "Gender", "controller" => "gender.php", "text" => "Generos"],
         ["path" => "Socioeconomic", "controller" => "socioeconomic.php", "text" => "SocioEconomicos"],
         ["path" => "Branche", "controller" => "branche.php", "text" => "Ramas"],
@@ -176,7 +176,7 @@ function controller_page_html($caller, $titulo,$general_buttons, $label_items, $
 function controller_new_item_page($titulo,$items,$action,$method,$back){
     head_html(1);
     echo "<body>\n";
-    header_html();
+    header_html($back);
     $html = <<<HTML
     <div class="container">
     <br><br><br><br><br><br>
@@ -193,6 +193,56 @@ function controller_new_item_page($titulo,$items,$action,$method,$back){
         echo "<br>\n";
     }
     echo "<input type='submit' value='Agregar'>\n";
+    echo "    <a href='".$back."'>Volver</a>\n";
+
+    $html = <<< HTML
+    </form>
+
+    </div>
+    <footer>
+        <h1>AGSCH - Derechos Reservados.<br>
+            Comisión Nacional de Tecnologías de la Información.</h1>
+    </footer>
+    </body>
+    HTML;
+}
+
+function controller_update_item_page($titulo,$items,$action,$method,$back){
+    head_html(1);
+    echo "<body>\n";
+    header_html($back);
+    $html = <<<HTML
+    <div class="container">
+    <br><br><br><br><br><br>
+    <h2>$titulo</h2>
+    HTML;
+    echo $html;
+
+    $id = $_GET['IdCountry'];
+
+    $API_URL=APIGET('APICountryGetObject')."/".$id;
+
+    $json = file_get_contents($API_URL);
+    $datos = json_decode($json,true);
+    
+    echo "<form action='$action' method='$method'>\n";
+    echo "<input type='hidden' name='IdCountry' value='$idnew'>\n";
+    echo "<br>\n";
+    
+    foreach($items as $i => $item){
+        $actual = $datos["data"][$item["name"]];
+        
+        if($item["hidden"]==0){
+            echo "<label for=''>".$item["for"]."</label>\n";
+            echo "<input type='".$item["type"]."' name='".$item["name"]."' value='".$actual."'>\n";
+        }
+        else{
+            echo "<input type='hidden' name='".$item["name"]."' value='".$actual."'>\n";
+        }
+        
+        echo "<br>\n";
+    }
+    echo "<input type='submit' value='Editar'>\n";
     echo "    <a href='".$back."'>Volver</a>\n";
 
     $html = <<< HTML
