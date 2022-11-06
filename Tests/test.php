@@ -83,7 +83,7 @@ function APITests($API,$Getlists){
   else{
     echo "SKIP";
   }
-  echo "<\h3>\n"
+  echo "<\h3>\n";
 }
 
 $urls = APIS_GET();
