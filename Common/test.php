@@ -14,8 +14,10 @@ function APIS_GET(){
 }
 
 function API_SEARCH($api,$urls){
+
+  echo "<h3>Patron : $api </h3>\n";
   foreach($urls as $key => $url){
-    if ( preg_match($api,$key) == 1) {
+    if ( preg_match("/$api/",$key) == 1) {
       echo "<h3> $key => $url </h3>\n";
     }
   }
