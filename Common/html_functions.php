@@ -62,7 +62,7 @@ function header_html($local){
     foreach($controllers as $i => $controller){
         $html = "<a href='";
         if($local != $controller["controller"]){
-            $html = $html."../".$controlller["path"]."/";
+            $html = $html."../".$controller["path"]."/";
         }
         $html = $html.$controller["controller"].">".$controller["text"]."</a>\n";
         echo $html;
