@@ -11,6 +11,6 @@ $action = "create_gender.php";
 $method = "post";
 $back = "gender.php";
 
-controller_new_item_page($caller, $titulo, $items, $action, $method, $back);
+controller_new_item_page($titulo, $items, $action, $method, $back);
 
 ?>

@@ -12,6 +12,6 @@ $action = "create_socioeconomic.php";
 $method = "post";
 $back = "socioeconomic.php";
 
-controller_new_item_page($caller, $titulo, $items, $action, $method, $back);
+controller_new_item_page($titulo, $items, $action, $method, $back);
 
 ?>

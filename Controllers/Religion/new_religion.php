@@ -12,6 +12,6 @@ $action = "create_religion.php";
 $method = "post";
 $back = "religion.php";
 
-controller_new_item_page($caller, $titulo, $items, $action, $method, $back);
+controller_new_item_page($titulo, $items, $action, $method, $back);
 
 ?>
