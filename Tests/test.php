@@ -24,16 +24,16 @@ function API_SEARCH($api,$urls,$debug){
 
   print_debug("<h3> Patron : $api,",1);
   $urls_match = array();
-  print_debug(".");
+  print_debug(".",1);
 
   foreach($urls as $key => $url){
     
+    print_debug("<h3> $key => $url ",1);
     if ( preg_match("/$api/",$key) == 1) {
-      print_debug("<h3> $key => $url ");
       print_debug(", match",1);
       $urls_match[$key] = $API_ABS_PATH.$url;
-      print_debug("/h3\n",1);
     }
+    print_debug("/h3\n",1);
     
   }
 
