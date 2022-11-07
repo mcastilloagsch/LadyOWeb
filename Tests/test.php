@@ -56,10 +56,10 @@ function API_SEARCH($api,$urls,$debug){
   return $urls_match;
 }
 
-function testGetList($api){
+function testGetList($api,$url){
   $answer = GET_CONTENTS($api);
 
-  echo "<h3> $api : ";
+  echo "<h3> $api , $api : ";
   if ($answer["isValid"] == true ){
     echo "ok, count = ".count($answer["data"]);
     $salida = 1;
@@ -76,8 +76,7 @@ function testGetLists($urls){
   $urls_api = API_SEARCH("Getlist",$urls,0);
 
   foreach($urls_api as $api => $curl_url){
-    $answer = GET_CONTENTS($api);
-    $Getlists[$api] = testGetList($api);
+    $Getlists[$api] = testGetList($api, $curl_url);
   }
   return $Getlists;
 }
