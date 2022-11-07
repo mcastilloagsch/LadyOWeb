@@ -68,29 +68,31 @@ function APITests($API,$Getlists,$location){
 
   if ($Getlists[$api_getlist] ==1 ){
     
-    $TestApis=API_SEARCH($API);
+    $TestApis=API_SEARCH($API,$Getlists);
     echo ".";
     echo count($TestApis);
 
     if (count($TestApis) > 0) {
+      
       echo ".";
-      /*
       $api_insert=API_SEARCH("insert",$TestApis);
   
       if(count($api_insert) > 0){
+      
         echo ".";
         $object = array(
           "name" => "test",
           "unit_name" => "test_unit",
           "small_team" => "test_small_unit"
         );
+      
         $result=testIntsert($api,$object,$location);
         echo $result;
       }
+      
       $api_get=API_SEARCH("get",$TestApis);
       $api_update=API_SEARCH("update",$TestApis);
       $api_delete=API_SEARCH("delte",$TestApis);
-      */
     }
   }
   else{
