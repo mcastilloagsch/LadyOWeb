@@ -88,7 +88,7 @@ function testIntsert($api,$objects){
   $result = CURL_POST($api, $object,$objects["location"]);
 
   if ( preg_match("/Error 404/",$resul) == 1 ){
-    return 2;
+    return "Error 404\n";
   }
   return $result;
 }
