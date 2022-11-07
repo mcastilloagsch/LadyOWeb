@@ -133,8 +133,29 @@ $texts = [
         "small_team" => "test_small_unit",
         "data_txt" => "name",
         "id_txt" => "id"
+        ],
+        "Update" => [],
+        "Delete" => [],
+        "Get" => [
+          "id_txt" => "id"
         ]
-    ]   
+    ],
+    "Country" => [
+      "Insert" => [
+        "CountryName" => "country_test1",
+        "id_txt" => "IdCountry",
+        "data_txt" => "CountryName"
+      ],
+      "Update" => [
+        "IdCountry" => $id,
+        "CountryName" => $name,
+
+      ],
+      "Delete" => [],
+      "Get" => [
+        "id_txt" => "IdCountry"
+      ]
+    ]
 ];
 
 $urls = APIS_GET();
@@ -143,7 +164,7 @@ echo "<body>\n";
 echo "<h1>TESTS</h1>\n";
 $Getlists = testGetLists($urls);
 
-#APITests("Branch",$Getlists,$urls,"Location: branche.php",$texts);
+APITests("Country",$Getlists,$urls,"Location: country.php",$texts);
 echo "</body>\n";
 
 
