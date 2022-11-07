@@ -64,21 +64,15 @@ function testIntsert($api,$object){
 function APITests($API,$Getlists,$location){
   echo "<h2> $API Test </h2>\n";
   $api_getlist="API".$API."Getlist";
-  echo "<h3>";
-  echo $Getlists[$api_getlist];
-  echo ".";
 
   if ($Getlists[$api_getlist] ==1 ){
     
     $TestApis=API_SEARCH("API".$API,$Getlists,0);
-    echo ".";
-    echo count($TestApis);
 
     if (count($TestApis) > 0) {
       
-      echo ".";
       $api_insert=API_SEARCH("insert",$TestApis,1);
-  
+      echo ".";
       if(count($api_insert) > 0){
       
         echo ".";
