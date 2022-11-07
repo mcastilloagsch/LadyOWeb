@@ -25,7 +25,7 @@ function API_SEARCH($api,$urls,$debug){
       $urls_match[$key] = $API_ABS_PATH.$url;
     }
   }
-  echo count($urls)."</h3>\n";
+  echo count($urls_match)."</h3>\n";
   return $urls_match;
 }
 
