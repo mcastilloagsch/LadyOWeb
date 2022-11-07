@@ -81,7 +81,7 @@ function header_html($local){
     echo $html;
 }
 
-function controller_page_html($caller, $titulo,$general_buttons, $label_items, $api_url, $keys, $item_buttons, $id_key){
+function controller_page_html($caller, $titulo,$general_buttons, $objects, $api_url, $buttons, $id_key){
   head_html(0);
   header_html($caller);
   $html = <<<HTML
@@ -115,8 +115,10 @@ function controller_page_html($caller, $titulo,$general_buttons, $label_items, $
    HTML;
    echo $html;
 
-   foreach ($label_items as $i => $value) { 
-     echo "<th>".$label_items[$i]." </th>";
+   foreach ($objects as $i => $item) {
+        if( $item["hidden"]==1 ){
+            echo "<th>".$item["label"]." </th>";
+        }
    }
    
    $html = <<<HTML
@@ -136,23 +138,24 @@ function controller_page_html($caller, $titulo,$general_buttons, $label_items, $
         
         echo "<tr>\n";
 
-        foreach($keys as $i => $key){
-            $display_value = $value[$key];
-            
-            if ($key == "IsDeleted" ){
-                if ( $display_value == "") {
-                $display_value = 0;
+        foreach($objects as $i => $item){
+
+            if( $item["hidden"]==0 ){
+        
+                $display_value = $value[$item["key"]];
+                
+                if ( $item["key"] == "IsDeleted" ){
+                    if ( $display_value != "") {
+                        $display_value = "*";
+                    }
                 }
-                else {
-                $display_value = 1;
-                }
+                echo "<td>" . $display_value . "</td>\n";
             }
-            echo "<td>" . $display_value . "</td>\n";
         }
         
         echo "<td class='select'>\n";
 
-        foreach($item_buttons as $i => $item){
+        foreach($buttons as $i => $item){
             if ( $item["active"] == 1){
                 echo "<a class='button' id='".$item["id"]."' href='".$item["href"]."$id'>".$item["text"]." </a> ";
             }
