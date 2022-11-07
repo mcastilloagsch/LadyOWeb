@@ -63,8 +63,8 @@ function APITests($API,$Getlists,$location){
   echo "<h2> $API Test </h2>\n";
   $api_getlist="API".$API."Getlist";
   echo "<h3>-";
-  echo $Getlists[$api_getlist]
-  if ($Getlists[$api_getlist]==1){
+  echo $Getlists[$api_getlist];
+  if ($Getlists[$api_getlist] ==1 ){
     $TestApis=API_SEARCH($API);
     if (count($TestApis) == 5) {
       $api_insert=API_SEARCH("insert",$TestApis);
