@@ -13,13 +13,15 @@ function APIS_GET(){
   return $url;
 }
 
-function API_SEARCH($api,$urls){
+function API_SEARCH($api,$urls,$debug){
 
   $API_ABS_PATH = PARAMGET('API_ABS_PATH');
   echo "<h3>Patron : $api,";
   foreach($urls as $key => $url){
     if ( preg_match("/$api/",$key) == 1) {
-      #echo "<h3> $key => $url </h3>\n";
+      if ($debug == 1) {
+        echo "<h3> $key => $url </h3>\n";
+      }
       $urls_match[$key] = $API_ABS_PATH.$url;
     }
   }
@@ -44,7 +46,7 @@ function testGetList($api){
 }
 
 function testGetLists($urls){
-  $urls_api = API_SEARCH("Getlist",$urls);
+  $urls_api = API_SEARCH("Getlist",$urls,0);
 
   foreach($urls_api as $api => $curl_url){
     $answer = GET_CONTENTS($api);
@@ -68,14 +70,14 @@ function APITests($API,$Getlists,$location){
 
   if ($Getlists[$api_getlist] ==1 ){
     
-    $TestApis=API_SEARCH("API".$API,$Getlists);
+    $TestApis=API_SEARCH("API".$API,$Getlists,1);
     echo ".";
     echo count($TestApis);
 
     if (count($TestApis) > 0) {
       
       echo ".";
-      $api_insert=API_SEARCH("insert",$TestApis);
+      $api_insert=API_SEARCH("insert",$TestApis,1);
   
       if(count($api_insert) > 0){
       
@@ -90,9 +92,9 @@ function APITests($API,$Getlists,$location){
         echo $result;
       }
       
-      $api_get=API_SEARCH("get",$TestApis);
-      $api_update=API_SEARCH("update",$TestApis);
-      $api_delete=API_SEARCH("delte",$TestApis);
+      $api_get=API_SEARCH("get",$TestApis,0);
+      $api_update=API_SEARCH("update",$TestApis,0);
+      $api_delete=API_SEARCH("delte",$TestApis,0);
     }
   }
   else{
