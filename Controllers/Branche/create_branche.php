@@ -11,6 +11,14 @@ $objeto = array(
   "name" => $name,
   "unit_name" => $unit_name,
   "small_team" => $small_team,
+
+  "IdBranch": 0,
+  "BranchName": $name,
+  "UnitName": $unit_name,
+  "TeamName": $small_team,
+  "IsDeleted": false,
+  "LastModificationDate": "01/01/1920",
+  "LastModificationPerson": 0
 );
 
 $result = CURL_POST("APIBranchesObjInsert", $objeto,"Location: branche.php");
