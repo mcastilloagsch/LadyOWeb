@@ -1,4 +1,11 @@
 <?php
+
+function print_debug($text,$debug){
+  if ($debug == 1 ) {
+    echo $text;
+  }
+}
+
 function GET_PARAM_FILE($param, $file){
   $config = file($_SERVER['DOCUMENT_ROOT'].$file);
 
