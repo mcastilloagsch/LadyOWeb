@@ -32,7 +32,7 @@ $objects = [
 $api_url = "APICountryGetlist";
 
 $buttons = [
-    ["id" => "edit-button","href" => "update_country.php?IdCountry=", "text" => "Editar", "active" => 1],
+    ["id" => "edit-button"  ,"href" => "update_country.php?IdCountry=", "text" => "Editar", "active" => 1],
     ["id" => "delete-button","href" => "delete_country.php?IdCountry=", "text" => "Eliminar", "active" => 1]
 ];
 $id_key = "IdCountry";
