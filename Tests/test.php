@@ -117,7 +117,7 @@ head_html(0);
 echo "<body>\n";
 echo "<h1>TESTS</h1>\n";
 $Getlists = testGetLists($urls);
-APITests("Branch",$Getlists,"Location: branche.php");
+#APITests("Branch",$Getlists,"Location: branche.php");
 echo "</body>\n";
 
 
