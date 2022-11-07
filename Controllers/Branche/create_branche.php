@@ -8,10 +8,6 @@ $small_team = $_POST['small_team'];
 $token = $_SESSION['user_token'];
 
 $objeto = array(
-  "name" => $name,
-  "unit_name" => $unit_name,
-  "small_team" => $small_team,
-
   "IdBranch": 0,
   "BranchName": $name,
   "UnitName": $unit_name,
