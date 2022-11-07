@@ -67,12 +67,14 @@ function APITests($API,$Getlists,$location){
   echo ".";
 
   if ($Getlists[$api_getlist] ==1 ){
-    echo ".";
+    
     $TestApis=API_SEARCH($API);
+    echo ".";
     echo count($TestApis);
 
     if (count($TestApis) > 0) {
       echo ".";
+      /*
       $api_insert=API_SEARCH("insert",$TestApis);
   
       if(count($api_insert) > 0){
@@ -88,6 +90,7 @@ function APITests($API,$Getlists,$location){
       $api_get=API_SEARCH("get",$TestApis);
       $api_update=API_SEARCH("update",$TestApis);
       $api_delete=API_SEARCH("delte",$TestApis);
+      */
     }
   }
   else{
