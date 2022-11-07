@@ -27,7 +27,7 @@ function API_SEARCH($api,$urls,$debug){
 
   foreach($urls as $key => $url){
 
-    echo_debug("<h3> $key => $url ")
+    echo_debug("<h3> $key => $url ");
     if ( preg_match("/$api/",$key) == 1) {
       if ($debug == 1) {
         echo ", match";
