@@ -3,7 +3,7 @@
 include_once '../Common/functions.php';
 include_once '../Common/html_functions.php';
 
-function echo_debug($text,$debug){
+function print_debug($text,$debug){
   if ($debug == 1 ) {
     echo $text;
   }
@@ -22,19 +22,19 @@ function API_SEARCH($api,$urls,$debug){
 
   $API_ABS_PATH = PARAMGET('API_ABS_PATH');
 
-  echo_debug("<h3> Patron : $api,",1);
+  print_debug("<h3> Patron : $api,",1);
   $urls_match = array();
 
   foreach($urls as $key => $url){
-    echo_debug("<h3> $key => $url ");
+    print_debug("<h3> $key => $url ");
     if ( preg_match("/$api/",$key) == 1) {
-      echo_debug(", match",1);
+      print_debug(", match",1);
       $urls_match[$key] = $API_ABS_PATH.$url;
     }
-    echo_debug("/h3\n",1);
+    print_debug("/h3\n",1);
   }
 
-  echo_debug(count($urls_match)."</h3>\n",1);
+  print_debug(count($urls_match)."</h3>\n",1);
   
   return $urls_match;
 }
