@@ -22,22 +22,22 @@ function API_SEARCH($api,$urls,$debug){
 
   $API_ABS_PATH = PARAMGET('API_ABS_PATH');
 
-  print_debug("<h3> Patron : $api,",1);
+  print_debug("<h3> Patron : $api,",$debug);
   $urls_match = array();
   print_debug(".",1);
 
   foreach($urls as $key => $url){
     
-    print_debug("<h3> $key => $url ",1);
+    print_debug("<h3> $key => $url ",$debug);
     if ( preg_match("/$api/",$key) == 1) {
-      print_debug(", match",1);
+      print_debug(", match",$debug);
       $urls_match[$key] = $API_ABS_PATH.$url;
     }
-    print_debug("/h3\n",1);
+    print_debug("/h3\n",$debug);
     
   }
 
-  print_debug(count($urls_match)."</h3>\n",1);
+  print_debug(count($urls_match)."</h3>\n",$debug);
   
   return $urls_match;
 }
@@ -117,7 +117,7 @@ head_html(0);
 echo "<body>\n";
 echo "<h1>TESTS</h1>\n";
 $Getlists = testGetLists($urls);
-#APITests("Branch",$Getlists,"Location: branche.php");
+APITests("Branch",$Getlists,"Location: branche.php");
 echo "</body>\n";
 
 
