@@ -78,6 +78,7 @@ function APITests($API,$Getlists,$location){
     if (count($TestApis) > 0) {
       
       $api_insert=API_SEARCH("insert",$TestApis,1);
+      /*
       echo ".";
       if(count($api_insert) > 0){
       
@@ -95,6 +96,7 @@ function APITests($API,$Getlists,$location){
       $api_get=API_SEARCH("get",$TestApis,0);
       $api_update=API_SEARCH("update",$TestApis,0);
       $api_delete=API_SEARCH("delte",$TestApis,0);
+      */
     }
   }
   else{
