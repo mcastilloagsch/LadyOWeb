@@ -84,7 +84,12 @@ function testGetLists($urls){
 
 function testIntsert($api,$object){
 
+
   $result = CURL_POST($api, $object,$location);
+
+  if ( preg_match("/Error 404/",$resul) == 1 ){
+    return 2;
+  }
   return $result;
 }
 

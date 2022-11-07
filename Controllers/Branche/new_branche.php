@@ -11,7 +11,7 @@ $items = [
 ];
 $action = "create_branche.php";
 $method = "post";
-$back = "country.php";
+$back = "branche.php";
 
 controller_new_item_page($titulo, $items, $action, $method, $back);
 
