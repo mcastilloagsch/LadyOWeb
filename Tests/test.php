@@ -84,7 +84,7 @@ function APITests($API,$Getlists,$urls,$location){
 
   if ($Getlists[$api_getlist] ==1 ){
     
-    $TestApis=API_SEARCH($API,$urls,0);
+    $TestApis=API_SEARCH($API,$urls,1);
 
     if (count($TestApis) > 0) {
       
@@ -119,7 +119,7 @@ head_html(0);
 echo "<body>\n";
 echo "<h1>TESTS</h1>\n";
 $Getlists = testGetLists($urls);
-APITests("Branch",$Getlists,"Location: branche.php");
+APITests("Branch",$Getlists,$urls,"Location: branche.php");
 echo "</body>\n";
 
 
