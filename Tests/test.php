@@ -16,7 +16,11 @@ function APIS_GET(){
 function API_SEARCH($api,$urls,$debug){
 
   $API_ABS_PATH = PARAMGET('API_ABS_PATH');
-  echo "<h3>Patron : $api,";
+
+  if ($debug == 1 ) {
+    echo "<h3>Patron : $api,";
+  }
+
   foreach($urls as $key => $url){
     if ( preg_match("/$api/",$key) == 1) {
       if ($debug == 1) {
@@ -25,7 +29,9 @@ function API_SEARCH($api,$urls,$debug){
       $urls_match[$key] = $API_ABS_PATH.$url;
     }
   }
-  echo count($urls_match)."</h3>\n";
+  if($debug == 1) {
+    echo count($urls_match)."</h3>\n";
+  }
   return $urls_match;
 }
 
