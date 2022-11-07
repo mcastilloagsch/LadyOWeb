@@ -80,11 +80,11 @@ function APITests($API,$Getlists,$location){
 
   if ($Getlists[$api_getlist] ==1 ){
     
-    $TestApis=API_SEARCH("API".$API,$Getlists,1);
+    $TestApis=API_SEARCH($API,$Getlists,1);
 
     if (count($TestApis) > 0) {
       
-      $api_insert=API_SEARCH("insert",$TestApis,1);
+      $api_insert=API_SEARCH("insert",$TestApis,0);
       /*
       echo ".";
       if(count($api_insert) > 0){
