@@ -21,6 +21,8 @@ function API_SEARCH($api,$urls,$debug){
     echo "<h3>Patron : $api,";
   }
 
+  $urls_match = array();
+
   foreach($urls as $key => $url){
     if ( preg_match("/$api/",$key) == 1) {
       if ($debug == 1) {
