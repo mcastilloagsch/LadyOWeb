@@ -2,6 +2,7 @@
 
 include_once '../Common/functions.php';
 include_once '../Common/html_functions.php';
+include_once 'objects.php';
 
 function print_debug($text,$debug){
   if ($debug == 1 ) {
@@ -91,12 +92,12 @@ function APITests($API,$Getlists,$urls,$location,$texts){
 
   $objects = $texts[$API];
 
-  echo "<h2> $API Test </h2>\n";
+  echo "<h1> $API Test </h1>\n";
   $api_getlist="API".$API."Getlist";
 
   if ($Getlists[$api_getlist] ==1 ){
     
-    $TestApis=API_SEARCH($API,$urls,1);
+    $TestApis=API_SEARCH($API,$urls,0);
 
     if (count($TestApis) > 0) {
       
@@ -125,38 +126,6 @@ function APITests($API,$Getlists,$urls,$location,$texts){
   echo "</h3>\n";
 }
 
-$texts = [
-    "Branch" => [ 
-        "Insert" => [
-        "name" => "test",
-        "unit_name" => "test_unit",
-        "small_team" => "test_small_unit",
-        "data_txt" => "name",
-        "id_txt" => "id"
-        ],
-        "Update" => [],
-        "Delete" => [],
-        "Get" => [
-          "id_txt" => "id"
-        ]
-    ],
-    "Country" => [
-      "Insert" => [
-        "CountryName" => "country_test1",
-        "id_txt" => "IdCountry",
-        "data_txt" => "CountryName"
-      ],
-      "Update" => [
-        "IdCountry" => $id,
-        "CountryName" => $name,
-
-      ],
-      "Delete" => [],
-      "Get" => [
-        "id_txt" => "IdCountry"
-      ]
-    ]
-];
 
 $urls = APIS_GET();
 head_html(0);
