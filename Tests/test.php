@@ -82,10 +82,10 @@ function testGetLists($urls){
   return $Getlists;
 }
 
-function testIntsert($api,$object){
+function testIntsert($api,$objects){
+  $object = $objects["Insert"];
 
-
-  $result = CURL_POST($api, $object,$location);
+  $result = CURL_POST($api, $object,$objects["location"]);
 
   if ( preg_match("/Error 404/",$resul) == 1 ){
     return 2;
@@ -93,7 +93,7 @@ function testIntsert($api,$object){
   return $result;
 }
 
-function APITests($API,$Getlists,$urls,$location,$texts){
+function APITests($API,$Getlists,$urls,$texts){
 
   $objects = $texts[$API];
 
@@ -107,14 +107,14 @@ function APITests($API,$Getlists,$urls,$location,$texts){
     if (count($TestApis) > 0) {
       
       # Test Insert
-      $api_insert=API_SEARCH("Insert",$TestApis,1);
+      $api_insert=API_SEARCH("Insert",$TestApis,0);
       if(count($api_insert) > 0){
         $object = $objects["Insert"];
-        $result=testIntsert($api,$object,$location);
-        print_debug($result,1);
+        $result=testIntsert($api,$objects);
+        #print_debug($result,1);
 
         #get_objid($api,$urls,$id_txt,$data_txt,$data_value)
-        $id = get_objid($api_getlist,$TestApis,$object);
+        $id = get_objid($api_getlist,$TestApis,$objects);
         print_debug($id,1);
       }
       /*
