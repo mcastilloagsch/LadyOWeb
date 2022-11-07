@@ -65,17 +65,20 @@ function APITests($API,$Getlists,$location){
   echo "<h3>-";
   echo $Getlists[$api_getlist];
   if ($Getlists[$api_getlist] ==1 ){
+    echo "-";
     $TestApis=API_SEARCH($API);
-    if (count($TestApis) == 5) {
+    if (count($TestApis) > 0) {
+      echo "-";
       $api_insert=API_SEARCH("insert",$TestApis);
-      if(count($api_insert)==1){
+      if(count($api_insert) > 0){
+        echo "-";
         $object = array(
           "name" => "test",
           "unit_name" => "test_unit",
           "small_team" => "test_small_unit"
         );
         $result=testIntsert($api,$object,$location);
-        echo "-".$result;
+        echo $result;
       }
       $api_get=API_SEARCH("get",$TestApis);
       $api_update=API_SEARCH("update",$TestApis);
