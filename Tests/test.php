@@ -53,35 +53,35 @@ function testGetLists($urls){
   return $Getlists;
 }
 
-function testIntsert($api,$post){
-  $name = $_POST['name'];
-  $unit_name = $_POST['unit_name'];
-  $small_team = $_POST['small_team'];
-  $token = $_SESSION['user_token'];
+function testIntsert($api,$object){
 
-  $objeto = array(
-    "name" => $name,
-    "unit_name" => $unit_name,
-    "small_team" => $small_team,
-  );
-
-  $result = CURL_POST("APIBranchesObjInsert", $objeto,"Location: branche.php");
+  $result = CURL_POST($api, $object,$location);
+  echo $result;
 }
 
-function APITests($API,$Getlists){
-  echo "<h2> $API Test <\h2>\n";
+function APITests($API,$Getlists,$location){
+  echo "<h2> $API Test </h2>\n";
   $api_getlist="API".$API."Getlist";
+  echo "<h3>";
   if ($Getlists[$api_getlist]==1){
     $TestApis=API_SEARCH($API);
     if (count($TestApis) == 5) {
       $api_insert=API_SEARCH("insert",$TestApis);
+      if(count($api_insert)==1){
+        $object = array(
+          "name" => "test",
+          "unit_name" => "test_unit",
+          "small_team" => "test_small_unit"
+        );
+        testIntsert($api,$object,$location);
+      }
       $api_get=API_SEARCH("get",$TestApis);
       $api_update=API_SEARCH("update",$TestApis);
       $api_delete=API_SEARCH("delte",$TestApis);
     }
   }
   else{
-    echo "SKIP";
+    echo " ".$Getlists[$api_getlist]." SKIP";
   }
   echo "<\h3>\n";
 }
@@ -91,7 +91,7 @@ head_html(0);
 echo "<body>\n";
 echo "<h1>TESTS</h1>\n";
 $Getlists = testGetLists($urls);
-APITests("Branch",$Getlists);
+APITests("Branch",$Getlists,"Location: branche.php");
 echo "</body>\n";
 
 
