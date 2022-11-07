@@ -2,12 +2,10 @@
 require_once '../authorization.php';
 include_once '../../Common/functions.php';
 
-$id = $_POST['IdCountry'];
 
-$id = intval($id);
 
 $objeto = array(
-  "IdCountry" => $id
+  "IdCountry" => intval($_POST['IdCountry'])
 );
 
 $result = CURL_DELETE("APICountryObjDelete", $objeto, "Location: country.php");
