@@ -62,7 +62,8 @@ function testIntsert($api,$object){
 function APITests($API,$Getlists,$location){
   echo "<h2> $API Test </h2>\n";
   $api_getlist="API".$API."Getlist";
-  echo "<h3>";
+  echo "<h3>-";
+  echo $Getlists[$api_getlist]
   if ($Getlists[$api_getlist]==1){
     $TestApis=API_SEARCH($API);
     if (count($TestApis) == 5) {
@@ -73,7 +74,8 @@ function APITests($API,$Getlists,$location){
           "unit_name" => "test_unit",
           "small_team" => "test_small_unit"
         );
-        testIntsert($api,$object,$location);
+        $result=testIntsert($api,$object,$location);
+        echo "-".$result;
       }
       $api_get=API_SEARCH("get",$TestApis);
       $api_update=API_SEARCH("update",$TestApis);
@@ -81,9 +83,9 @@ function APITests($API,$Getlists,$location){
     }
   }
   else{
-    echo " ".$Getlists[$api_getlist]." SKIP";
+    echo " SKIP";
   }
-  echo "<\h3>\n";
+  echo "</h3>\n";
 }
 
 $urls = APIS_GET();
