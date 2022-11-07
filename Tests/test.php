@@ -3,6 +3,11 @@
 include_once '../Common/functions.php';
 include_once '../Common/html_functions.php';
 
+function echo_debug($text,$debug){
+  if ($debug > 0 ) {
+    echo $text;
+  }
+}
 
 function APIS_GET(){
   $config = file($_SERVER['DOCUMENT_ROOT'].'/bin/urls_api.config');
@@ -17,17 +22,17 @@ function API_SEARCH($api,$urls,$debug){
 
   $API_ABS_PATH = PARAMGET('API_ABS_PATH');
 
-  if ($debug == 1 ) {
-    echo "<h3>Patron : $api,";
-  }
-
+  echo_debug("<h3> Patron : $api,",1);
   $urls_match = array();
 
   foreach($urls as $key => $url){
+
+    echo_debug("<h3> $key => $url ")
     if ( preg_match("/$api/",$key) == 1) {
       if ($debug == 1) {
-        echo "<h3> $key => $url </h3>\n";
+        echo ", match";
       }
+      echo_debug("/h3\n",1);
       $urls_match[$key] = $API_ABS_PATH.$url;
     }
   }
