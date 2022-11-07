@@ -111,7 +111,7 @@ function APITests($API,$Getlists,$urls,$texts){
       if(count($api_insert) > 0){
         $object = $objects["Insert"];
         $result=testIntsert($api,$objects);
-        #print_debug($result,1);
+        print_debug($result,1);
 
         #get_objid($api,$urls,$id_txt,$data_txt,$data_value)
         $id = get_objid($api_getlist,$TestApis,$objects);

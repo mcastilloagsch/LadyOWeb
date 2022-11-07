@@ -11,11 +11,11 @@ $general_buttons = [
   ["href" => "new_country.php", "text" => "Agregar"]
 ];
 
-$label_items = [ "ID","Nombre","Borrado"];
+$label_items = [ "Nombre","Borrado"];
 
 $api_url = "APICountryGetlist";
 
-$keys = [ "IdCountry","CountryName","IsDeleted"];
+$keys = [ "CountryName","IsDeleted"];
 
 $item_buttons = [
     ["id" => "edit-button","href" => "update_country.php?IdCountry=", "text" => "Editar", "active" => 1],
