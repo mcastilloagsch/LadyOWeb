@@ -88,7 +88,10 @@ function testIntsert($api,$object){
   return $result;
 }
 
-function APITests($API,$Getlists,$urls,$location,$objects){
+function APITests($API,$Getlists,$urls,$location,$texts){
+
+  $objects = $texts[$API];
+
   echo "<h2> $API Test </h2>\n";
   $api_getlist="API".$API."Getlist";
 
@@ -123,7 +126,7 @@ function APITests($API,$Getlists,$urls,$location,$objects){
   echo "</h3>\n";
 }
 
-$textts = [
+$texts = [
     "Branch" => [ 
         "Insert" => [
         "name" => "test",
@@ -140,7 +143,8 @@ head_html(0);
 echo "<body>\n";
 echo "<h1>TESTS</h1>\n";
 $Getlists = testGetLists($urls);
-APITests("Branch",$Getlists,$urls,"Location: branche.php");
+
+APITests("Branch",$Getlists,$urls,"Location: branche.php",$texts);
 echo "</body>\n";
 
 
