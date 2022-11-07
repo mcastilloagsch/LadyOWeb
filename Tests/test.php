@@ -24,7 +24,7 @@ function API_SEARCH($api,$urls,$debug){
 
   print_debug("<h3> Patron : $api,",1);
   $urls_match = array();
-
+  print_debug(".");
   foreach($urls as $key => $url){
     print_debug("<h3> $key => $url ");
     if ( preg_match("/$api/",$key) == 1) {
