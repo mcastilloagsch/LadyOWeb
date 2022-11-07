@@ -9,6 +9,10 @@ function print_debug($text,$debug){
   }
 }
 
+function search_obj($data,$text){
+
+}
+
 function APIS_GET(){
   $config = file($_SERVER['DOCUMENT_ROOT'].'/bin/urls_api.config');
   foreach($config as $line){
@@ -74,36 +78,34 @@ function testIntsert($api,$object){
   echo $result;
 }
 
-function APITests($API,$Getlists,$location){
+function APITests($API,$Getlists,$urls,$location){
   echo "<h2> $API Test </h2>\n";
   $api_getlist="API".$API."Getlist";
 
   if ($Getlists[$api_getlist] ==1 ){
     
-    $TestApis=API_SEARCH($API,$Getlists,1);
+    $TestApis=API_SEARCH($API,$urls,0);
 
     if (count($TestApis) > 0) {
       
-      $api_insert=API_SEARCH("insert",$TestApis,0);
-      /*
-      echo ".";
+      $api_insert=API_SEARCH("insert",$TestApis,1);
+    
       if(count($api_insert) > 0){
       
-        echo ".";
         $object = array(
           "name" => "test",
           "unit_name" => "test_unit",
           "small_team" => "test_small_unit"
         );
       
-        $result=testIntsert($api,$object,$location);
-        echo $result;
+        #$result=testIntsert($api,$object,$location);
+        #echo $result;
       }
       
       $api_get=API_SEARCH("get",$TestApis,0);
       $api_update=API_SEARCH("update",$TestApis,0);
       $api_delete=API_SEARCH("delte",$TestApis,0);
-      */
+      
     }
   }
   else{
