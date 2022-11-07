@@ -68,7 +68,7 @@ function APITests($API,$Getlists,$location){
 
   if ($Getlists[$api_getlist] ==1 ){
     
-    $TestApis=API_SEARCH($API,$Getlists);
+    $TestApis=API_SEARCH("API".$API,$Getlists);
     echo ".";
     echo count($TestApis);
 
