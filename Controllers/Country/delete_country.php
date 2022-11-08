@@ -12,7 +12,7 @@ $seconds = 5;
 
 head_html(0);
 echo "<body>\n";
-echo "<h2>sleep $seconds </h2>\n"
+echo "<h2>sleep $seconds </h2>\n";
 echo "</body>\n";
 sleep($seconds);
 
