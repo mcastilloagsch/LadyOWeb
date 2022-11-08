@@ -11,11 +11,30 @@ $general_buttons = [
   ["href" => "new_position.php", "text" => "Agregar"]
 ];
 
-$label_items = [ "ID","Nombre","Tipo de estructura","Borrado"];
-
 $api_url = "APIPositionGetlist";
 
-$keys = [ "IdPosition","PositionName","IdStructureType","IsDeleted"];
+$objects = [ 
+  [
+    "label" => "ID",
+    "key" => "IdPosition",
+    "hidden" => 1
+  ],
+  [
+    "label" => "Nombre",
+    "key" => "PositionName",
+    "hidden" => 0
+  ],
+  [
+    "label" => "Tipo de estructura",
+    "key" => "IdStructureType",
+    "hidden" => 0
+  ],
+  [
+    "label" => "Borrado",
+    "key" => "IsDeleted",
+    "hidden" => 1
+  ]
+];
 
 $item_buttons = [
     ["id" => "edit-button","href" => "update_position.php?IdPosition=", "text" => "Editar", "active" => 1],
@@ -23,6 +42,6 @@ $item_buttons = [
 ];
 $id_key = "IdPosition";
 
-controller_page_html($caller, $titulo, $general_buttons, $label_items, $api_url, $keys, $item_buttons, $id_key);
+controller_page_html($caller, $titulo, $general_buttons, $objects, $api_url, $item_buttons, $id_key);
 
 ?>

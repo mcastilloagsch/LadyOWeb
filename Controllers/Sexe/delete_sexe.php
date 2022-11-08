@@ -2,12 +2,8 @@
 require_once '../authorization.php';
 include_once '../../Common/functions.php';
 
-$id = $_GET['IdSex'];
-
-$id = intval($id);
-
 $objeto = array(
-  "IdSex" => $id
+  "IdSex" => intval($_GET['IdSex'])
 );
 
 $result = CURL_DELETE("APISexObjDelete", $objeto, "Location: sexe.php");

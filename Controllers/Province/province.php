@@ -11,18 +11,38 @@ $general_buttons = [
   ["href" => "new_province.php", "text" => "Agregar"]
 ];
 
-$label_items = [ "ID","ID Region","Nombre","Borrado"];
-
 $api_url = "APIProvinceGetlist";
 
-$keys = [ "IdProvince","IdRegion","ProvinceName","IsDeleted"];
+$objects = [ 
+  [
+    "label" => "ID",
+    "key" => "IdProvince",
+    "hidden" => 1
+  ],
+  [
+    "label" => "ID Region",
+    "key" => "IdRegion",
+    "hidden" => 0
+  ],
+  [
+    "label" => "Nombre",
+    "key" => "ProvinceName",
+    "hidden" => 0
+  ],
+  [
+    "label" => "Borrado",
+    "key" => "IsDeleted",
+    "hidden" => 1
+  ]
+];
 
 $item_buttons = [
     ["id" => "edit-button","href" => "update_province.php?IdProvince=", "text" => "Editar", "active" => 1],
     ["id" => "delete-button","href" => "delete_province.php?IdProvince=", "text" => "Eliminar", "active" => 1]
 ];
+
 $id_key = "IdProvince";
 
-controller_page_html($caller, $titulo, $general_buttons, $label_items, $api_url, $keys, $item_buttons, $id_key);
+controller_page_html($caller, $titulo, $general_buttons, $objects, $api_url, $item_buttons, $id_key);
 
 ?>

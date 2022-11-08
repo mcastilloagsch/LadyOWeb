@@ -5,9 +5,9 @@ include_once '../../Common/html_functions.php';
 
 $titulo = "Agregar Rama";
 $items = [
-    [ "for" => "Nombre", "type" => "text", "name" => "name"],
-    [ "for" => "Nombre Unidad", "type" => "text", "name" => "unit_name"],
-    [ "for" => "Pequeño equipo", "type" => "text", "name" => "small_team"]
+    [ "for" => "Nombre", "type" => "text", "name" => "BranchName"],
+    [ "for" => "Nombre Unidad", "type" => "text", "name" => "UnitName"],
+    [ "for" => "Pequeño equipo", "type" => "text", "name" => "TeamName"]
 ];
 $action = "create_branche.php";
 $method = "post";

@@ -2,10 +2,8 @@
 require_once '../authorization.php';
 include_once '../../Common/functions.php';
 
-$name = $_POST['CountryName'];
-
 $objeto = array(
- "CountryName" => $name
+ "CountryName" => $_POST['CountryName']
 );
 
 $result = CURL_POST("APICountryObjInsert", $objeto,"Location: country.php");

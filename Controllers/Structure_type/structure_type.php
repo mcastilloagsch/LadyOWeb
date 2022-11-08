@@ -11,11 +11,25 @@ $general_buttons = [
   ["href" => "new_structure_type.php", "text" => "Agregar"]
 ];
 
-$label_items = [ "ID","Nombre","Prioridad"];
-
 $api_url = "APIStructureTypeGetlist";
 
-$keys = [ "id","name","priority"];
+$objects = [ 
+  [
+    "label" => "ID",
+    "key" => "IdStructureType",
+    "hidden" => 1
+  ],
+  [
+    "label" => "Nombre",
+    "key" => "StructureTypeName",
+    "hidden" => 0
+  ],
+  [
+    "label" => "Borrado",
+    "key" => "IsDeleted",
+    "hidden" => 1
+  ]
+];
 
 $item_buttons = [
     ["id" => "edit-button","href" => "update_structure_type.php?id=", "text" => "Editar", "active" => 1],
@@ -23,6 +37,6 @@ $item_buttons = [
 ];
 $id_key = "id";
 
-controller_page_html($caller, $titulo, $general_buttons, $label_items, $api_url, $keys, $item_buttons, $id_key);
+controller_page_html($caller, $titulo, $general_buttons, $label_items, $objects, $item_buttons, $id_key);
 
 ?>

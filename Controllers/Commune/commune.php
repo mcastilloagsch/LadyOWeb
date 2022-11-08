@@ -11,11 +11,7 @@ $general_buttons = [
   ["href" => "new_commune.php", "text" => "Agregar"]
 ];
 
-$label_items = [ "ID","ID Provincia","Nombre Comuna","Borrada"];
-
 $api_url = "APICommuneGetlist";
-
-$keys = [ "IdCommune","IdProvince","CommuneName","IsDeleted"];
 
 $objects = [ 
   [
@@ -44,6 +40,7 @@ $item_buttons = [
     ["id" => "edit-button","href" => "update_commune.php?IdCommune=", "text" => "Editar", "active" => 1],
     ["id" => "delete-button","href" => "delete_commune.php?IdCommune=", "text" => "Eliminar", "active" => 1]
 ];
+
 $id_key = "IdCommune";
 
 controller_page_html($caller, $titulo, $general_buttons, $objects, $api_url, $item_buttons, $id_key);

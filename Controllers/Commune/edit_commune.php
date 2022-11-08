@@ -2,17 +2,12 @@
 require_once '../authorization.php';
 include_once '../../Common/functions.php';
 
-$id = $_POST['IdCommune'];
-$province_id = $_POST['IdProvince'];
-$name = $_POST['CommuneName'];
-$token = $_SESSION['user_token'];
-
-$id = intval($id);
+#token = $_SESSION['user_token'];
 
 $objeto = array(
-  "IdCommune" => $id,
-  "IdProvince" => $province_id,
-  "CommuneName" => $name
+  "IdCommune" => intval($_POST['IdCommune']),
+  "IdProvince" => $_POST['IdProvince'],
+  "CommuneName" => $_POST['CommuneName']
 );
 
 $result = CURL_PUT("APICommuneObjUpdate", $objeto, "Location: commune.php", "");

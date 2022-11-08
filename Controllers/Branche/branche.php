@@ -13,30 +13,31 @@ $general_buttons = [
 
 $api_url = "APIBranchGetlist";
 
-$label_items = [ "ID","Nombre","Nombre Unidad","Pequeño Equipo"];
-
-$keys = [ "id","name","unit_name","small_team"];
-
 $objects = [ 
   [
     "label" => "ID",
-    "key" => "id",
+    "key" => "IdBranch",
     "hidden" => 1
   ],
   [
     "label" => "Nombre",
-    "key" => "name",
+    "key" => "BranchName",
     "hidden" => 0
   ],
   [
     "label" => "Nombre Unidad",
-    "key" => "unit_name",
+    "key" => "UnitName",
     "hidden" => 0
   ],
   [
     "label" => "Pequeño Equipo",
-    "key" => "small_team",
+    "key" => "TeamName",
     "hidden" => 0
+  ],
+  [
+    "label" => "Borrado",
+    "key" => "IsDeleted",
+    "hidden" => 1
   ]
 ];
 

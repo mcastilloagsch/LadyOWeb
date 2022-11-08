@@ -2,11 +2,10 @@
 require_once '../authorization.php';
 include_once '../../Common/functions.php';
 
-$name = $_POST['GenderName'];
-$token = $_SESSION['user_token'];
+#$token = $_SESSION['user_token'];
 
 $objeto = array(
-    "GenderName" => $name,
+    "GenderName" => $_POST['GenderName'],
   );
 
 $result = CURL_POST("APIGenderObjInsert", $objeto,"Location: gender.php");

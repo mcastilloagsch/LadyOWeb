@@ -11,11 +11,90 @@ $general_buttons = [
   ["href" => "new_structure.php", "text" => "Agregar"]
 ];
 
-$label_items = [ "ID","Nombre","ID Tipo de estructura","ID Parent"];
-
 $api_url = "APIStructuresGetlist";
 
-$keys = [ "id","name","structure_type_id","parent_id"];
+$objects = [ 
+  [
+    "label" => "ID",
+    "key" => "IdStructure",
+    "hidden" => 1
+  ],
+  [
+    "label" => "IdStructureParent",
+    "key" => "IdStructureParent",
+    "hidden" => 0
+  ],
+  [
+    "label" => "Direeción",
+    "key" => "Address",
+    "hidden" => 0
+  ],
+  [
+    "label" => "IdCommune",
+    "key" => "IdCommune",
+    "hidden" => 0
+  ],
+  [
+    "label" => "IdStructureType",
+    "key" => "IdStructureType",
+    "hidden" => 0
+  ],
+  [
+    "label" => "IdSocioEconomic",
+    "key" => "IdSocioEconomic",
+    "hidden" => 0
+  ],
+  [
+    "label" => "Nombre",
+    "key" => "StructureName",
+    "hidden" => 0
+  ],
+  [
+    "label" => "IdBranch",
+    "key" => "IdBranch",
+    "hidden" => 0
+  ],
+  [
+    "label" => "SponsorName",
+    "key" => "SponsorName",
+    "hidden" => 0
+  ],
+  [
+    "label" => "SponsorAddress",
+    "key" => "SponsorDni",
+    "hidden" => 0
+  ],
+  [
+    "label" => "SponsorDni",
+    "key" => "SponsorDni",
+    "hidden" => 0
+  ],
+  [
+    "label" => "SponsorEmail",
+    "key" => "SponsorEmail",
+    "hidden" => 0
+  ],
+  [
+    "label" => "SponsorPhone",
+    "key" => "SponsorPhone",
+    "hidden" => 0
+  ],
+  [
+    "label" => "Borrado",
+    "key" => "IsDeleted",
+    "hidden" => 1
+  ],
+  [
+    "label" => "LastModificationDate",
+    "key" => "LastModificationDate",
+    "hidden" => 1
+  ],
+  [
+    "label" => "LastModificationPerson",
+    "key" => "LastModificationPerson",
+    "hidden" => 1
+  ]
+];
 
 $item_buttons = [
     ["id" => "edit-button", "href" => "update_structure.php?id=", "text" => "Editar", "active" => 1],
@@ -23,6 +102,6 @@ $item_buttons = [
 ];
 $id_key = "id";
 
-controller_page_html($caller, $titulo, $general_buttons, $label_items, $api_url, $keys, $item_buttons, $id_key);
+controller_page_html($caller, $titulo, $general_buttons, $objects, $api_url, $item_buttons, $id_key);
 
 ?>

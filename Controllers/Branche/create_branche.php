@@ -2,16 +2,13 @@
 require_once '../authorization.php';
 include_once '../../Common/functions.php';
 
-$name = $_POST['name'];
-$unit_name = $_POST['unit_name'];
-$small_team = $_POST['small_team'];
-$token = $_SESSION['user_token'];
+#$token = $_SESSION['user_token'];
 
 $objeto = array(
   "IdBranch": 0,
-  "BranchName": $name,
-  "UnitName": $unit_name,
-  "TeamName": $small_team,
+  "BranchName": $_POST['BranchName'];,
+  "UnitName": $_POST['UnitName'],
+  "TeamName": $_POST['TeamName'],
   "IsDeleted": false,
   "LastModificationDate": "01/01/1920",
   "LastModificationPerson": 0

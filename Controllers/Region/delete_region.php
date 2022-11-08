@@ -2,16 +2,10 @@
 require_once '../authorization.php';
 include_once '../../Common/functions.php';
 
-$id = $_POST['id'];
-$name = $_POST['name'];
-#$geom = $_POST['geom'];
-$token = $_SESSION['user_token'];
-
-
-$id = intval($id);
+#$token = $_SESSION['user_token'];
 
 $objeto = array(
-    "IdRegion" => $id,
+    "IdRegion" => intval($_GET['IdRegion'])
     #"RegionName" => $name,
     #"geom" => $geom,
   );

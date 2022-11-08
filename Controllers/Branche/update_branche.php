@@ -6,10 +6,10 @@ include_once '../../Common/html_functions.php';
 $id_get = "id";
 $titulo = "Editar Rama";
 $items = [
-    [ "for" => "", "type" => "", "name" => "id", "hidden" => 1],
-    [ "for" => "Nombre", "type" => "text", "name" => "name", "hidden" => 0],
-    [ "for" => "Nombre unidad", "type" => "text", "name" => "unit_name", "hidden" => 0],
-    [ "for" => "Pequeño equipo", "type" => "text", "name" => "small_team", "hidden" => 0]
+    [ "for" => "", "type" => "", "name" => "IdBranch", "hidden" => 1],
+    [ "for" => "Nombre", "type" => "text", "name" => "BranchName", "hidden" => 0],
+    [ "for" => "Nombre unidad", "type" => "text", "name" => "UnitName", "hidden" => 0],
+    [ "for" => "Pequeño equipo", "type" => "text", "name" => "TeamName", "hidden" => 0]
 ];
 
 $action = "edit_branche.php";
