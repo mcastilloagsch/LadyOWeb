@@ -20,7 +20,7 @@ echo "</body>\n";
 
 $id_get = "IdCountry";
 $objeto = array(
-  "IdCountry" => $id
+  "IdCountry" => $id_get
 );
 
 $result = CURL_DELETE("APICountryObjDelete", $objeto, "Location: country.php");
