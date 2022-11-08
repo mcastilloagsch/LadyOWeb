@@ -4,12 +4,6 @@ include_once '../Common/functions.php';
 include_once '../Common/html_functions.php';
 include_once 'objects.php';
 
-function print_debug($text,$debug){
-  if ($debug == 1 ) {
-    echo $text;
-  }
-}
-
 function get_objid($api,$urls,$obejct){
   $answer = GET_CONTENTS($api);
   $data_txt = $object["data_txt"];
