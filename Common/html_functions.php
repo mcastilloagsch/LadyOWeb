@@ -158,7 +158,7 @@ function controller_page_html($caller, $titulo,$general_buttons, $objects, $api_
         foreach($buttons as $i => $item){
             echo "<td class='select'>";
             if ( $item["active"] == 1){
-                echo "<a class='button' id='".$item["id"]."' href='".$item["href"]."$id' value=$id>".$item["text"]." </a>";
+                echo "<a class='button' id='".$item["id"]."' href='".$item["href"]."$id'>".$item["text"]." </a>";
             }
             else {
                 echo "<a class='buttoneliminate' href=''>".$item["text"]."</a>";

@@ -15,6 +15,6 @@ $action = "edit_country.php";
 $method = "post";
 $back = "country.php";
 
-controller_update_item_page($id_get, $titulo, $items, $action, $method, $back);
+controller_update_item_page("$id_get", $titulo, $items, $action, $method, $back);
 
 ?>
