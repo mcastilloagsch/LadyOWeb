@@ -57,12 +57,12 @@ function CURL_POST($api, $object, $location){
   return $result;
 }
 
-function CURL_DELETE($api, $object, $location){
+function CURL_DELETE($api, $object, $location, $url_extra){
   $jsonDataEncoded = json_encode($object);
   $curl = curl_init(APIGET($api));
 
   $jsonDataEncoded = json_encode($object);
-  curl_setopt($curl, CURLOPT_URL,$curl);
+  #curl_setopt($curl, CURLOPT_URL,$url_extra);
   #curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
   curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
   curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($object)); 
