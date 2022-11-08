@@ -3,7 +3,7 @@ require_once '../authorization.php';
 include_once '../../Common/functions.php';
 
 $objeto = array(
-  "IdCountry" => intva($_POST['IdCountry']),
+  "IdCountry" => intval($_POST['IdCountry']),
   "CountryName" => $_POST['CountryName']
 );
 
