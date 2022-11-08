@@ -5,13 +5,13 @@ include_once '../../Common/html_functions.php';
 
 head_html(0);
 echo "<body>\n";
-print_debug("_SESSION",1);
+#print_debug("_SESSION",1);
 #print_debug(var_dump($_SESSION),1);
-print_debug("\n");
-print_debug("_POST",1);
+#print_debug("\n");
+#print_debug("_POST",1);
 #print_debug(var_dump($_POST),1);
 #print_debug("\n");
-print_debug("_GET",1);
+#print_debug("_GET",1);
 #print_debug($_GET['IdCountry'],1);
 #print_debug("\n");
 echo "</body>\n";
