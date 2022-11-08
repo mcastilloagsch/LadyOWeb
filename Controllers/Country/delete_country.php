@@ -3,6 +3,7 @@ require_once '../authorization.php';
 include_once '../../Common/functions.php';
 include_once '../../Common/html_functions.php';
 
+/*
 head_html(0);
 echo "<body>\n";
 print_debug("SESSION\n",1);
@@ -15,11 +16,12 @@ print_debug("GET\n",1);
 print_debug($_GET['IdCountry'],1);
 print_debug("\n",1);
 echo "</body>\n";
-/*
+*/
+
 $objeto = array(
-  "IdCountry" => intval($_POST['IdCountry'])
+  "IdCountry" => intval($_GET['IdCountry'])
 );
 
 $result = CURL_DELETE("APICountryObjDelete", $objeto, "Location: country.php");
-*/
+
 ?>
