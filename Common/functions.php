@@ -63,7 +63,7 @@ function CURL_DELETE($api, $object, $location){
 
   $jsonDataEncoded = json_encode($object);
   curl_setopt($curl, CURLOPT_URL,$curl);
-  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
   curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
   curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($object)); 
 
