@@ -16,6 +16,6 @@ echo "<h2>Gogo $id_get </h2>\n";
 echo "</body>\n";
 sleep($seconds);
 
-$result = CURL_PUT("APICountryObjDelete", $objeto, "Location: country.php", "");
+$result = CURL_DELETE("APICountryObjDelete", $objeto, "Location: country.php", "");
 
 ?>
