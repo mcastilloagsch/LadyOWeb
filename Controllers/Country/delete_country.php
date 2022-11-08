@@ -17,9 +17,10 @@ print_debug($_GET['IdCountry'],1);
 print_debug("\n",1);
 echo "</body>\n";
 */
+$id_get = "IdCountry";
 
 $objeto = array(
-  "IdCountry" => intval($_GET['IdCountry'])
+  "IdCountry" => $id_get
 );
 
 $result = CURL_DELETE("APICountryObjDelete", $objeto, "Location: country.php");
