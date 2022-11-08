@@ -3,7 +3,7 @@ require_once '../authorization.php';
 include_once '../../Common/functions.php';
 include_once '../../Common/html_functions.php';
 
-$id_get = "IdCountry";
+$id_get = intval($_GET['IdCountry']);
 $titulo = "Editar País";
 $items = [
     [ "for" => "", "type" => "", "name" => "IdCountry", "hidden" => 1],
