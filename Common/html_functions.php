@@ -8,7 +8,7 @@ function head_html($style){
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Gestión Administrativa - AGSCH</title>
         <meta charset="utf-8" />
-        <link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
         <script src="../../js/jquery-3.3.1.js"></script>
         <link href="../../CSS/Style.css" rel="stylesheet" type="text/css" />
         <link href="../../CSS/Header.css" rel="stylesheet" type="text/css" />
