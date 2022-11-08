@@ -5,14 +5,14 @@ include_once '../../Common/html_functions.php';
 
 head_html(0);
 echo "<body>\n";
+print_debug("_SESSION \n",1);
+print_debug(var_dump($_SESSION),1);
+print_debug("\n");
 print_debug("_POST \n",1);
 print_debug(var_dump($_POST),1);
 print_debug("\n");
 rint_debug("_GET \n",1);
-print_debug(var_dump($_GET),1);
-print_debug("\n");
-print_debug("_SESSION \n",1);
-print_debug(var_dump($_SESSION),1);
+print_debug($_GET['IdCountry'],1);
 print_debug("\n");
 echo "</body>\n";
 /*
