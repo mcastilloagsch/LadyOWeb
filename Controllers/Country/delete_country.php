@@ -23,6 +23,6 @@ $objeto = array(
   "IdCountry" => $id_get
 );
 
-$result = CURL_DELETE("APICountryObjDelete", $objeto, "Location: country.php", "");
+$result = CURL_PUT("APICountryObjDelete", $objeto, "Location: country.php", "");
 
 ?>
