@@ -12,8 +12,8 @@ print_debug("_POST \n",1);
 print_debug(var_dump($_POST),1);
 print_debug("\n");
 rint_debug("_GET \n",1);
-print_debug($_GET['IdCountry'],1);
-print_debug("\n");
+#print_debug($_GET['IdCountry'],1);
+#print_debug("\n");
 echo "</body>\n";
 /*
 $objeto = array(
