@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__."/../path.php";
 
 function print_debug($text,$debug){
   if ($debug == 1 ) {
@@ -7,7 +8,7 @@ function print_debug($text,$debug){
 }
 
 function GET_PARAM_FILE($param, $file){
-  $config = file($_SERVER['DOCUMENT_ROOT'].$file);
+  $config = file(SITE_ROOT.$file);
 
   foreach($config as $line){
     $values=explode(';',$line);
@@ -63,7 +64,7 @@ function CURL_DELETE($api, $object, $location, $url_extra){
 
   $jsonDataEncoded = json_encode($object);
   #curl_setopt($curl, CURLOPT_URL,$url_extra);
-  #curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
   curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
   curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($object)); 
 

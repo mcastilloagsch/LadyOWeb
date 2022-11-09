@@ -1,4 +1,5 @@
 <?php
+define('SITE_ROOT', __DIR__);
 require_once 'config.php';
 include_once 'Common/functions.php';
 
