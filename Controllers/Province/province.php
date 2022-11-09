@@ -1,147 +1,48 @@
 <?php 
 require_once '../authorization.php';
-?>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gestión Administrativa - AGSCH</title>
-    <meta charset="utf-8" />
-    <link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <script src="../../js/jquery-3.3.1.js"></script>
-    <link href="../../CSS/Style.css" rel="stylesheet" type="text/css" />
-    <link href="../../CSS/Header.css" rel="stylesheet" type="text/css" />
-    <link href="../../CSS/Section.css" rel="stylesheet" type="text/css" />
-    <link href="../../CSS/Footer.css" rel="stylesheet" type="text/css" />
-    <link href="../../CSS/Dropbox.css" rel="stylesheet" type="text/css" />
-    <link rel="icon" type="image/png" href="../../Img/Logo.png" />
-    <script src="../../js/Dropbox.js"></script>
-    
-</head>
-<body>
-<header>
-        <div style="width: 100%; margin: auto; width: 100%;">
-            <div class="logo">
-                <img src="../../Img/LogoLargo.png" alt="Logo" />
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="../../home.php"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;Home</a></li>
-                    <li>
-                      <button onclick="myFunction()" class="dropbtn"><i class="fa fa-microchip" aria-hidden="true"></i> Controlador</button>
-                      <div id="myDropdown" class="dropdown-content">
-                        <a href="../Country/country.php">Paises</a>
-                        <a href="../Region/region.php">Regiones</a>
-                        <a href="province.php">Provincias</a>
-                        <a href="../Commune/commune.php">Comunas</a>
-                        <a href="../Sexe/sexe.php">Sexos</a>
-                        <a href="../Gender/gender.php">Generos</a>
-                        <a href="../Socioeconomic/socioeconomic.php">SocioEconomicos</a>
-                        <a href="../Branche/branche.php">Ramas</a>
-                        <a href="../Structure_type/structure_type.php">Tipoestructuras</a>
-                        <a href="../Structure/structure.php">Estructuras</a>
-                        <a href="../Religion/religion.php">Religiones</a>
-                        <a href="../Position/position.php">Posiciones</a>
-                      </div>
-                    </li>
-                    <li><a href="../../logout.php"><i aria-hidden="true"></i>&nbsp;Cerrar sesion</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+include_once '../../Common/functions.php';
+include_once '../../Common/html_functions.php';
 
+$caller = "province.php";
 
-<div class="container">
-  <br><br>
-<?php
+$titulo = "Mantenedores de Provincias";
 
-function PARAMGET($api_abs_path){
+$general_buttons = [
+  ["href" => "new_province.php", "text" => "Agregar"]
+];
 
-  $config = file('../../bin/param.config');
+$api_url = "APIProvinceGetlist";
 
-  foreach($config as $linea){
-    $valores=explode(';',$linea);
-    $url[$valores[0]] = $valores[1];    
-  }
-  
-  if ( $url[$api_abs_path] ) return $url[$api_abs_path];
-  else return "";
-}
+$objects = [ 
+  [
+    "label" => "ID",
+    "key" => "IdProvince",
+    "hidden" => 1
+  ],
+  [
+    "label" => "ID Region",
+    "key" => "IdRegion",
+    "hidden" => 0
+  ],
+  [
+    "label" => "Nombre",
+    "key" => "ProvinceName",
+    "hidden" => 0
+  ],
+  [
+    "label" => "Borrado",
+    "key" => "IsDeleted",
+    "hidden" => 1
+  ]
+];
 
-function APIGET($api_url){  
- 
-  $archivo = file('../../bin/urls_api.config');
- 
-  foreach($archivo as $linea){
-    $valores=explode(';',$linea);
-    $url[$valores[0]] = $valores[1];    
-  }
- 
-  if ( $url[$api_url] ) return $url[$api_url];
-  else return ""; 
-}
+$item_buttons = [
+    ["id" => "edit-button","href" => "update_province.php?IdProvince=", "text" => "Editar", "active" => 1],
+    ["id" => "delete-button","href" => "delete_province.php?IdProvince=", "text" => "Eliminar", "active" => 1]
+];
+
+$id_key = "IdProvince";
+
+controller_page_html($caller, $titulo, $general_buttons, $objects, $api_url, $item_buttons, $id_key);
 
 ?>
-
-<br>
-    <br>
-    <br>
-    <br>
-    <br><h1>Mantenedores de Provincias</h1>
-  <br> 
-  <div>
-    <a class='button' href="new_province.php">Agregar</a>
-  </div> 
-
-  <hr>
-  <div class="testeo">
-  <main>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>ID Region</th>
-          <th>Nombre</th>          
-          <th>Is deleted</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
-
-        $API_URL=APIGET('APIProvinceGetlist');
-        $API_ABS_PATH=PARAMGET('API_ABS_PATH');
-        
-        $config_api = trim($API_ABS_PATH.$API_URL);
-        
-        $json = file_get_contents($config_api);
-        $datos = json_decode($json,true);
-
-          foreach ($datos["data"] as $clave => $value){
-            $id = $value["IdProvince"];            
-            $region_id = $value["IdRegion"];
-            $nombre = $value["ProvinceName"];
-            $isDel = $value["IsDeleted"];
-
-            echo "<tr>";
-            echo "<td>" . $id . "</td>";            
-            echo "<td>" . $region_id . "</td>";
-            echo "<td>" . $nombre . "</td>";
-            echo "<td>" . $isDel . "</td>";
-            echo "<td class='select'><a class='button' id='edit-button' href='update_province.php?IdProvince=$id'>Editar</a><a class='buttoneliminate' href=delete_province.php?IdProvince=$id'>Eliminar</a></td>";
-            echo "</tr>";
-          }
-      ?>
-      </tbody>
-    </table>
-  </main>
-        </div>
-</div> 
-  <footer>
-        <h1>AGSCH - Derechos Reservados.<br>
-            Comisión Nacional de Tecnologías de la Información.</h1>
-  </footer>
-</body>
-
-
-
-
