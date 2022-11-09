@@ -3,14 +3,27 @@ require_once '../authorization.php';
 
 $name = $_POST['name'];
 $priority = $_POST['priority'];
+$token = $_SESSION['user_token'];
 
-$urlcreate = "http://localhost:100/api/StructureType/ObjInsert/{token}";
-$curl = curl_init($urlcreate);
+function APIPOST($token){
+  $file = fopen( '../../bin/urls_api.config', "r");
+  $url = array();
+
+  while (!feof($file)) {
+      $url[] = fgetcsv($file,null,';');
+  }
+  fclose($file);
+  $APIStructureTypeObjInsert = $url[46][1];
+  $respuesta = $APIStructureTypeObjInsert . $token;
+  return $respuesta;
+}
+$ruta = APIPOST($token);
+$curl = curl_init($ruta);
 
 $objeto = array(
-    "name" => $name,
-    "priority" => $priority,
-  );
+  "name" => $name,
+  "priority" => $priority,
+);
 
 $jsonDataEncoded = json_encode($objeto);
 curl_setopt($curl, CURLOPT_POST, 1);
