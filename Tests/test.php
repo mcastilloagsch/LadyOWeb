@@ -5,7 +5,7 @@ include_once '../Common/html_functions.php';
 include_once 'objects.php';
 
 function get_objid($api,$urls,$obejct){
-  $answer = GET_CONTENTS($api);
+  $answer = GET_CONTENTS($api,"");
   $data_txt = $object["data_txt"];
   $data_value = $object[$data_txt];
   $id_txt = $object["id_txt"];
@@ -52,7 +52,7 @@ function API_SEARCH($api,$urls,$debug){
 }
 
 function testGetList($api,$url){
-  $answer = GET_CONTENTS($api);
+  $answer = GET_CONTENTS($api,"");
 
   echo "<h3> $api , $api : ";
   if ($answer["isValid"] == true ){

@@ -1,4 +1,5 @@
 <?php
+include_once '../../Common/functions.php';
 
 function head_html($style){
     $html = <<<HTML
@@ -128,10 +129,7 @@ function controller_page_html($caller, $titulo,$general_buttons, $objects, $api_
     HTML;
     echo $html;
     
-    $API_URL=APIGET($api_url);
-
-    $json = file_get_contents($API_URL);
-    $datos = json_decode($json,true);
+    $datos = $datos = GET_CONTENTS($api_url,"");
 
     foreach ($datos["data"] as $clave => $value){
         $id = $value[$id_key];
@@ -230,11 +228,7 @@ function controller_update_item_page($id_get,$titulo,$items,$action,$method,$bac
     echo $html;
 
     $id = $_GET[$id_get];
-
-    $API_URL=APIGET('APICountryGetObject')."/".$id;
-
-    $json = file_get_contents($API_URL);
-    $datos = json_decode($json,true);
+    $datos = GET_CONTENTS($api_url,"/$id");
     
     echo "<form action='$action' method='$method'>\n";
     

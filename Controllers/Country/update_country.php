@@ -14,7 +14,9 @@ $items = [
 $action = "edit_country.php";
 $method = "post";
 $back = "country.php";
+$api_url = "APICountryGetObject";
+$id_get = "IdCountry";
 
-controller_update_item_page($id_get, $titulo, $items, $action, $method, $back);
+controller_update_item_page($id_get, $titulo, $items, $action, $api_url, $method, $back);
 
 ?>
