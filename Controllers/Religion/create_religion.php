@@ -3,14 +3,28 @@ require_once '../authorization.php';
 
 $name = $_POST['name'];
 $confesion = $_POST['confesion'];
+$token = $_SESSION['user_token'];
 
-$urlcreate = "http://localhost:100/api/Religions/ObjInsert/{token}";
-$curl = curl_init($urlcreate);
+function APIPOST($token){
+  $file = fopen( '../../bin/urls_api.config', "r");
+  $url = array();
+
+  while (!feof($file)) {
+      $url[] = fgetcsv($file,null,';');
+  }
+  fclose($file);
+  $APIBranchesObjInsert = $url[30][1];
+  $respuesta = $APIBranchesObjInsert . $token;
+  return $respuesta;
+}
+
+$ruta = APIPOST($token);
+$curl = curl_init($ruta);
 
 $objeto = array(
-    "name" => $name,
-    "confesion" => $confesion,
-  );
+  "name" => $name,
+  "confesion" => $confesion,
+);
 
 $jsonDataEncoded = json_encode($objeto);
 curl_setopt($curl, CURLOPT_POST, 1);
