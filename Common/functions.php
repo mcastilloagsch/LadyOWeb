@@ -32,10 +32,10 @@ function APIGET($api){
   return $API_ABS_PATH.GET_PARAM_FILE($api,'/bin/urls_api.config');
 }
 
-function GET_CONTENTS($api_url){
+function GET_CONTENTS($api_url,$extra){
   $API_URL=APIGET($api_url);
 
-  $json = file_get_contents($API_URL);
+  $json = file_get_contents($API_URL.$extra);
   $data = json_decode($json,true);
 
   if ($data["isValid"] != true) {
@@ -45,15 +45,19 @@ function GET_CONTENTS($api_url){
   return $data;
 }
 
-function CURL_POST($api, $object, $location){
+function CURL_POST($api, $object, $location,$debug){
   $jsonDataEncoded = json_encode($object);
   $curl = curl_init(APIGET($api));
 
+  #print_debug($api."\n",$debug);
+  #print_debug(var_dump($object)."\n",$debug);
   curl_setopt($curl, CURLOPT_POST, 1);
   curl_setopt($curl, CURLOPT_POSTFIELDS, $jsonDataEncoded);
-  curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json')); 
+  curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+
   $result =  curl_exec($curl);
-  header($location);
+  #print_debug(var_dump($result)." -\n",$debug);
+  if ($debug==0) header($location);
 
   return $result;
 }
