@@ -45,23 +45,6 @@ function GET_CONTENTS($api_url,$extra){
   return $data;
 }
 
-function CURL_POST($api, $object, $location,$debug){
-  $jsonDataEncoded = json_encode($object);
-  $curl = curl_init(APIGET($api));
-
-  #print_debug($api."\n",$debug);
-  #print_debug(var_dump($object)."\n",$debug);
-  curl_setopt($curl, CURLOPT_POST, 1);
-  curl_setopt($curl, CURLOPT_POSTFIELDS, $jsonDataEncoded);
-  curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-
-  $result =  curl_exec($curl);
-  #print_debug(var_dump($result)." -\n",$debug);
-  if ($debug==0) header($location);
-
-  return $result;
-}
-
 function CURL_DELETE($api, $object, $location, $url_extra){
   $jsonDataEncoded = json_encode($object);
   $curl = curl_init(APIGET($api));
@@ -84,6 +67,23 @@ function CURL_DELETE($api, $object, $location, $url_extra){
   return $result;
 }
 
+function CURL_POST($api, $object, $location){
+  $jsonDataEncoded = json_encode($object);
+  $curl = curl_init(APIGET($api));
+
+
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  #curl_setopt($curl, CURLOPT_HEADER, 0);
+  curl_setopt($curl, CURLOPT_POST, true);
+  curl_setopt($curl, CURLOPT_POSTFIELDS, $jsonDataEncoded);
+  curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+
+  $result = curl_exec($curl);
+  curl_close($curl);
+  
+  header($location);
+}
+
 function CURL_PUT($api, $object, $location, $url_extra){
   $url = APIGET($api);
 
@@ -97,6 +97,7 @@ function CURL_PUT($api, $object, $location, $url_extra){
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
   curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
   curl_setopt($curl, CURLOPT_POSTFIELDS, $query);
+
   $result = curl_exec($curl);
   header($location);
 

@@ -17,12 +17,12 @@ function head_html($style){
         <link href="../../CSS/Footer.css" rel="stylesheet" type="text/css" />
         <link href="../../CSS/Dropbox.css" rel="stylesheet" type="text/css" />
         <link rel="icon" type="image/png" href="../../Img/Logo.png" />
-        <script src="../../js/Dropbox.js"></script>
+        <script src="../../js/Dropbox.js"></script>\n
     HTML;
     echo $html;
 
     if($style == 1) {
-        echo "<link rel='stylesheet' href='../../CSS/Style2.css'>\n";
+        echo "     <link rel='stylesheet' href='../../CSS/Style2.css'>\n";
     }
     echo "</head>\n";
     
@@ -77,7 +77,29 @@ function header_html($local){
           </ul>
         </nav>
     </div>
-    </header>
+    </header>\n
+    HTML;
+    echo $html;
+}
+
+function title_html($title,$h){
+    $html = <<<HTML
+    <body>
+    <div class="container">
+    <br><br><br><br><br><br>
+    <$h>$title</$h>
+    HTML;
+    echo $html;
+}
+
+function footer_html()
+{
+    $html = <<<HTML
+    <footer>
+            <h1>AGSCH - Derechos Reservados.<br>
+            Comisión Nacional de Tecnologías de la Información.</h1>
+        </footer>
+    </body>
     HTML;
     echo $html;
 }
@@ -85,20 +107,7 @@ function header_html($local){
 function controller_page_html($caller, $titulo,$general_buttons, $objects, $api_url, $buttons, $id_key){
   head_html(0);
   header_html($caller);
-  $html = <<<HTML
-  <body>
-    <div class="container">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <h1>$titulo</h1>
-        <br> 
-  HTML;
-  echo $html;
+  title_html($titulo,"h1");
 
   foreach ($general_buttons as $i => $value) {
       echo "<div>";
@@ -173,25 +182,15 @@ function controller_page_html($caller, $titulo,$general_buttons, $objects, $api_
                 </main>
             </div>
         </div> 
-        <footer>
-            <h1>AGSCH - Derechos Reservados.<br>
-            Comisión Nacional de Tecnologías de la Información.</h1>
-        </footer>
-    </body>
     HTML;
     echo $html;
+    footer_html();
 }
 
 function controller_new_item_page($titulo,$items,$action,$method,$back){
     head_html(1);
-    echo "<body>\n";
     header_html($back);
-    $html = <<<HTML
-    <div class="container">
-    <br><br><br><br><br><br>
-    <h2>$titulo</h2>
-    HTML;
-    echo $html;
+    title_html($titulo,"h2");
 
     echo "<form action='$action' method='$method'>\n";
     echo "<br>\n";
@@ -206,31 +205,23 @@ function controller_new_item_page($titulo,$items,$action,$method,$back){
 
     $html = <<< HTML
     </form>
-
     </div>
-    <footer>
-        <h1>AGSCH - Derechos Reservados.<br>
-            Comisión Nacional de Tecnologías de la Información.</h1>
-    </footer>
-    </body>
-    HTML;
-}
-
-function controller_update_item_page($id_get,$titulo,$items,$action,$method,$back){
-    head_html(1);
-    echo "<body>\n";
-    header_html($back);
-    $html = <<<HTML
-    <div class="container">
-    <br><br><br><br><br><br>
-    <h2>$titulo</h2>
     HTML;
     echo $html;
+    footer_html();
+    
+}
+
+function controller_update_item_page($id_get,$titulo,$items,$action,$method,$api_url,$back){
+    head_html(1);
+    header_html($back);
+    title_html($titulo,"h2");
 
     $id = $_GET[$id_get];
     $datos = GET_CONTENTS($api_url,"/$id");
-    
+
     echo "<form action='$action' method='$method'>\n";
+    echo "<br>\n";
     
     foreach($items as $i => $item){
         $actual = $datos["data"][$item["name"]];
@@ -250,13 +241,10 @@ function controller_update_item_page($id_get,$titulo,$items,$action,$method,$bac
 
     $html = <<< HTML
     </form>
-
     </div>
-    <footer>
-        <h1>AGSCH - Derechos Reservados.<br>
-            Comisión Nacional de Tecnologías de la Información.</h1>
-    </footer>
-    </body>
     HTML;
+    echo $html;
+
+    footer_html();
 }
 ?>
