@@ -5,9 +5,18 @@ include_once '../../Common/html_functions.php';
 
 $titulo = "Agregar Estructura";
 $items = [
-    [ "for" => "Nombre", "type" => "text", "name" => "name"],
-    [ "for" => "Tipo de estructura", "type" => "number", "name" => "structure_type_id"],
-    [ "for" => "ID Parent", "type" => "number", "name" => "parent_id"]
+    [ "for" => "IdStructureParent", "type" => "number", "name" => "IdStructureParent"],
+    [ "for" => "Dirección", "type" => "text", "name" => "Address"],
+    [ "for" => "IdCommune", "type" => "number", "name" => "IdCommune"],
+    [ "for" => "IdStructureType", "type" => "number", "name" => "IdStructureType"],
+    [ "for" => "IdSocioEconomic", "type" => "number", "name" => "IdSocioEconomic"],
+    [ "for" => "Nombre", "type" => "text", "name" => "StructureName"],
+    [ "for" => "IdBranch", "type" => "number", "name" => "IdBranch"],
+    [ "for" => "SponsorName", "type" => "text", "name" => "SponsorName"],
+    [ "for" => "SponsorAddress", "type" => "text", "name" => "SponsorAddress"],
+    [ "for" => "SponsorDni", "type" => "text", "name" => "SponsorDni"],
+    [ "for" => "SponsorEmail", "type" => "email", "name" => "SponsorEmail"],
+    [ "for" => "SponsorPhone", "type" => "number", "name" => "SponsorPhone"],
 ];
 $action = "create_structure.php";
 $method = "post";

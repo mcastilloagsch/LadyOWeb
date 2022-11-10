@@ -11,7 +11,7 @@ $general_buttons = [
   ["href" => "new_structure.php", "text" => "Agregar"]
 ];
 
-$api_url = "APIStructuresGetlist";
+$api_url = "APIStructureGetlist";
 
 $objects = [ 
   [
@@ -25,7 +25,7 @@ $objects = [
     "hidden" => 0
   ],
   [
-    "label" => "Direeción",
+    "label" => "Direción",
     "key" => "Address",
     "hidden" => 0
   ],
@@ -61,7 +61,7 @@ $objects = [
   ],
   [
     "label" => "SponsorAddress",
-    "key" => "SponsorDni",
+    "key" => "SponsorAddress",
     "hidden" => 0
   ],
   [
@@ -96,12 +96,12 @@ $objects = [
   ]
 ];
 
-$item_buttons = [
-    ["id" => "edit-button", "href" => "update_structure.php?id=", "text" => "Editar", "active" => 1],
-    ["id" => "delete-button", "href" => "delete_structure.php?id=", "text" => "Eliminar", "active" => 1]
+$buttons = [
+    ["id" => "edit-button", "href" => "update_structure.php?IdStructure=", "text" => "Editar", "active" => 1],
+    ["id" => "delete-button", "href" => "delete_structure.php?IdStructure=", "text" => "Eliminar", "active" => 1]
 ];
-$id_key = "id";
+$id_key = "IdStructure";
 
-controller_page_html($caller, $titulo, $general_buttons, $objects, $api_url, $item_buttons, $id_key);
+controller_page_html($caller, $titulo, $general_buttons, $objects, $api_url, $buttons, $id_key);
 
 ?>
