@@ -2,22 +2,21 @@
 require_once '../authorization.php';
 include_once '../../Common/functions.php';
 
-$objeto = array(
-  "IdStructure" => intval($_POST['IdStructure']),
-  "IdStructureParent" => intval($_POST['IdStructureParent']),
-  "Address" => $_POST['Address'],
-  "IdCommune" => intval($_POST['IdCommune']),
-  "IdStructureType" => intval($_POST['IdStructureType']),
-  "IdSocioEconomic" => intval($_POST['IdSocioEconomic']),
-  "StructureName" => $_POST['StructureName'],
-  "IdBranch" => intval($_POST['IdBranch']),
-  "SponsorName" => $_POST['SponsorName'],
-  "SponsorAddress" => $_POST['SponsorAddress'],
-  "SponsorDni" => $_POST['SponsorDni'],
-  "SponsorEmail" => $_POST['SponsorEmail'],
-  "SponsorPhone" => intval($_POST['SponsorPhone'])
-);
+$id = $_POST['id'];
+$name = $_POST['name'];
+$structure_type_id = $_POST['structure_type_id'];
+$parent_id = $_POST['parent_id'];
 
-$result = CURL_PUT("APIStructureObjUpdate", $objeto, "Location: structure.php","");
+
+$id = intval($id);
+
+$objeto = array(
+    "id" => $id,
+    "name" => $name,
+    "structure_type_id" => $structure_type_id,
+    "parent_id" => $parent_id,
+  );
+
+$result = CURL_PUT("APIStructuresObjUpdate", $objeto, "Location: structure.php", "/{token}/".$id);
 
 ?>
