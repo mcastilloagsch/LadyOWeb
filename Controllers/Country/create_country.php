@@ -6,6 +6,6 @@ $objeto = array(
  "CountryName" => $_POST['CountryName']
 );
 
-$result = CURL_POST("APICountryObjInsert", $objeto,"Location: country.php");
+$result = CURL_POST("APICountryObjInsert", $objeto, "Location: country.php","");
 
 ?>
