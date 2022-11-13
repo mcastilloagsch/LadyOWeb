@@ -10,10 +10,11 @@ $items = [
     [ "for" => "Nombre", "type" => "text", "name" => "SexName", "hidden" => 0]
 ];
 
-$action = "edit_religion.php";
+$action = "edit_sexe.php";
 $method = "post";
+$api_url = "APISexGetObject";
 $back = "sexe.php";
 
-controller_update_item_page($id_get, $titulo, $items, $action, $method, $back);
+controller_update_item_page($id_get, $titulo, $items, $action, $method, $api_url, $back);
 
 ?>
