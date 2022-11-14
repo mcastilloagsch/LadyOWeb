@@ -6,6 +6,6 @@ $objeto = array(
   "IdGender" => intval($_GET['IdGender'])
 );
 
-CURL_DELETE($"APIGenderObjDelete", $objeto,"Location: gender.php");
+$result = CURL_DELETE("APIGenderObjDelete", $objeto,"Location: gender.php","");
 
 ?>

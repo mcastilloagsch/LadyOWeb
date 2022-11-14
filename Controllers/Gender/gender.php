@@ -33,7 +33,7 @@ $objects = [
 
 $item_buttons = [
     ["id" => "edit-button","href" => "update_gender.php?IdGender=", "text" => "Editar", "active" => 1],
-    ["id" => "delete-button","href" => "delete_gender.php?IdGender", "text" => "Eliminar", "active" => 1]
+    ["id" => "delete-button","href" => "delete_gender.php?IdGender=", "text" => "Eliminar", "active" => 1]
 ];
 
 $id_key = "IdGender";
