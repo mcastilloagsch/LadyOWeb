@@ -12,11 +12,12 @@ $general_buttons = [
 ];
 
 $api_url = "APIGenderGetlist";
+$id = "IdGender";
 
 $objects = [ 
   [
     "label" => "ID Genero",
-    "key" => "IdGender",
+    "key" => $id,
     "hidden" => 1
   ],
   [
@@ -31,13 +32,11 @@ $objects = [
   ]
 ];
 
-$item_buttons = [
-    ["id" => "edit-button","href" => "update_gender.php?IdGender=", "text" => "Editar", "active" => 1],
-    ["id" => "delete-button","href" => "delete_gender.php?IdGender=", "text" => "Eliminar", "active" => 1]
+$buttons = [
+  ["id" => "edit-button","href" => "update_gender.php?$id=", "text" => "Editar", "active" => 1],
+  ["id" => "delete-button","href" => "delete_gender.php?$id=", "text" => "Eliminar", "active" => 1]
 ];
 
-$id_key = "IdGender";
-
-controller_page_html($caller, $titulo, $general_buttons, $objects, $api_url, $item_buttons, $id_key);
+controller_page_html($caller, $titulo, $general_buttons, $objects, $api_url, $buttons, $id);
 
 ?>

@@ -7,7 +7,8 @@ $id_get = "IdGender";
 $titulo = "Editar Genero";
 $items = [
     [ "for" => "", "type" => "", "name" => "IdGender", "hidden" => 1],
-    [ "for" => "Nombre", "type" => "text", "name" => "GenderName", "hidden" => 0]
+    [ "for" => "Nombre", "type" => "text", "name" => "GenderName", "hidden" => 0],
+    [ "for" => "", "type" => "", "name" => "IsDeleted", "hidden" => 1]
 ];
 
 $action = "edit_gender.php";
