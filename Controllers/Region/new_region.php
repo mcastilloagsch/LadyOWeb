@@ -5,13 +5,13 @@ include_once '../../Common/html_functions.php';
 
 $titulo = "Agregar Región";
 $items = [
-    [ "for" => "Nombre", "type" => "text", "name" => "name"],
-    [ "for" => "Geometry", "type" => "text", "name" => "geom"]
+    [ "for" => "Nombre", "type" => "text", "name" => "CountryName"],
+    [ "for" => "OrderSec", "type" => "text", "name" => "OrderSec"]
 ];
 $action = "create_region.php";
 $method = "post";
 $back = "region.php";
 
-controller_new_item_page($caller, $titulo, $items, $action, $method, $back);
+controller_new_item_page( $titulo, $items, $action, $method, $back);
 
 ?>
