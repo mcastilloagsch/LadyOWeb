@@ -5,8 +5,8 @@ include_once '../../Common/html_functions.php';
 
 $titulo = "Agregar Religión";
 $items = [
-    [ "for" => "Nombre", "type" => "text", "name" => "name"],
-    [ "for" => "Confesion", "type" => "number", "name" => "confesion"]
+    [ "for" => "Nombre", "type" => "text", "name" => "ReligionName"],
+    [ "for" => "Confesión", "type" => "text", "name" => "Confesion"],
 ];
 $action = "create_religion.php";
 $method = "post";
