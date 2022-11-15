@@ -12,11 +12,12 @@ $general_buttons = [
 ];
 
 $api_url = "APIReligionGetlist";
+$id = "IdReligion";
 
 $objects = [ 
   [
     "label" => "ID",
-    "key" => "IdReligion",
+    "key" => $id,
     "hidden" => 1
   ],
   [
@@ -36,13 +37,11 @@ $objects = [
   ]
 ];
 
-$item_buttons = [
-    ["id" => "edit-button","href" => "update_religion.php?id=", "text" => "Editar", "active" => 1],
-    ["id" => "delete-button","href" => "delete_religion.php?id=", "text" => "Eliminar", "active" => 1]
+$buttons = [
+    ["id" => "edit-button","href" => "update_religion.php?$id=", "text" => "Editar", "active" => 1],
+    ["id" => "delete-button","href" => "delete_religion.php?$id=", "text" => "Eliminar", "active" => 1]
 ];
 
-$id_key = "id";
-
-controller_page_html($caller, $titulo, $general_buttons, $objects, $api_url, $item_buttons, $id_key);
+controller_page_html($caller, $titulo, $general_buttons, $objects, $api_url, $buttons, $id);
 
 ?>

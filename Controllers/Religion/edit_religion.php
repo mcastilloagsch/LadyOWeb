@@ -2,18 +2,14 @@
 require_once '../authorization.php';
 include_once '../../Common/functions.php';
 
-$id = $_POST['id'];
-$confesion = $_POST['confesion'];
-
-
-$id = intval($id);
-
 $objeto = array(
-    "id" => $id,
-    "name" => $name,
-    "confesion" => $confesion,
-  );
+  "IdReligion" => intval($_POST['IdReligion']),
+  "ReligionName" => $_POST['ReligionName'],
+  "Confesion" => $_POST['Confesion']
+);
 
-$result = CURL_PUT("APIReligionObjUpdate", $objeto, "Location: religion.php", "/{token}/".$id);
+$result = CURL_PUT("APIReligionObjUpdate", $objeto, "Location: religion.php", "");
+
+?>
 
 ?>
