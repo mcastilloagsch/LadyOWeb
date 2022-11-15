@@ -1,39 +1,11 @@
 <?php
 require_once '../authorization.php';
-
-$id = $_GET['IdPosition'];
-
-$id = intval($id);
+include_once '../../Common/functions.php';
 
 $objeto = array(
-  "IdPosition" => $id
+  "IdPosition" => intval($_GET['IdPosition'])
 );
 
-function APIDELETE(){
- 
-  $file = fopen( '../../bin/urls_api.config', "r");
-  $url = array();
-    
-  while (!feof($file)) {
-    $url[] = fgetcsv($file,null,';');
-  }
-
-  fclose($file);
-  $APIPositionObjDelete = $url[25][1];
-  $respuesta = $APIPositionObjDelete;  
-  return $respuesta;
-
-}
-
-$ruta = APIDELETE();
-$curl = curl_init($ruta);
-
-$jsonDataEncoded = json_encode($objeto);
-curl_setopt($curl, CURLOPT_URL,$ruta);
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
-curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($objeto)); 
-$result = curl_exec($curl);
-header("Location: position.php");
+$result = CURL_DELETE("APIPositionObjDelete", $objeto, "Location: position.php");
 
 ?>

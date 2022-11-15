@@ -1,5 +1,6 @@
 <?php
 require_once '../authorization.php';
+include_once '../../Common/functions.php';
 
 $id = $_POST['id'];
 $name = $_POST['name'];
@@ -14,15 +15,6 @@ $objeto = array(
     "priority" => $priority,
   );
 
-$urlcreate = "http://localhost:100/api/StructureType/ObjUpdate/{token}/$id";
-$curl = curl_init($urlcreate);
-
-$jsonDataEncoded = json_encode($objeto);
-curl_setopt($curl, CURLOPT_POST, 1);
-curl_setopt($curl, CURLOPT_POSTFIELDS, $jsonDataEncoded);
-curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json')); 
-$result = curl_exec($curl);
-header("Location: structure_type.php");
-
+$result = CURL_PUT("APIStructuresTypesObjUpdate", $objeto, "Location: structure_type.php", "/{token}/".$id);
 
 ?>

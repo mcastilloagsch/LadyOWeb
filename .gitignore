@@ -1,3 +1,2 @@
 vendor
-/bin/param.config
-/bin/urls_api.config
+bin/param.config
