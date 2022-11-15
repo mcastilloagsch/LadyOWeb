@@ -12,11 +12,12 @@ $general_buttons = [
 ];
 
 $api_url = "APIProvinceGetlist";
+$id = "IdProvince";
 
 $objects = [ 
   [
     "label" => "ID",
-    "key" => "IdProvince",
+    "key" => $id,
     "hidden" => 1
   ],
   [
@@ -30,19 +31,22 @@ $objects = [
     "hidden" => 0
   ],
   [
+    "label" => "ProvCod",
+    "key" => "ProvCod",
+    "hidden" => 0
+  ],
+  [
     "label" => "Borrado",
     "key" => "IsDeleted",
     "hidden" => 1
   ]
 ];
 
-$item_buttons = [
-    ["id" => "edit-button","href" => "update_province.php?IdProvince=", "text" => "Editar", "active" => 1],
-    ["id" => "delete-button","href" => "delete_province.php?IdProvince=", "text" => "Eliminar", "active" => 1]
+$buttons = [
+    ["id" => "edit-button","href" => "update_province.php?$id=", "text" => "Editar", "active" => 1],
+    ["id" => "delete-button","href" => "delete_province.php?$id=", "text" => "Eliminar", "active" => 1]
 ];
 
-$id_key = "IdProvince";
-
-controller_page_html($caller, $titulo, $general_buttons, $objects, $api_url, $item_buttons, $id_key);
+controller_page_html($caller, $titulo, $general_buttons, $objects, $api_url, $buttons, $id);
 
 ?>
