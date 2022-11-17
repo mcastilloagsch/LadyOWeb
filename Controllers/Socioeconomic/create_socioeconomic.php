@@ -2,14 +2,10 @@
 require_once '../authorization.php';
 include_once '../../Common/functions.php';
 
-$name = $_POST['name'];
-$values = $_POST['values'];
-
 $objeto = array(
-    "name" => $name,
-    "values" => $values,
-  );
+  "SocioEconomicName" => $_POST['SocioEconomicName']
+);
 
-$result = CURL_POST("APISocioeconomicsObjInsert", $objeto,"Location: socioeconomic.php");
+$result = CURL_POST("APISocioeconomicObjInsert", $objeto,"Location: socioeconomic.php", "");
 
 ?>
