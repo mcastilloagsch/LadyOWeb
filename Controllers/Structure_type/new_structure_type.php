@@ -5,8 +5,7 @@ include_once '../../Common/html_functions.php';
 
 $titulo = "Agregar Tipo de Estructura";
 $items = [
-    [ "for" => "Nombre", "type" => "text", "name" => "name"],
-    [ "for" => "Prioridad", "type" => "number", "name" => "priority"]
+    [ "for" => "Nombre", "type" => "text", "name" => "StructureTypeName"]
 ];
 $action = "create_structure_type.php";
 $method = "post";

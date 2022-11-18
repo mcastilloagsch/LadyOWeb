@@ -2,19 +2,11 @@
 require_once '../authorization.php';
 include_once '../../Common/functions.php';
 
-$id = $_POST['id'];
-$name = $_POST['name'];
-$priority = $_POST['priority'];
-
-
-$id = intval($id);
-
 $objeto = array(
-    "id" => $id,
-    "name" => $name,
-    "priority" => $priority,
-  );
+  "IdStructureType" => intval($_POST['IdStructureType']),
+  "StructureTypeName" => $_POST['StructureTypeName']
+);
 
-$result = CURL_PUT("APIStructuresTypesObjUpdate", $objeto, "Location: structure_type.php", "/{token}/".$id);
+$result = CURL_PUT("APIStructureTypeObjUpdate", $objeto, "Location: structure_type.php","");
 
 ?>
