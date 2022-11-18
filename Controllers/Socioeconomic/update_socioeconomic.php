@@ -3,19 +3,18 @@ require_once '../authorization.php';
 include_once '../../Common/functions.php';
 include_once '../../Common/html_functions.php';
 
-$id_get = "id";
+$id_get = "IdSocioEconomic";
 $titulo = "Editar Socio Económico";
 $items = [
-    [ "for" => "", "type" => "", "name" => "id", "hidden" => 1],
-    [ "for" => "Nombre", "type" => "text", "name" => "name", "hidden" => 0],
-    [ "for" => "Valores", "type" => "text", "name" => "values", "hidden" => 0]
+    [ "for" => "", "type" => "", "name" => "IdSocioEconomic", "hidden" => 1],
+    [ "for" => "Nombre", "type" => "text", "name" => "SocioEconomicName", "hidden" => 0]
 ];
 
-$action = "edit_religion.php";
+$action = "edit_socioeconomic.php";
 $method = "post";
-$back = "edit_socioeconomic.php";
+$api_url = "APISocioeconomicGetObject";
+$back = "socioeconomic.php";
 
-#$ruta = APIGET("APISocioeconomicsGetObject")."/{token}/".$var);
-controller_update_item_page($id_get, $titulo, $items, $action, $method, $back);
+controller_update_item_page($id_get, $titulo, $items, $action, $method, $api_url, $back);
 
 ?>

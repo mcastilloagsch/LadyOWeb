@@ -7,7 +7,8 @@ $titulo = "Agregar Rama";
 $items = [
     [ "for" => "Nombre", "type" => "text", "name" => "BranchName"],
     [ "for" => "Nombre Unidad", "type" => "text", "name" => "UnitName"],
-    [ "for" => "Pequeño equipo", "type" => "text", "name" => "TeamName"]
+    [ "for" => "Pequeño equipo", "type" => "text", "name" => "TeamName"],
+    [ "for" => "LastModificationPerson", "type" => "number", "name" => "LastModificationPerson"]
 ];
 $action = "create_branche.php";
 $method = "post";

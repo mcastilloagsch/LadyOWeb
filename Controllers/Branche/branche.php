@@ -12,12 +12,12 @@ $general_buttons = [
 ];
 
 $api_url = "APIBranchGetlist";
-$id_key = "IdBranch";
+$id = "IdBranch";
 
 $objects = [ 
   [
     "label" => "ID",
-    "key" => $id_key,
+    "key" => $id,
     "hidden" => 1
   ],
   [
@@ -42,13 +42,13 @@ $objects = [
   ]
 ];
 
-$item_buttons = [
-    ["id" => "edit-button","href" => "update_branche.php?id=", "text" => "Editar", "active" => 1],
-    ["id" => "delete-button","href" => "delete_branche.php?id=", "text" => "Eliminar", "active" => 1]
+$buttons = [
+  ["id" => "edit-button","href" => "update_branche.php?$id=", "text" => "Editar", "active" => 1],
+  ["id" => "delete-button","href" => "delete_branche.php?$id=", "text" => "Eliminar", "active" => 1]
 ];
 
 
 
-controller_page_html($caller, $titulo, $general_buttons, $objects, $api_url, $item_buttons, $id_key);
+controller_page_html($caller, $titulo, $general_buttons, $objects, $api_url, $buttons, $id);
 
 ?>

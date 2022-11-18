@@ -11,12 +11,13 @@ $general_buttons = [
   ["href" => "new_socioeconomic.php", "text" => "Agregar"]
 ];
 
-$api_url = "APISocioeconomicsGetlist";
+$api_url = "APISocioeconomicGetlist";
+$id = "IdSocioEconomic";
 
 $objects = [ 
   [
     "label" => "ID",
-    "key" => "IdSocioEconomic",
+    "key" => $id,
     "hidden" => 1
   ],
   [
@@ -31,13 +32,11 @@ $objects = [
   ]
 ];
 
-$item_buttons = [
-    ["id" => "edit-button","href" => "update_socioeconomic.php?id=", "text" => "Editar", "active" => 1],
-    ["id" => "delete-button","href" => "delete_socioeconomic.php?id=", "text" => "Eliminar", "active" => 1]
+$buttons = [
+  ["id" => "edit-button","href" => "update_socioeconomic.php?$id=", "text" => "Editar", "active" => 1],
+  ["id" => "delete-button","href" => "delete_socioeconomic.php?$id=", "text" => "Eliminar", "active" => 1]
 ];
 
-$id_key = "id";
-
-controller_page_html($caller, $titulo, $general_buttons, $objects, $api_url, $item_buttons, $id_key);
+controller_page_html($caller, $titulo, $general_buttons, $objects, $api_url, $buttons, $id);
 
 ?>

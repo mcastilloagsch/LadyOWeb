@@ -2,19 +2,11 @@
 require_once '../authorization.php';
 include_once '../../Common/functions.php';
 
-$id = $_POST['id'];
-$name = $_POST['name'];
-$values = $_POST['values'];
-
-
-$id = intval($id);
-
 $objeto = array(
-    "id" => $id,
-    "name" => $name,
-    "values" => $values,
-  );
+  "IdSocioEconomic" => intval($_POST['IdSocioEconomic']),
+  "SocioEconomicName" => $_POST['SocioEconomicName']
+);
 
-$result = CURL_PUT("APISocioeconomicsObjUpdate", $objeto, "Location: socioeconomic.php", "/{token}/".$id);
+$result = CURL_PUT("APISocioeconomicObjUpdate", $objeto, "Location: socioeconomic.php", "");
 
 ?>

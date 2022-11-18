@@ -12,11 +12,12 @@ $general_buttons = [
 ];
 
 $api_url = "APIStructureTypeGetlist";
+$id = "IdStructureType";
 
 $objects = [ 
   [
     "label" => "ID",
-    "key" => "IdStructureType",
+    "key" => $id,
     "hidden" => 1
   ],
   [
@@ -31,12 +32,11 @@ $objects = [
   ]
 ];
 
-$item_buttons = [
-    ["id" => "edit-button","href" => "update_structure_type.php?id=", "text" => "Editar", "active" => 1],
-    ["id" => "delete-button","href" => "delete_structure_type.php?id=", "text" => "Eliminar", "active" => 1]
+$buttons = [
+  ["id" => "edit-button","href" => "update_structure_type.php?$id=", "text" => "Editar", "active" => 1],
+  ["id" => "delete-button","href" => "delete_structure_type.php?$id=", "text" => "Eliminar", "active" => 1]
 ];
-$id_key = "id";
 
-controller_page_html($caller, $titulo, $general_buttons, $label_items, $objects, $item_buttons, $id_key);
+controller_page_html($caller, $titulo, $general_buttons, $objects, $api_url, $buttons, $id);
 
 ?>
