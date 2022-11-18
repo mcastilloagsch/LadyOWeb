@@ -2,15 +2,13 @@
 require_once '../authorization.php';
 include_once '../../Common/functions.php';
 
-$name = $_POST['name'];
-$geom = $_POST['geom'];
-$token = $_SESSION['user_token'];
-
 $objeto = array(
-    "RegionName" => $name,
-    #"geom" => $geom,
+    "IdRegion" => 0,
+    "RegionName" => $_POST['RegionName'],
+    "OrderSec" => $_POST['OrderSec'],
+    "IsDeleted" => 0
   );
 
-$result = CURL_POST("APIRegionObjInsert", $objeto,"Location: region.php");
+$result = CURL_POST("APIRegionObjInsert", $objeto,"Location: region.php","");
 
 ?>
