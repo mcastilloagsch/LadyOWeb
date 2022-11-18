@@ -3,6 +3,7 @@ require_once '../authorization.php';
 include_once '../../Common/functions.php';
 include_once '../../Common/html_functions.php';
 
+$id_get = "IdRegion";
 $titulo = "Editar Region";
 $items = [
     [ "for" => ""        , "type" => ""    , "name" => "IdRegion"  , "hidden" => 1],
@@ -12,10 +13,9 @@ $items = [
 
 $action = "edit_region.php";
 $method = "post";
-$back = "region.php";
 $api_url = "APIRegionGetObject";
-$id_get = "IdRegion";
+$back = "region.php";
 
-controller_update_item_page($id_get, $titulo, $items, $action, $api_url, $method, $back);
+controller_update_item_page($id_get, $titulo, $items, $action, $method, $api_url, $back);
 
 ?>
