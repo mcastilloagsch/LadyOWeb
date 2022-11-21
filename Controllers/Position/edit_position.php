@@ -2,19 +2,12 @@
 require_once '../authorization.php';
 include_once '../../Common/functions.php';
 
-$id = $_POST['IdPosition'];
-$name = $_POST['PositionName'];
-$structure_type_id = $_POST['IdStructureType'];
-$token = $_SESSION['user_token'];
-
-$id = intval($id);
-
 $objeto = array(
-    "IdPosition" => $id,
-    "PositionName" => $name,
-    "IdStructureType" => $structure_type_id,
+    "IdPositionType" => intval($_POST['IdPositionType']),
+    "PositionTypeName" => $_POST['PositionTypeName'],
+    "IdStructureType" => intval($_POST['IdStructureType']),
 );
 
-$result = CURL_PUT("APIPositionObjUpdate", $objeto, "Location: position.php", "");
+$result = CURL_PUT("APIPositionTypeObjUpdate", $objeto, "Location: position.php", "");
 
 ?>
