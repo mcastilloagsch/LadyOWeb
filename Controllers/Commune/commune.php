@@ -12,12 +12,11 @@ $general_buttons = [
 ];
 
 $api_url = "APICommuneGetlist";
-$id = "IdCommune";
 
 $objects = [ 
   [
     "label" => "ID",
-    "key" => $id,
+    "key" => "IdCommune",
     "hidden" => 1
   ],
   [
@@ -31,22 +30,19 @@ $objects = [
     "hidden" => 0
   ],
   [
-    "label" => "ComCod",
-    "key" => "ComCod",
-    "hidden" => 0
-  ],
-  [
     "label" => "Borrada",
     "key" => "IsDeleted",
     "hidden" => 1
   ]
 ];
 
-$buttons = [
-  ["id" => "edit-button","href" => "update_commune.php?$id=", "text" => "Editar", "active" => 1],
-  ["id" => "delete-button","href" => "delete_commune.php?$id=", "text" => "Eliminar", "active" => 1]
+$item_buttons = [
+    ["id" => "edit-button","href" => "update_commune.php?IdCommune=", "text" => "Editar", "active" => 1],
+    ["id" => "delete-button","href" => "delete_commune.php?IdCommune=", "text" => "Eliminar", "active" => 1]
 ];
 
-controller_page_html($caller, $titulo, $general_buttons, $objects, $api_url, $buttons, $id);
+$id_key = "IdCommune";
+
+controller_page_html($caller, $titulo, $general_buttons, $objects, $api_url, $item_buttons, $id_key);
 
 ?>
