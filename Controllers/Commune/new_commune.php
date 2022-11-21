@@ -5,8 +5,9 @@ include_once '../../Common/html_functions.php';
 
 $titulo = "Agregar Comuna";
 $items = [
-    [ "for" => "Id Provincia", "type" => "text", "name" => "IdProvince"],
-    [ "for" => "Nombre", "type" => "text", "name" => "CommuneName"]
+    [ "for" => "Id Provincia", "type" => "number", "name" => "IdProvince"],
+    [ "for" => "Nombre", "type" => "text", "name" => "CommuneName"],
+    [ "for" => "ComCod", "type" => "text", "name" => "ComCod"]
 ];
 $action = "create_commune.php";
 $method = "post";
