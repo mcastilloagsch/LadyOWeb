@@ -5,7 +5,7 @@ include_once '../../Common/html_functions.php';
 
 $titulo = "Agregar Posición";
 $items = [
-    [ "for" => "Nombre", "type" => "text", "name" => "PositionName"],
+    [ "for" => "Nombre", "type" => "text", "name" => "PositionTypeName"],
     [ "for" => "Tipo de estructura", "type" => "number", "name" => "IdStructureType"]
 ];
 $action = "create_position.php";

@@ -5,8 +5,7 @@ include_once '../../Common/html_functions.php';
 
 $titulo = "Agregar Socio Económico";
 $items = [
-    [ "for" => "Nombre", "type" => "text", "name" => "name"],
-    [ "for" => "Values", "type" => "text", "name" => "values"]
+    [ "for" => "Nombre", "type" => "text", "name" => "SocioEconomicName"]
 ];
 $action = "create_socioeconomic.php";
 $method = "post";

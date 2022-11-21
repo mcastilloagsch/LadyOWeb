@@ -2,13 +2,9 @@
 require_once '../authorization.php';
 include_once '../../Common/functions.php';
 
-$name = $_POST['name'];
-$priority = $_POST['priority'];
-
 $objeto = array(
-    "name" => $name,
-    "priority" => $priority,
-  );
+  "StructureTypeName" => $_POST['StructureTypeName']
+);
 
-$result = CURL_POST("APIStructureTypeObjInsert", $objeto,"Location: structure_type.php");
+$result = CURL_POST("APIStructureTypeObjInsert", $objeto,"Location: structure_type.php", "");
 ?>

@@ -5,8 +5,9 @@ include_once '../../Common/html_functions.php';
 
 $titulo = "Agregar Provincia";
 $items = [
-    [ "for" => "Id Region", "type" => "text", "name" => "IdRegion"],
-    [ "for" => "Nombre", "type" => "text", "name" => "ProvinceName"]
+    [ "for" => "IdRegion", "type" => "number", "name" => "IdRegion"],
+    [ "for" => "Nombre", "type" => "text", "name" => "ProvinceName"],
+    [ "for" => "ProvCod", "type" => "text", "name" => "ProvCod"]
 ];
 $action = "create_province.php";
 $method = "post";
