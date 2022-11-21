@@ -6,6 +6,6 @@ $objeto = array(
   "IdCommune" => intval($_GET['IdCommune'])
 );
 
-CURL_DELETE($"APICommuneObjDelete", $objeto,"Location: commune.php");
+$result = CURL_DELETE("APICommuneObjDelete", $objeto, "Location: commune.php","");
 
 ?>
