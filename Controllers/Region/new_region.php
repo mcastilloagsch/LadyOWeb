@@ -5,8 +5,9 @@ include_once '../../Common/html_functions.php';
 
 $titulo = "Agregar Región";
 $items = [
-    [ "for" => "Nombre", "type" => "text", "name" => "CountryName"],
-    [ "for" => "OrderSec", "type" => "text", "name" => "OrderSec"]
+    [ "for" => "Nombre", "type" => "text", "name" => "RegionName"],
+    [ "for" => "OrderSec", "type" => "number", "name" => "OrderSec"],
+    [ "for" => "RegCod", "type" => "text", "name" => "RegCod"]
 ];
 $action = "create_region.php";
 $method = "post";
